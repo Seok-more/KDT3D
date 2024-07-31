@@ -104,9 +104,6 @@ void SetBoard()
 
 
 
-}
-
-
 int main()
 {
 	cin >> N;

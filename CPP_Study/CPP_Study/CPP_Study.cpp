@@ -15,62 +15,10 @@
 #include <iomanip>
 using namespace std;
 
-
-// 객체지향
-// - 상속성
-// - 은닉성
-// - 다형성
-
-// 다형성(Polymorphism) : 겉은 똑같지만 기능이 다르게 동작한다.
-// - 오버로딩: 함수 중복 정의, 함수 이름의 재사용
-// - 오버라이딩: 재정의, 부모 클래스의 함수를 자식 클래스에서 재정의
-
-class Player
-{
-public:
-	void Move()
-	{
-		cout << "Move Player\n";
-	}
-
-	//void Move(int a) // 오버로딩
-	//{
-	//	cout << "Move Player(int)\n";
-	//}
-
-
-public:
-	int _hp;
-};
-
-class Knight : public Player
-{
-public:
-	void Move()
-	{
-		cout << "Move Knight\n";
-	}
-
-public:
-	int _stamina;
-};
-
-class Mage : public Player
-{
-public:
-	int _mp;
-};
+// 연산자 오버로딩
 
 
 int main()
 {
-	Player p;
 	
-	p.Move();
-	//p.Move(100);
-
-	Knight k;
-	k.Move();
-	
-	return 0;
 }

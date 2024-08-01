@@ -20,116 +20,137 @@ using namespace std;
 // - 상속성
 // - 은닉성
 // - 다형성
-// 
 
-// 은닉성(Data Hiding) = 캡슐화(Encapsulation)
-// 몰라도 되는 것은 숨긴다.
-// 숨기는 이유
-// -1. 위험하고 건드리면 안됨
-// -2. 다른 경로로 접근하길 원함
+// 다형성(Polymorphism) : 겉은 똑같지만 기능이 다르게 동작한다.
+// - 오버로딩: 함수 중복 정의, 함수 이름의 재사용, 인자만 달라지는 등
+// - 오버라이딩: 재정의, 부모 클래스의 함수를 자식 클래스에서 재정의
 
-// 자동차
-// - 핸들
-// - 페달
-// - 엔진
-// - 문
-// - 각종 전선
+// 바인딩(Binding)
+// - 정적 바인딩(Static binding) : 컴파일 시점에서 결정
+// - 동적 바인딩(Dynamic binding) : 실행 시점에서 결정
 
-// 일반 구매자 입장에서 사용하는 것?
-// - 핸들,페달,문
-// 몰라도 됨 (오히려 건드리면 큰일남)
-// - 엔진, 각종 전선...
+// 일반 함수는 정적 바인딩을 사용
+// 동적 바인딩 : 가상 함수(virtual function)
 
+// 실제 객체가 어떤 타입인지 어떻게 알고 알아서 가상 함수를 호출하는가
+// - 가상 함수 테이블(vftable)
 
-// public, protected, private
-// - public : 외부 어디에서나 접근 가능
-// - protected : 자식들에서만 접근 가능
-// - private : class 내부에서만 접근 가능
+// .vftable[] 4바이트(32), 8바이트(64) ; 포인터처럼 주소임
+// [VMove의 주소] [VDie의 주소]
 
-// 상속 접근 지정자 : 다음 세대한테 부모의 유산을 물려줄지
-// -> 부모한테 받은 유산을 꼭 자식한테 똑같이 줄 필요는 없음
-// - public : 부모의 유산을 그대로 줌 -> (public -> publoc, protected -> protected)
-// - protected : 거의 안씀, 자식에게만 유산을 줌 -> (public -> protected, protected -> protected)
-// - private : 거의 안씀, 유산 안줌, 나만 씀 ->(public -> private, protected -> private)
+// 순수 가상 함수 : 구현은 없고, '인터페이스'만 전달하는 용도
+// 추상 클래스 : 순수 가상 함수가 1개라도 포함되면 추상 클래스로 간주
+// - 직접적으로 객체를 만들 수 없음 -> 반드시 상속을 받아서 순수 가상 함수가 재정의되서 구현해야만 함
 
-
-class Car
+class Player // 추상 클래스가 되어서 이 자체로는 존재 못함
 {
-public: // (멤버) 접근 지정자
-	void MoveHandle() {}
-	void PushPedal() {}
-	void OpenDoor() {}
-
-	void TurnKey()
+public:
+	Player()
 	{
-		RunEngine();
+		_hp = 100;
 	}
 
-private:
-	void DisassembleCar() {}
-	void RunEngine() {}
-	void ConnectCircuit() {}
 
-protected:
-	void RunEngine2() {}
+	void Move()
+	{
+		cout << "Move Player\n";
+	}
+
+	virtual void VMove()
+	{
+		cout << "VMove Player\n";
+	}
+	virtual void VDie()
+	{
+		cout << "VDie Player\n";
+	}
+
+	virtual void VAttack() = 0; // 순수 가상 함수 : 자식들이 반드시 재정의 하도록 하는겨
+
+
+	//void Move(int a) // 오버로딩
+	//{
+	//	cout << "Move Player(int)\n";
+	//}
+
 
 public:
+	int _hp;
+};
 
+class Knight : public Player
+{
+public:
+	Knight()
+	{
+		_stamina = 100;
+	}
+
+	void Move()
+	{
+		cout << "Move Knight\n";
+	}
+
+	virtual void VMove() // 가상 함수는 재정의를 하더라도 가상 함수이다.
+	{
+		cout << "VMove Knight\n";
+	}
+
+	virtual void VDie()
+	{
+		cout << "VDie Knight\n";
+	}
+
+	virtual void VAttack()
+	{
+		cout << "VAttack Knight\n";
+	}
+
+public:
+	int _stamina;
+};
+
+class Mage : public Player
+{
+public:
+	int _mp;
+};
+
+void MovePlayer(Player* player)
+{
+	player->VMove(); //
+}
+
+void MoveKnight(Knight* knight)
+{
+	knight->Move();
+}
+
+class Animal
+{
 
 };
 
-class SuperCar : private Car // 상속 접근 지정자, 거의 public을 씀 
+class Cat : public Animal
 {
-public:
-	void PushRemoteController()
-	{
-		// RunEngine(); private이라 접근 불가
-		RunEngine2(); // protected라 자식에서 접근 가능
-	}
+
 };
 
-class TestSuperCar : SuperCar // 이렇게 앞에 상속 접근을 지정 안하면 private이 기본적으로 들어간다.
+class Dog : public Animal
 {
-	// RunEngine2(); protected임에도 상속 못받음 -> 부모인 SuperCar가 private 상속이라 
-};
 
-// 캡슐화
-// 연관된 데이터와 함수를 논리적으로 묶어 놓은 것
-
-class Berserker
-{
-public:
-
-	int GetHp() { return _hp; }
-
-	void SetHp(int hp)
-	{
-		_hp = hp;
-		if (_hp < 50)
-		{
-			SetBerserkerMode();
-		}
-	}
-private:
-	// 체력이 50 이하로 떨어지면 버서커 모드 발동
-	void SetBerserkerMode()
-	{
-		cout << "매우 쎄짐!" << endl;
-	}
-
-private:
-	int _hp = 100;
 };
 
 int main()
 {
-	// Car car;
-	// RunEngine(); private이라 외부에서 접근 불가
-	// RunEngine2(); // protected라 외부에서 접근 불가
+	// Player p; 추상 클래스가 되어서 존재 불가
+	//p.Move(100);
+	//MovePlayer(&p);
+	// MoveKnight(&p); 당연히 안됨
 
-	Berserker b;
-
-	b.SetHp(20);
+	Knight k;
+	//MoveKnight(&k);
+	MovePlayer(&k); // 됨유 
 
 
 

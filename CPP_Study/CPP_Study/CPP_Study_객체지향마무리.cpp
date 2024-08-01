@@ -113,7 +113,7 @@ int main()
 	cout << GenerateId() << endl;
 	cout << GenerateId() << endl;
 	cout << GenerateId() << endl;	// 1, 2, 3
-	
+
 	return 0;
 
 }

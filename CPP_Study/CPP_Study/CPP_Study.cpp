@@ -15,105 +15,104 @@
 #include <iomanip>
 using namespace std;
 
-// 객체 지향 마무리
+// 타입 변환_포인터
 
-// 1. struct vs class
-// struct는 기본 접근 지정자가 public, class는 private이다.
-// struct는 구조체 : 데이터 묶음을 표현하는 용도
-// class는 객체 지향 프로그래밍의 특징을 나타내는 용도
+// 살면서 참조 타입 변환은 써본적이 없음
+// 근데 포인터 타입 변환은 개많이 씀
 
-
-struct TestStruct
-{
-
-public:
-	int _a;
-	int _b;
-};
-
-class TestClass
-{
-private:
-	int _a;
-	int _b;
-};
-
-// 2. static 변수, static 함수 (static = 정적인)
-
-class Marine
+class Item
 {
 public:
-
-	void TakeDamage(int damage)
+	Item()
 	{
-		_hp -= damage;
+		cout << "Item()\n";
 	}
 
-	static void SetAtk()
+	Item(const Item& Item) // 자신의 클래스를 참조해서 받는 복사 생성자
 	{
-		//_hp = 100; 불가능, static은 클래스에서 벗어나서 전역적으로 선언한 느낌이라 그럼 
-		s_atk = 100; // 가능, static 변수나 함수는 가능하죠잉
+		cout << "Item(const Item&)\n";
+	}
+
+	~Item()
+	{
+		cout << "~Item()\n";
 	}
 
 public:
-	int _hp; // 각 객체에 각각 종속적
-	static int s_atk; // 모든 마린들이 공통적으로 갖는 변수, 설개도 상으로만 존재->선언해야함, 각 객체에 종속된 값이 아니라 전역적으로 됨
-	// static은 .data영역에 메모리에 1개만 잡혀서 공용적으로 돌아가며 쓰는 느낌
+	int _itemType = 0;
+	int _itemDbId = 0;
+
+	char _dummy[4096] = {}; // 정보들로 비대해짐
 
 };
 
-int Marine::s_atk = 0; // 외부 선언(전역적으로 됨)
-
-static int s_global = 1; // 정적 전역 객체
-class Player
+void TestItem(Item item)
 {
-public:
-	int _id;
-};
 
-int GenerateId()
-{
-	// static
-	// 생명주기: 프로그램 시작/종료 (메모리에 항상 올라가 있음)
-	// 가시범위: 함수 내부(외부선언이 아닌 이상 지역안에서만)
-
-	static int s_id = 1; // 정적 지역 객체, 프로그램이 시작될 때, 처음만 초기화 됨
-
-	return s_id++;
 }
 
+void TestPtr(Item* item)
+{
 
+}
 
 int main()
 {
-	TestStruct ts;
-	ts._a = 1;
+	// 복습
+	{
+		// stack [ type(4) dbid(4) dummy(4096)	]
+		// 포인터의 지역 변수 안에서 item이 실제로 생성
+		Item item;  
 
-	TestClass tc;
-	//tc._a = 1; // 이건 불가 아무것도 입력 안하면 class는 기본적으로 private, struct는 public이다.
+		// stack [  주소(8) ] -> Heap 주소 [ type(4) dbid(4) dummy(4096)	]
+		Item* item2 = new Item();
 
-	Marine m1;
-	m1._hp = 40;
-	m1.TakeDamage(3);
+		// item은 범위를 벗어나는 순간 소멸자를 호출하지만
+		// item2는 범위를 벗어나도 Heap에 있는 실제 item2은 소멸자를 호출하지 않는다
 
-	Marine::s_atk = 6;
-	// m1.s_atk = 6;
+		 
+		TestItem(item);	// 복사 생성자 호출(원본을 복사해서 넘겨줬슴)
+		TestItem(*item2); // 복사 생성자 호출(원본을 복사해서 넘겨줬슴)
+		TestPtr(&item); // 생성자 호출X : 그냥 주소값만 갖고오는거니께
+		TestPtr(item2);
 
-	Marine m2;
-	m1._hp = 20;
-	// m1.s_atk = 6;
+		// - 메모리 누수 발생 : 점점 가용 메모리가 줄어들어서 크래시가 남
+		delete item2;
 
-	// 마린 공업 완료
-	Marine::s_atk = 7;
-	Marine::SetAtk();
+	}
 
-	static int id = 10; // static은 스택 영역이 아닌 저 멀리 .data(/.bss초기화안하면) 있음
-	int a = id;
+	// 배열
+	{
+		cout << "---------------------------------" << endl;
 
-	cout << GenerateId() << endl;
-	cout << GenerateId() << endl;
-	cout << GenerateId() << endl;	// 1, 2, 3
+		// 진짜 아이템 100개가 스택메모리에 올라가있음, item생성자 100번호출
+		Item item3[100] = {};
+
+		cout << "---------------------------------" << endl;
+
+		// 진짜 아이템이 1개도 없을 수 있음, item생성자 호출 안함
+		// 아이템을 가리키는 바구니가 100개 있는거
+		Item* item4[100] = {};
+
+		// 이제야 Heap 주소에 아이템을 만듬
+		for (int i = 0; i < 100; ++i)
+		{
+			item4[i] = new Item();
+		}
+		cout << "---------------------------------" << endl;
+
+		// Heap은 수동으로 해제해줘야지
+		for (int i = 0; i < 100; ++i)
+		{
+			delete item4[i];
+		}
+		cout << "---------------------------------" << endl;
+
+	}
+
+
+
 	
-	return 0;
 
+	return 0;
 }

@@ -13,17 +13,17 @@
 #include <vector>
 #include "Function/obj_ori.h"
 #include <iomanip>
+#include <string>
+#include <cmath>
 using namespace std;
 
-// 타입 변환_포인터
+// vector
 
-// 살면서 참조 타입 변환은 써본적이 없음
-// 근데 포인터 타입 변환은 개많이 씀
 
 
 int main()
 {
-	
+    
 
-	return 0;
+    return 0;
 }

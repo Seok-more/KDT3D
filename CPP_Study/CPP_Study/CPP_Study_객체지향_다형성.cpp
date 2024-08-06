@@ -100,7 +100,7 @@ public:
 	{
 		cout << "VDie Knight\n";
 	}
-
+	
 	virtual void VAttack()
 	{
 		cout << "VAttack Knight\n";
@@ -118,7 +118,7 @@ public:
 
 void MovePlayer(Player* player)
 {
-	player->VMove(); //
+	player->VMove(); 
 }
 
 void MoveKnight(Knight* knight)

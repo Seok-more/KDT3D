@@ -82,7 +82,7 @@ public:
     // it--
     Iterator operator--(int)
     {
-        Iterator<T>* temp = * this;
+        Iterator<T>* temp = *this;
         _node = _node->_prev;
         return temp;
     }
@@ -118,7 +118,7 @@ public: // [li.end] <-> [_header] <-> [li.begin]
         _header = new Node<T>(); // 임의의 header를 동적 할당 
         _header->_next = _header;
         _header->_prev = _header; // 일단 데이터가 없으면 다음,이전값을 자기로 받아둠, 일단일단임
-      
+
     }
 
 
@@ -142,16 +142,16 @@ public:
     {
         RemoveNode(_header->_prev);
     }
- 
+
     // 전: [1] <-> [2] <-> [before] <-> [4] <-> [_header]
     // 후: [1] <-> [2] <-> [node] <-> [before] <-> [4] <-> [_header]
     Node<T>* AddNode(Node<T>* before, const T& value)
     {
         // 일단 value를 가진 node를 만듬
-        Node<T>* node = new Node<T>(value); 
-        
+        Node<T>* node = new Node<T>(value);
+
         // '[2 = prevNode]' <-> [before] prev 추출
-        Node<T>* prevNode = before->_prev; 
+        Node<T>* prevNode = before->_prev;
 
         // [2] <-> [node] 연결
         prevNode->_next = node;
@@ -193,7 +193,7 @@ public:
 
         return nextNode;
     }
-    
+
     int size()
     {
         return _size;

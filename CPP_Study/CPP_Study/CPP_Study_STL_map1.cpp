@@ -115,7 +115,7 @@ int main()
         // Player* _value;
     };
 
-    
+
     // 대충 _key, _value가 int 형이라 가정
     // (key: 트리에서 어떤 노드에 저장되는지 결정하는 키 , value: 실질적으로 사용하는 값)
     map<int, int> m;
@@ -124,7 +124,7 @@ int main()
     for (int i = 0; i < 100000; ++i)
     {
         // pair : 어떤 데이터 두개를 쌍으로 묶어줌
- 
+
         m.insert(pair<int, int>(i, i * 100));
     }
 
@@ -135,7 +135,7 @@ int main()
 
         // Erase By key : 뭐 범위삭제도 iterator삭제도 있음 다양함
         m.erase(randomValue);
-   }
+    }
 
     // Q) ID = 1만인 Player를 찾겠다.
     // A) 빠르죠
@@ -145,7 +145,7 @@ int main()
     // unsigned int count = 0;
     // count = m.erase(10000); // 삭제하면 1을 반환
     // count = m.erase(10000); // 삭제할게 없어서 0을 반환
-    
+
     // map.insert()는 이미 값을 가진 key에는 insert할 수 없다.(버전은 여러개있음), 이것도 삽입에 성공하면 1, 아니면 0
     pair<map<int, int>::iterator, bool> ok;
     ok = m.insert(make_pair(1, 100)); // key:1에 value:100을 넣어라
@@ -166,7 +166,7 @@ int main()
     // map 순회
     for (map<int, int>::iterator it = m.begin(); it != m.end(); ++it)
     {
-        pair<const int,int>&p = (*it); // 데이터 꺼내쓰기: key값이 안바뀌므로 const를 붙여야함
+        pair<const int, int>& p = (*it); // 데이터 꺼내쓰기: key값이 안바뀌므로 const를 붙여야함
 
         int key = p.first;
         int value = p.second;

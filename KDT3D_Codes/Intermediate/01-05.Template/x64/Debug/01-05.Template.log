@@ -1,0 +1,13 @@
+﻿  01-05.Template.cpp
+D:\KDT3D_JSM\KDT3D_Codes\01-05.Template\Template.h(62,10): warning C4244: '초기화 중': 'double'에서 'T2'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T2=int
+          ]
+D:\KDT3D_JSM\KDT3D_Codes\01-05.Template\01-05.Template.cpp(56,27): message : 컴파일되는 함수 템플릿 인스턴스화 'T2 FClass<int,1280,640>::Function2<int>(void)'에 대한 참조를 확인하세요.
+          with
+          [
+              T2=int
+          ]
+D:\KDT3D_JSM\KDT3D_Codes\01-05.Template\01-05.Template.cpp(56,17): message : 'main'에서 'FClass<int,1280,640>::Function2'에 대한 첫 번째 참조를 확인하세요.
+  01-05.Template.vcxproj -> D:\KDT3D_JSM\KDT3D_Codes\Binary\x64\Debug\01-05.Template.exe

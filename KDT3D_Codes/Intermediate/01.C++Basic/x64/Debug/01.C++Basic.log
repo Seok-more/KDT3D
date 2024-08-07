@@ -1,0 +1,39 @@
+﻿  01.C++Basic.cpp
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(135,69): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(136,33): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(136,67): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(176,99): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(178,101): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(231,21): warning C4305: '초기화 중': 'int'에서 'bool'(으)로 잘립니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(266,21): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(518,43): warning C4333: '>>': 오른쪽 시프트 횟수가 너무 커 데이터가 손실됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(1155,31): warning C4267: '=': 'size_t'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=int
+          ]
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(1361,42): warning C4309: '=': 상수 값이 잘립니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(1362,42): warning C4309: '=': 상수 값이 잘립니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(1363,42): warning C4309: '=': 상수 값이 잘립니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(1800,31): warning C4305: '=': 'int'에서 'char'(으)로 잘립니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(1800,31): warning C4309: '=': 상수 값이 잘립니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(335,43): warning C4101: 'k' :참조되지 않은 지역 변수입니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(335,28): warning C4101: 'f' :참조되지 않은 지역 변수입니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(335,40): warning C4101: 'j' :참조되지 않은 지역 변수입니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(335,37): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(335,34): warning C4101: 'h' :참조되지 않은 지역 변수입니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(335,31): warning C4101: 'g' :참조되지 않은 지역 변수입니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\01.C++Basic.cpp(1529,21): warning C4101: 'hello' :참조되지 않은 지역 변수입니다.
+  Function.cpp
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(135,69): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(136,33): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(136,67): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(176,99): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.h(178,101): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.cpp(212,69): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.cpp(212,102): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.cpp(212,136): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.cpp(244,78): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+D:\KDT3D_JSM\KDT3D_Codes\01.C++Basic\Function\Function.cpp(275,79): warning C4227: 오래된 구문을 사용했습니다. 참조의 한정자가 무시됩니다.
+  코드를 생성하고 있습니다...
+  01.C++Basic.vcxproj -> D:\KDT3D_JSM\KDT3D_Codes\Binary\x64\Debug\01.C++Basic.exe

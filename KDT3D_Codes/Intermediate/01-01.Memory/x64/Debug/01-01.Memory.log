@@ -1,6 +1,0 @@
-﻿  01-01.Memory.cpp
-D:\KDT3D_JSM\KDT3D_Codes\01-01.Memory\01-01.Memory.cpp(194,17): warning C4101: 'a' :참조되지 않은 지역 변수입니다.
-  Function.cpp
-D:\KDT3D_JSM\KDT3D_Codes\01-01.Memory\Function\Function.cpp(35,19): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  01-01.Memory.vcxproj -> D:\KDT3D_JSM\KDT3D_Codes\Binary\x64\Debug\01-01.Memory.exe

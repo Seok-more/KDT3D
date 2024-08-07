@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-// [»ç¾ç¼­] ±âº»°ª Hp=100, Attack=10
+// [ï¿½ï¿½ç¼­] ï¿½âº»ï¿½ï¿½ Hp=100, Attack=10
 Knight::Knight() : _hp(100), _maxHp(100), _attack(10)
 {
 
@@ -57,10 +57,20 @@ void Knight::OnDamaged(Knight* attacker)
 	if (attacker == nullptr)
 		return;
 
-	// ³» Ã¼·Â ±ð´Â´Ù
+	// ë‚´ì²´ë ¥ê¹Ž
 	int damage = attacker->GetAttackDamage();
 	AddHp(-damage);
 
-	// ¹Ý°Ý!
-	attacker->OnDamaged(this);	
+	if (damage == 0)
+	{
+		return;
+	}
+
+	if (IsDead())
+	{
+		return;
+	}
+
+	attacker->OnDamaged(this);
+	
 }

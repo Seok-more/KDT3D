@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-// [»ç¾ç¼­] ±âº»°ª Hp=100, Attack=10
+// [ï¿½ï¿½ç¼­] ï¿½âº»ï¿½ï¿½ Hp=100, Attack=10
 Knight::Knight() : _hp(100), _attack(10)
 {
 
@@ -25,7 +25,7 @@ void Knight::AddHp(int value)
 
 bool Knight::IsDead()
 {
-	return (_hp == 0);
+	return (_hp <= 0);
 }
 
 void Knight::PrintInfo()

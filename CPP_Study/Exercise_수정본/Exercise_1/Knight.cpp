@@ -2,13 +2,13 @@
 #include <iostream>
 using namespace std;
 
-// [»ç¾ç¼­] ±âº»°ª Hp=100, Attack=10
+// [ï¿½ï¿½ç¼­] ï¿½âº»ï¿½ï¿½ Hp=100, Attack=10
 Knight::Knight() : _hp(100), _attack(10)
 {
 
 }
 
-Knight::Knight(int hp) : _hp(hp)
+Knight::Knight(int hp) : _hp(hp), _attack(10)
 {
 
 }

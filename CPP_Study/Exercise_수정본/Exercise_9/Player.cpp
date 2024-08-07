@@ -61,10 +61,10 @@ void Player::OnDamaged(Player* attacker)
 	if (IsDead())
 		return;
 
-	// ³» Ã¼·Â ±ð´Â´Ù
+	// ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½Â´ï¿½
 	int damage = attacker->GetAttackDamage();
 	AddHp(-damage);
 
-	// ¹Ý°Ý!
+	// ï¿½Ý°ï¿½!
 	attacker->OnDamaged(this);
 }

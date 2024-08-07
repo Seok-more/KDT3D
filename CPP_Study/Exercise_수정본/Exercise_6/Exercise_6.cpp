@@ -14,12 +14,12 @@ int main()
 	Knight* k1 = new Knight();
 	k1->_hp = 100;
 	k1->_maxHp = 100;
-	k1->_attack = 100;
+	k1->_attack = 50;
 
 	Knight* k2 = new Knight();
 	k2->_hp = 100;
 	k2->_maxHp = 100;
-	k2->_attack = 100;
+	k2->_attack = 50;
 
 	k1->OnDamaged(k2);
 

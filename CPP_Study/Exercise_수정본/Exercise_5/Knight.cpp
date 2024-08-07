@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-// [»ç¾ç¼­] ±âº»°ª Hp=100, Attack=10
+// [ï¿½ï¿½ç¼­] ï¿½âº»ï¿½ï¿½ Hp=100, Attack=10
 Knight::Knight() : _hp(100), _maxHp(100), _attack(10)
 {
 
@@ -34,14 +34,23 @@ bool Knight::IsDead()
 
 int Knight::GetAttackDamage()
 {
-	// hp 50% ÀÌÇÏ => maxHp / hp°¡ 2 ÀÌ»ó
+	// hp 50% ï¿½ï¿½ï¿½ï¿½ => maxHp / hpï¿½ï¿½ 2 ï¿½Ì»ï¿½
 	int damage = _attack;
 
-	int ratio = _maxHp / _hp;
-	if (ratio > 2)
-		damage *= 2;
+	if (_hp <= 0)
+	{
+		damage = 0;
+		return damage;
+	}
+	else 
+	{
+		int ratio = _maxHp / _hp;
+		if (ratio >= 2)
+			damage *= 2;
 
-	return damage;
+		return damage;
+	}
+
 }
 
 void Knight::PrintInfo()

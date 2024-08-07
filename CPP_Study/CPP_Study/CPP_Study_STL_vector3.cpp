@@ -110,7 +110,7 @@ public:
 
     ~Vector()
     {
-        if (_data /* = _data != nullptr */) // _data가 동적할당 될 경우, 날려줘야함
+        if (_data /* = _data != nullptr */) // _data가 동적할당 될 경우(남아있으면), 날려줘야함
         {
             delete[] _data;
         }

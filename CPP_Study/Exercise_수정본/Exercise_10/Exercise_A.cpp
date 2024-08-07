@@ -40,17 +40,22 @@ int main()
 	{
 		arrows[i]->AttackTarget();
 
-		// 기사가 죽었으면 소멸시켜준다
-		if (knight != nullptr)
-		{
-			if (knight->IsDead())
-			{
-				delete knight;
-				knight = nullptr;
-			}
-		}	
+		 // 기사가 죽었으면 소멸시켜준다
+		 if (knight != nullptr)
+		 {
+		 	if (knight->IsDead())
+		 	{
+		 		delete knight;
+		 		knight = nullptr;
+		 	}
+		 }	// 화살이 생성되었는데, 기사가 죽어있는 상태라서 오류남
+
 
 		delete arrows[i];
 		arrows[i] = nullptr;
 	}
+	delete knight;
+	delete archer;
+
+
 }

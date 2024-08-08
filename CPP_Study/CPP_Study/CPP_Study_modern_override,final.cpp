@@ -21,88 +21,52 @@
 #include<set>
 using namespace std;
 
-// nullptr
+// override, final
 
-// Modern C++ (C++11~)
-
-class Knight
+class Creature
 {
 public:
-    void Test()
-    {
 
+    virtual void Attack()
+    {
+        cout << "Creature!" << endl;
     }
 };
 
-Knight* FindKnight()
-{
-
-    return nullptr;
-}
-
-void Test(int a)
-{
-    cout << "Test(int)" << endl;
-}
-
-void Test(void* ptr)
-{
-    cout << "Test(*)" << endl;
-}
-
-// NullPtr 구현
-
-const // 맨 아랫줄에 _NullPtr에 대한 const임
-class NullPtr // <-이 NullPtr도 생략해도 됨
+class Player : public Creature
 {
 public:
-    // 그 어떤 타입의 포인터와도 치환 가능
-    template<typename T>
-    operator T* () const
+    virtual void Attack() // final : 나까지만 이 함수를 상속하고, 자식들은 못갖다씀, 거의 안씀
     {
-        return 0;
+        cout << "Player!" << endl;
     }
+};
 
-    // 그 어떤 타입의 멤버 포인터와도 치환 가능
-    template<typename C, typename T>
-    operator T C::* () const
+class Knight : public Player
+{
+public:
+    // 자식의 함수 재정의 : override
+    virtual void Attack() override // 여기에 const만 붙으면 시그니쳐가 아예 달라져서 재정의한것이 아닌 아예 다른, 처음으로 정의한 함수로 판단함
+    {                              // const는 멤버 변수를 건드리지 않겠다는 의미이다. read only 함수가 되어버렷
+        cout << "Knight!" << endl;
+    }
+};
+
+class Mage : public Player
+{
+public:
+    void Attack() override // virtual 안붙여줘도 됨
     {
-        return 0;
+        cout << "Mage!" << endl;
     }
+};
 
-private:
-    void operator&() const; // 주소값 &을 막는다. &nullptr는 안되잖아 
 
-} _NullPtr; // 클래스 선언하자마자 객체 1개를 만드는 방법
 
 int main()
 {
-    int* ptr = _NullPtr;
-
-    // 1) 오동작
-    Test(0);    // 정수로봄
-    Test(NULL); // 예도 정수임
-    Test(nullptr);
-
-    // 2) 가독성
-    auto knight = FindKnight();
-    if (knight == _NullPtr)
-    {
-
-    }
-
-    void (Knight:: * memFunc)();
-    memFunc = &Knight::Test;
-
-    if (memFunc == _NullPtr)
-    {
-
-    }
-
-    // nullptr_t whoami = nullptr;
-
-
-
+    Creature* c = new Knight();
+    c->Attack();
 
 
     return 0;

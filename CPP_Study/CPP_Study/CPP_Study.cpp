@@ -21,17 +21,59 @@
 #include<set>
 using namespace std;
 
-// nullptr
+// r-value reference, std::move
 
-// Modern C++ (C++11~)
+class Knight
+{
+public:
 
+    void PrintInfo() const // read-only
+    {
+    }
 
+public:
+    int _hp = 100;
+};
 
+void TestKnight_Copy(Knight knight) // 임시 객체를 만들어서 값을 복사하기만 한거라 범위 넘어가면 임시 객체 사라지고 실제로 바뀌는건 아무것도 없죠
+{
 
+}
 
+void TestKnight_LValueRef(Knight& knight) // 참조해서 실제 값을 바꿀 수 있음, 불필요한 복사 없음
+{
+
+}
+
+void TestKnight_ConstLValueRef(const Knight& knight) // const는 값을 고치는 것이 아닌 '읽기' 위해서 갖다 쓰는거임
+{
+    knight.PrintInfo(); // 인자에 const가 붙으면, 이 함수는 '읽기' 전용이므로, const가 붙은 함수만 가져올 수 있다.
+}
+
+void TestKnight_RValueRef(Knight&& knight) // r-value를 받는 참조(&&가 한 문법표현임)
+{
+    
+}
 
 int main()
 {
+    // l-value vs r-value
+    // - l-value : 단일식을 넘어서 계속 지속되는 개체, 주소를 갖을 수 있음
+    // - r-value : l-value가 아닌 나머지 (임시 값, 열거형, 람다, i++ ...)
+
+    int a = 3;
+    a = 4;
+    // 3 = a; 이거 안되잖아
+    // (a++) = 5; 
+
+    Knight k1;
+
+    TestKnight_Copy(k1);
+    TestKnight_LValueRef(k1); 
+    // TestKnight_LValueRef(Knight()); // 이 안에있는 Knight()는 함수 호출이 끝남과 동시에 사라지는 임시 객체(r-value)라서 쓸데 없는 참조해서 값 고치게 막아둠
+    TestKnight_ConstLValueRef(Knight()); // 이렇게 const가 붙으면 값을 읽기만 하므로 r-value라도 받아줌
+    // TestKnight_RValueRef(k1); 왼값 못넣게 함
+    TestKnight_RValueRef(Knight());  // 임시 객체는 넣어줌
     
     return 0;
 }

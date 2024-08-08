@@ -9,21 +9,50 @@
 //   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
 //   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
 #include <iostream>
-#include <format> //std::string str = std::format("{}+{}={}", 16, 14, 30);
-#include "Function/test1.h"
-#include <array>
+#include <format> //std::cout << std::format("i: {}, j: {}\n", i, j);
 #include <vector>
-
+#include "Function/obj_ori.h"
+#include <iomanip>
+#include <string>
+#include <cmath>
+#include <list>
+#include <deque>
+#include <map>
+#include<set>
 using namespace std;
 
-// 파일 분할 관리
+// using
+
+typedef vector<int>::iterator Vec_It;
+typedef __int64 id;
+
+using id2 = int;
+
+// 1) 직관성
+typedef void(*MyFunc)();   // MyFunc2는 void를 뱉는 함수의 포인터이다. 
+using MyFunc2 = void(*)(); // MyFunc2는 void를 뱉는 함수의 포인터이다. 
+
+// 2) 템플릿과의 호환성
+template<typename T>
+using List = list<T>;
+
+template<typename T>    // using 이전 버전임 으윽
+struct List2
+{
+    typedef list<T> mytype;
+};
+
 
 int main()
 {
+    id playerID = 0;
 
-	test_1();
+    List<int> li;
+    li.push_back(1);
+    li.push_back(2);
+    li.push_back(3);
 
-	return 0;
+    List2<int>::mytype li2; // using 이전 버전임 으윽
+
+    return 0;
 }
-
-

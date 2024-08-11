@@ -13,18 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CPP_Study.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
+    <Filter Include="소스 파일\Game">
+      <UniqueIdentifier>{733e8f84-8bdb-46d9-b5ee-6ec51c2dfb90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Creature">
+      <UniqueIdentifier>{c0e934a6-4e1d-4443-8eb8-c4a69dba38c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Forward_Declaration">
+      <UniqueIdentifier>{e89c61f5-d67d-4189-bf0a-a4f25096e5de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Practice_STL">
+      <UniqueIdentifier>{ccd4b2e6-e72b-4872-81bf-03bedf423381}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function\practice_snail.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Function\obj_ori.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Practice_STL.h">
+      <Filter>소스 파일\Practice_STL</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CPP_Study.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Practice_STL.cpp">
+      <Filter>소스 파일\Practice_STL</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

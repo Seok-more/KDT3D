@@ -92,7 +92,7 @@ int main()
         int Oddcount = count_if(v.begin(), v.end(), [](int n) {return(n % 2 == 1); });
         cout << "ODD is " << Oddcount << endl;
 
-        bool b1 =  all_of(v.begin(), v.end(), [](int n) {return(n % 2 == 1); }); // 모든 데이터가 조건을 만족하는가
+        bool b1 = all_of(v.begin(), v.end(), [](int n) {return(n % 2 == 1); }); // 모든 데이터가 조건을 만족하는가
         bool b2 = any_of(v.begin(), v.end(), [](int n) {return(n % 2 == 1); }); // 하나라도 데이터가 조건을 만족하는가
         bool b3 = none_of(v.begin(), v.end(), [](int n) {return(n % 2 == 1); }); // 모든 데이터가 조건을 만족하지않는가
 
@@ -102,9 +102,9 @@ int main()
     // Q4 : 벡터에 들어가 있는 모든 숫자들에 3을 곱해주세요!
     {
         // Mul3onV(v);
-        
+
         // 모든 데이터를 스캔할때 유용
-        for_each(v.begin(), v.end(), [](int& n) {return(n *= 3);});
+        for_each(v.begin(), v.end(), [](int& n) {return(n *= 3); });
 
         for (int i = 0; i < v.size(); ++i)
         {
@@ -135,7 +135,7 @@ int main()
         v.push_back(5);
         v.push_back(8);
         v.push_back(2);
-        
+
         // remove(v.begin(), v.end(), 4); 4를 모두 없애고싶다
         // remove_if(v.begin(), v.end(), [](int n) {return(n % 2 == 1); }); // 홀수인 데이터를 모두 없애고싶다.
         // 남겨줘야하는 데이터를 복붙해줌
@@ -152,8 +152,8 @@ int main()
 
         v.erase(remove_if(v.begin(), v.end(), [](int n) {return(n % 2 == 1); }), v.end()); // 위의 과정을 이렇게 압축도 가능
 
-            
-        
+
+
 
 
 
@@ -164,8 +164,8 @@ int main()
 
 
 
-   
-   
+
+
 
 
     return 0;

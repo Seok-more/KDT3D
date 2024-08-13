@@ -32,6 +32,8 @@ int main()
     // 알고리즘 (데이터를 어떻게 사용할 것인가?)
 
     // find
+
+    
     // find_if
     // count
     // count_if
@@ -41,6 +43,16 @@ int main()
     // for_each
     // remove***       :  
     // remove_if***    : 
+
+
+
+
+
+
+
+
+
+
 
     srand((unsigned int)time(nullptr));
 

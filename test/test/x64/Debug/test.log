@@ -1,0 +1,3 @@
+﻿  test.cpp
+D:\KDT3D_JSM\test\test\set.hpp(11,23): error C2955: 'kdt::Set': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+D:\KDT3D_JSM\test\test\set.h(40,1): message : 'kdt::Set' 선언을 참조하십시오.

@@ -1,7 +1,5 @@
 #pragma once
-
-#include <windows.h>
-#include "Types.h"
+#include "pch.h"
 
 enum class ConsoleColor
 {
@@ -27,3 +25,4 @@ public:
 protected:
 };
 
+#include "ConsoleHelper.hpp"

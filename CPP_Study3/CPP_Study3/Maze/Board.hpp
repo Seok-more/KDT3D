@@ -1,7 +1,7 @@
 #pragma once
 #include "Player.h"
 
-const char* TILE = "¡á";
+const char* TILE = "â– ";
 
 
 Board::Board()
@@ -38,7 +38,7 @@ void Board::Render()
 	}
 }
 
-// Binary Tree ¹Ì·Î »ı¼º ¾Ë°í¸®Áò
+// Binary Tree ë¯¸ë¡œ ìƒì„± ì•Œê³ ë¦¬ì¦˜
 // - Mazes for Programmers
 
 inline void Board::GenerateMap()
@@ -58,26 +58,26 @@ inline void Board::GenerateMap()
 		}
 	}
 
-	// ·£´ıÀ¸·Î ¿ìÃø/¾Æ·¡·Î ±æÀ» ¶Õ´Â ÀÛ¾÷
+	// ëœë¤ìœ¼ë¡œ ìš°ì¸¡/ì•„ë˜ë¡œ ê¸¸ì„ ëš«ëŠ” ì‘ì—…
 	for (int32 y = 0; y < _size; ++y)
 	{
 		for (int32 x = 0; x < _size; ++x)
 		{	
-			// ¹Ì¸® ¸¸µé¾îµĞ °İÀÚ¹«´Ì¿¡¼­´Â ½ÇÇàÇÏÁö ¾Ê´Â´Ù.
+			// ë¯¸ë¦¬ ë§Œë“¤ì–´ë‘” ê²©ìë¬´ëŠ¬ì—ì„œëŠ” ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤.
 			if (x % 2 == 0 || y % 2 == 0)
 			{
 				continue;
 			}
 
 
-			// Ãâ±¸°¡ ¶Õ¸®´Â °ÍÀ» ÀÏ´Ü ¸·¾ÆµĞ´Ù
+			// ì¶œêµ¬ê°€ ëš«ë¦¬ëŠ” ê²ƒì„ ì¼ë‹¨ ë§‰ì•„ë‘”ë‹¤
 			if (y == _size - 2 && x == _size - 2)
 			{
 				continue;
 			}
 
 
-			// °¡Àå³¡º®¿¡¼­ ÇÑÄ­ ¶³¾îÁø ºÎºĞ¿¡¼­´Â ±æÀ» ÅÍÁØ´Ù.
+			// ê°€ì¥ëë²½ì—ì„œ í•œì¹¸ ë–¨ì–´ì§„ ë¶€ë¶„ì—ì„œëŠ” ê¸¸ì„ í„°ì¤€ë‹¤.
 			if (y == _size - 2)
 			{
 				_tile[y][x + 1] = TileType::EMPTY;
@@ -90,7 +90,7 @@ inline void Board::GenerateMap()
 			}
 
 
-			// °İÀÚ¹«´Ì¿¡¼­ ·£´ıÀ¸·Î ¿ìÃø/¾Æ·¡¸¦ ¶Õ´Â´Ù.
+			// ê²©ìë¬´ëŠ¬ì—ì„œ ëœë¤ìœ¼ë¡œ ìš°ì¸¡/ì•„ë˜ë¥¼ ëš«ëŠ”ë‹¤.
 			const int32 randValue = ::rand() % 2;
 			if (randValue == 0)
 			{
@@ -107,7 +107,7 @@ inline void Board::GenerateMap()
 
 inline TileType Board::GetTileType(Pos pos)
 {
-	// ¹üÀ§Ã¼Å©
+	// ë²”ìœ„ì²´í¬
 	if (pos._x < 0 || pos._x >= _size|| pos._y < 0 || pos._y >= _size)
 	{
 		return TileType::NONE;

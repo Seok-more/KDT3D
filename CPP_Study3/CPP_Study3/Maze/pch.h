@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <queue>
+#include <map>
 
 
 using namespace std;
@@ -20,6 +22,15 @@ struct Pos
 	{
 		return !(*this  == other);
 	}
+
+    bool operator<(const Pos& other) const // 비교만 하고 값안바꿀거니까
+    {
+        if (_y != other._y)
+        {
+            return (_y < other._y);
+        }
+        return (_x < other._x);
+    }
 
 	Pos operator+(Pos& other)
 	{

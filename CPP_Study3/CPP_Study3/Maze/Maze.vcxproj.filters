@@ -41,5 +41,6 @@
     <ClInclude Include="Player.hpp">
       <Filter>Board</Filter>
     </ClInclude>
+    <ClInclude Include="test.h" />
   </ItemGroup>
 </Project>

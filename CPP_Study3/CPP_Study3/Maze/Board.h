@@ -23,14 +23,15 @@ public:
 	~Board();
 
 public:
-	void			Init(int32 size, Player* player);	// ¸Ê ÃÊ±âÈ­
-	void			Render();			// ¸Ê ½Ã°¢È­
+	void			Init(int32 size, Player* player);	// ë§µ ì´ˆê¸°í™”
+	void			Render();			// ë§µ ì‹œê°í™”
 	void			GenerateMap();
 	TileType		GetTileType(Pos pos);
 	ConsoleColor	GetTileColor(Pos pos);
 
 	Pos				GetEnterPos() { return Pos{ 1,1 }; };
 	Pos				GetExitPos() { return Pos{ _size-2, _size-2}; };
+    int32           GetSize() { return _size; };
 
 public:
 

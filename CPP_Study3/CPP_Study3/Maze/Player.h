@@ -6,7 +6,7 @@ class Board;
 
 class Player
 {
-	enum // ¸î ¹Ğ¸® sec¸¶´Ù ¿òÁ÷¿©¾ß ÇÒÁö 
+	enum // ëª‡ ë°€ë¦¬ secë§ˆë‹¤ ì›€ì§ì—¬ì•¼ í• ì§€ 
 	{
 		MOVE_TICK = 100,
 	};
@@ -20,7 +20,9 @@ public:
 	bool CanGo(Pos pos);
 
 
-public:
+protected:
+    void RightHand();
+    void Bfs();
 
 public:
 
@@ -29,9 +31,9 @@ protected:
 	int32 _dir = DIR_UP;
 	Board* _board = nullptr;
 
-	vector<Pos> _path; // Áö±İ±îÁö °Ç³Ê¿Â Á¤º¸µé
-	int32 _pathIndex = 0; //_path¸¦ ÅëÇØ ³»°¡ ¾ó¸¸Å­ ÀÌµ¿Çß´ÂÁö ÃßÀûÇÏ´Â º¯¼ö, ÀÌµ¿ Á¤º¸ÀÇ ÀÎµ¦½º
-	uint64 _sumTick = 0; // ÇöÀç±îÁöÀÇ tickÀ» ´Ù ´õÇØÁÖ´Â
+	vector<Pos> _path; // ì§€ê¸ˆê¹Œì§€ ê±´ë„ˆì˜¨ ì •ë³´ë“¤
+	int32 _pathIndex = 0; //_pathë¥¼ í†µí•´ ë‚´ê°€ ì–¼ë§Œí¼ ì´ë™í–ˆëŠ”ì§€ ì¶”ì í•˜ëŠ” ë³€ìˆ˜, ì´ë™ ì •ë³´ì˜ ì¸ë±ìŠ¤
+	uint64 _sumTick = 0; // í˜„ì¬ê¹Œì§€ì˜ tickì„ ë‹¤ ë”í•´ì£¼ëŠ”
 
 };
 

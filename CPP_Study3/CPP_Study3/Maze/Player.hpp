@@ -7,113 +7,9 @@ void Player::Init(Board* board)
 	_pos = board->GetEnterPos();
 	_board = board;
 
-	// ÀÚ±â°¡ ÀÌµ¿ÇÏ°í ÀÖ´Â À§Ä¡¸¦ ½Ã¹Ä·¹ÀÌ¼ÇÇÏ±âÀ§ÇØ °®°í¿È(½ºÅÃ¿¡ À§Ä¡ÇÔ)
-	Pos pos = _pos;
-
-	// ÆĞ½º ÃÊ±âÈ­ ¹× ½ÃÀÛÁöÁ¡ Ãß°¡
-	_path.clear();
-	_path.push_back(pos);
-
-	// ¸ñÀûÁö¿¡ µµÂøÇÏ±â Àü±îÁö °è¼Ó ½ÇÇà
-	Pos dest = board->GetExitPos();
-
-
-	Pos front[4] =
-	{
-		Pos { -1, 0 },	//	UP
-		Pos { 0, -1 },	//	LEFT
-		Pos { 1, 0 },	//	DOWN
-		Pos { 0, 1 },	//	RIGHT
-	};
-
-	while (pos != dest)
-	{
-		// 1. ÇöÀç ¹Ù¶óº¸´Â ¹æÇâÀ» ±âÁØÀ¸·Î ¿À¸¥ÂÊÀ¸·Î °¥ ¼ö ÀÖ´ÂÁö È®ÀÎ
-		int32 newDir = (_dir - 1 + DIR_COUNT) % DIR_COUNT;
-
-		if (CanGo(pos + front[newDir]))
-		{
-			// ¿À¸¥ÂÊ ¹æÇâÀ¸·Î 90µµ È¸Àü
-			_dir = newDir;
-
-			// ¾ÕÀ¸·Î ÇÑ º¸ ÀüÁø
-			pos += front[_dir];
-			_path.push_back(pos);
-
-		}
-		// 2. ÇöÀç ¹Ù¶óº¸´Â ¹æÇâÀ» ±âÁØÀ¸·Î ÀüÁøÇÒ ¼ö ÀÖ´ÂÁö È®ÀÎ 
-		else if (CanGo(pos + front[_dir]))
-		{
-			// ¾ÕÀ¸·Î ÇÑ º¸ ÀüÁø
-			pos += front[_dir];
-			_path.push_back(pos);
-
-		}
-		else
-		{
-			// ¿ŞÂÊ ¹æÇâÀ¸·Î 90µµ È¸Àü
-			
-			// ¿ì¾ÆÇÑ ¹æ¹ı
-			_dir = (_dir + 1) % DIR_COUNT;
-
-			// Åõ¹ÚÇÑ ¹æ¹ı
-			// switch (_dir)
-			// {
-			// case DIR_UP:
-			// 	_dir = DIR_LEFT;
-			// 	break;
-			// case DIR_LEFT:
-			// 	_dir = DIR_DOWN;
-			// 	break;
-			// case DIR_DOWN:
-			// 	_dir = DIR_RIGHT;
-			// 	break;
-			// case DIR_RIGHT:
-			// 	_dir = DIR_UP;
-			// 	break;
-			// default:
-			// 	break;
-			// }
-		}
-	}
-
-	stack<Pos> s;
-
-	for (int i = 0; i < _path.size() - 1; ++i)
-	{
-		// ½ºÅÃÀÌ Â÷ÀÖ°í, ´ÙÀ½À¸·Î °¡¾ßÇÏ´Â ±æ°ú ³»°¡ ¹æ±İ±îÁö °É¾î¿Â ±æÀÇ °¡Àå ÃÖ±Ù±æ°ú °°´Ù¸é
-		if (s.empty() == false && s.top() == _path[i + 1])
-		{
-			// ³ª´Â Áö±İ µÇµ¹¾Æ°¡°íÀÖ´Ù.
-			s.pop(); 
-		}
-		else
-		{
-			// »õ·Î¿î ±æÀÌ´Ù.
-			s.push(_path[i]);
-		}
-	}
-
-	// ¸ñÀûÁö µµÂø
-
-	if (_path.empty() == false)
-	{
-		s.push(_path.back());
-	}
-
-	// ºÒÇÊ¿äÇÏ°Ô ¿Ô´Ù°¬´ÙÇÏ´Â ºÎºĞ ³¯¾Æ°¨
-	// ÇÏÁö¸¸ ÀÌ »óÅÂÀÇ ½ºÅÃ¿¡¼­ popÀ» ÇÏ¸é °Å²Ù·Î ³ª¿Í¼­ ¸ñÀûÁö -> ÀÔ±¸°¡ µÉ°ÍÀÓ
-
-	vector<Pos> path;
-	while (s.empty() == false)
-	{
-		path.push_back(s.top());
-		s.pop();
-	}
-
-	reverse(path.begin(), path.end());
-	_path = path;
-
+    //RightHand();
+    Bfs();
+	
 }
 
 void Player::Update(uint64 deltaTick)
@@ -123,22 +19,233 @@ void Player::Update(uint64 deltaTick)
 		return;
 	}
 
-	_sumTick += deltaTick; // ÀüÃ¼½Ã°£¿¡ ÇÃ·¹ÀÌ¾î°¡ ¿òÁ÷ÀÌ±âÀü¿¡ ´ë±âÇÏ°í ÀÖ´Â ½Ã°£À» °è¼Ó ´õÇØÁÜ
+	_sumTick += deltaTick; // ì „ì²´ì‹œê°„ì— í”Œë ˆì´ì–´ê°€ ì›€ì§ì´ê¸°ì „ì— ëŒ€ê¸°í•˜ê³  ìˆëŠ” ì‹œê°„ì„ ê³„ì† ë”í•´ì¤Œ
 
-	if (_sumTick >= MOVE_TICK)	// ´ë±â½Ã°£ÀÌ ¿ì¸®°¡ ÁöÁ¤ÇÑ ¿òÁ÷ÀÌ¶ó´Â ½Ã°£º¸´Ù ³Ñ±â¸é ºñ·Î¼Ò ¿òÁ÷ÀÓ
+	if (_sumTick >= MOVE_TICK)	// ëŒ€ê¸°ì‹œê°„ì´ ìš°ë¦¬ê°€ ì§€ì •í•œ ì›€ì§ì´ë¼ëŠ” ì‹œê°„ë³´ë‹¤ ë„˜ê¸°ë©´ ë¹„ë¡œì†Œ ì›€ì§ì„
 	{
 		_sumTick = 0;
 
-		_pos = _path[_pathIndex]; // ÆĞ½º¾È¿¡ ÀúÀåÇØ ³õÀº ÀÌµ¿ÇÏ´Â Á¤º¸µéÀ» ÀÎµ¦½º¸¦ ÅëÇØ ²¨³»ÁÖ´Â °ÅÀÓ
-		++_pathIndex;			  // ²¨³ÂÀ¸¸é ´ÙÀ½ Á¤º¸
+		_pos = _path[_pathIndex]; // íŒ¨ìŠ¤ì•ˆì— ì €ì¥í•´ ë†“ì€ ì´ë™í•˜ëŠ” ì •ë³´ë“¤ì„ ì¸ë±ìŠ¤ë¥¼ í†µí•´ êº¼ë‚´ì£¼ëŠ” ê±°ì„
+		++_pathIndex;			  // êº¼ëƒˆìœ¼ë©´ ë‹¤ìŒ ì •ë³´
 	}
-
-
-
 }
 
 inline bool Player::CanGo(Pos pos)
 {
 	TileType tileType = _board->GetTileType(pos);
 	return (tileType == TileType::EMPTY);
+}
+
+inline void Player::RightHand()
+{
+    // ìê¸°ê°€ ì´ë™í•˜ê³  ìˆëŠ” ìœ„ì¹˜ë¥¼ ì‹œë®¬ë ˆì´ì…˜í•˜ê¸°ìœ„í•´ ê°–ê³ ì˜´(ìŠ¤íƒì— ìœ„ì¹˜í•¨)
+    Pos pos = _pos;
+
+    // íŒ¨ìŠ¤ ì´ˆê¸°í™” ë° ì‹œì‘ì§€ì  ì¶”ê°€
+    _path.clear();
+    _path.push_back(pos);
+
+    // ëª©ì ì§€ì— ë„ì°©í•˜ê¸° ì „ê¹Œì§€ ê³„ì† ì‹¤í–‰
+    Pos dest = _board->GetExitPos();
+
+
+    Pos front[4] =
+    {
+        Pos { -1, 0 },	//	UP
+        Pos { 0, -1 },	//	LEFT
+        Pos { 1, 0 },	//	DOWN
+        Pos { 0, 1 },	//	RIGHT
+    };
+
+    while (pos != dest)
+    {
+        // 1. í˜„ì¬ ë°”ë¼ë³´ëŠ” ë°©í–¥ì„ ê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆ ìˆ˜ ìˆëŠ”ì§€ í™•ì¸
+        int32 newDir = (_dir - 1 + DIR_COUNT) % DIR_COUNT;
+
+        if (CanGo(pos + front[newDir]))
+        {
+            // ì˜¤ë¥¸ìª½ ë°©í–¥ìœ¼ë¡œ 90ë„ íšŒì „
+            _dir = newDir;
+
+            // ì•ìœ¼ë¡œ í•œ ë³´ ì „ì§„
+            pos += front[_dir];
+            _path.push_back(pos);
+
+        }
+        // 2. í˜„ì¬ ë°”ë¼ë³´ëŠ” ë°©í–¥ì„ ê¸°ì¤€ìœ¼ë¡œ ì „ì§„í•  ìˆ˜ ìˆëŠ”ì§€ í™•ì¸ 
+        else if (CanGo(pos + front[_dir]))
+        {
+            // ì•ìœ¼ë¡œ í•œ ë³´ ì „ì§„
+            pos += front[_dir];
+            _path.push_back(pos);
+
+        }
+        else
+        {
+            // ì™¼ìª½ ë°©í–¥ìœ¼ë¡œ 90ë„ íšŒì „
+
+            // ìš°ì•„í•œ ë°©ë²•
+            _dir = (_dir + 1) % DIR_COUNT;
+
+            // íˆ¬ë°•í•œ ë°©ë²•
+            // switch (_dir)
+            // {
+            // case DIR_UP:
+            // 	_dir = DIR_LEFT;
+            // 	break;
+            // case DIR_LEFT:
+            // 	_dir = DIR_DOWN;
+            // 	break;
+            // case DIR_DOWN:
+            // 	_dir = DIR_RIGHT;
+            // 	break;
+            // case DIR_RIGHT:
+            // 	_dir = DIR_UP;
+            // 	break;
+            // default:
+            // 	break;
+            // }
+        }
+    }
+
+    stack<Pos> s;
+
+    for (int i = 0; i < _path.size() - 1; ++i)
+    {
+        // ìŠ¤íƒì´ ì°¨ìˆê³ , ë‹¤ìŒìœ¼ë¡œ ê°€ì•¼í•˜ëŠ” ê¸¸ê³¼ ë‚´ê°€ ë°©ê¸ˆê¹Œì§€ ê±¸ì–´ì˜¨ ê¸¸ì˜ ê°€ì¥ ìµœê·¼ê¸¸ê³¼ ê°™ë‹¤ë©´
+        if (s.empty() == false && s.top() == _path[i + 1])
+        {
+            // ë‚˜ëŠ” ì§€ê¸ˆ ë˜ëŒì•„ê°€ê³ ìˆë‹¤.
+            s.pop();
+        }
+        else
+        {
+            // ìƒˆë¡œìš´ ê¸¸ì´ë‹¤.
+            s.push(_path[i]);
+        }
+    }
+
+    // ëª©ì ì§€ ë„ì°©
+
+    if (_path.empty() == false)
+    {
+        s.push(_path.back());
+    }
+
+    // ë¶ˆí•„ìš”í•˜ê²Œ ì™”ë‹¤ê°”ë‹¤í•˜ëŠ” ë¶€ë¶„ ë‚ ì•„ê°
+    // í•˜ì§€ë§Œ ì´ ìƒíƒœì˜ ìŠ¤íƒì—ì„œ popì„ í•˜ë©´ ê±°ê¾¸ë¡œ ë‚˜ì™€ì„œ ëª©ì ì§€ -> ì…êµ¬ê°€ ë ê²ƒì„
+
+    vector<Pos> path;
+    while (s.empty() == false)
+    {
+        path.push_back(s.top());
+        s.pop();
+    }
+
+    reverse(path.begin(), path.end());
+    _path = path;
+}
+
+inline void Player::Bfs()
+{
+    // ìê¸°ê°€ ì´ë™í•˜ê³  ìˆëŠ” ìœ„ì¹˜ë¥¼ ì‹œë®¬ë ˆì´ì…˜í•˜ê¸°ìœ„í•´ ê°–ê³ ì˜´(ìŠ¤íƒì— ìœ„ì¹˜í•¨)
+    Pos pos = _pos;
+
+
+    // ëª©ì ì§€ì— ë„ì°©í•˜ê¸° ì „ê¹Œì§€ ê³„ì† ì‹¤í–‰
+    Pos dest = _board->GetExitPos();
+
+
+    Pos front[4] =
+    {
+        Pos { -1, 0 },	//	UP
+        Pos { 0, -1 },	//	LEFT
+        Pos { 1, 0 },	//	DOWN
+        Pos { 0, 1 },	//	RIGHT
+    };
+
+    const int32 size = _board->GetSize();
+    //                      vector  í¬ê¸°,  ì´ˆê¸°í™” í•˜ëŠ” ê°’
+    vector<vector<bool>> discovered(size, vector<bool>(size, false));
+    
+
+    // parent : ì–´ë”” ë²„í…ìŠ¤ì—ì„œ ì™”ëŠ”ì§€
+    // vector<vector<Pos>> parent;
+    // parent[A] = B; -> AëŠ” Bë¡œ ì¸í•´ ë°œê²¬í•¨
+    map<Pos, Pos> parent;
+    
+
+    // ë°œê²¬í•œ ë²„í…ìŠ¤ë“¤ì„ ì €ì¥í•  íì„
+    // Bfs ì‹œì‘, ì¶œë°œì  
+    queue<Pos> q;
+    q.push(pos);
+    discovered[pos._y][pos._x] = true;
+    parent[pos] = pos;
+
+    // qì— ì˜ˆì•½ëœ ì• ê°€ í•˜ë‚˜ë¼ë„ ìˆìœ¼ë©´ ê³„ì† ì‹¤í–‰
+    while (q.empty() == false)
+    {
+        // ê°€ì¥ ì˜¤ë˜ëœ ì• ë¥¼ ê°€ì ¸ì˜¨ë‹¤
+        pos = q.front();
+        q.pop();
+
+        // ë°©ë¬¸!
+        if (pos == dest)
+        {
+            break;
+        }
+
+        // ì´ë™ 4ë°©í–¥ íŒë‹¨
+        for (int32 dir = 0; dir < 4; ++dir)
+        {
+            Pos nextPos = pos + front[dir]; // ex : (4, 0) + (0, -1) = (4, -1)
+
+            // ê°ˆ ìˆ˜ ìˆëŠ” ì§€ì—­ì¸ì§€ í™•ì¸
+            if (CanGo(nextPos) == false)
+            {
+                continue;
+            }
+
+            // ì´ë¯¸ ë°œê²¬í•œ ì§€ì—­ì¸ì§€ í™•ì¸
+            if (discovered[nextPos._y][nextPos._x] == true)
+            {
+                continue;
+            }
+
+            // ë‹¤ í†µê³¼í•˜ë©´ ì˜ˆì•½í•´ì£¼ê³ , ë°œê²¬í–ˆë‹¤ê³  í•´ì£¼ê³ 
+            q.push(nextPos);
+            discovered[nextPos._y][nextPos._x] = true;
+            parent[nextPos] = pos;
+
+        }
+
+    }
+
+    // íŒ¨ìŠ¤ ì´ˆê¸°í™” ë° ì‹œì‘ì§€ì  ì¶”ê°€
+    _path.clear();
+
+    // qì— ì˜ˆì•½ëœ ê¸¸ë“¤ì„ ê±°ê¾¸ë¡œ ê±°ìŠ¬ëŸ¬ ì˜¬ë¼ì£¼ë©´ ìµœë‹¨ ê±°ë¦¬ê² ì£ !
+    // ì¦‰, ëª©ì ì§€ì—ì„œ ì¶œë°œ!
+    pos = dest;
+
+    while (1)
+    {
+        _path.push_back(pos);
+
+        // ì‹œì‘ì ì€ ìê¸°ê°€ ìê¸°ì˜ ë¶€ëª¨ì„ = ë„ì°©í•¨
+        if (pos == parent[pos])
+        {
+            break;
+        }
+
+        // ë‚´ ë¶€ëª¨(ë‚´ê°€ ì˜¨ ë…¸ë“œ)ë¡œ ì´ë™, ì—­ìˆœìœ¼ë¡œ ì´ë™
+        pos = parent[pos]; 
+
+    }
+
+    // ë§ˆì§€ë§‰ì— ë’¤ì§‘ì–´ì£¼ë©´ ë
+    reverse(_path.begin(), _path.end());
+
+    _path.push_back(pos);
+
 }

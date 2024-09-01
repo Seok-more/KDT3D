@@ -19,11 +19,21 @@ using namespace std;
 int main()
 {
     BinarySearchTree<int> bst;
-    bst.insert(10);
     bst.insert(20);
+    bst.insert(10);
     bst.insert(30);
+    bst.insert(25);
+    bst.insert(26);
+    bst.insert(40);
+    bst.insert(50);
 
-    bst.Print_Inorder();
+    //bst.Print_Inorder();
+
+    bst.Delete(20);
+    bst.Delete(26);
+
+    bst.Print();
+
 
     return 0;
 }

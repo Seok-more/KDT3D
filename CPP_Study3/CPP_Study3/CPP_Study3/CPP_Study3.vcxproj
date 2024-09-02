@@ -139,6 +139,8 @@
   <ItemGroup>
     <ClInclude Include="BST\BinarySearchTree.hpp" />
     <ClCompile Include="CPP_Study3.cpp" />
+    <ClInclude Include="RedBlackTree\RB.hpp" />
+    <ClInclude Include="RedBlackTree\RBTree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST\BinarySearchTree.h" />

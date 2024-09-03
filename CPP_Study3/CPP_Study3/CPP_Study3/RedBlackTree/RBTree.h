@@ -39,11 +39,11 @@ public:
 
 
 template<typename T>
-class BinarySearchTree
+class RBinarySearchTree
 {
 public:
-    BinarySearchTree();
-    ~BinarySearchTree();
+    RBinarySearchTree();
+    ~RBinarySearchTree();
 
 public:
     void insert(int In_key);
@@ -64,10 +64,12 @@ public:
     Node<T>* Max(Node<T>* In_node);
     Node<T>* Next(Node<T>* In_node);
 
-
-
-
     void Replace(Node<T>* u, Node<T>* v);
+
+    // Red-Black Tree---------------------------------------------------
+    void LeftRotate(Node<T>* In_node);
+    void RightRotate(Node<T>* In_node);
+
 
 
 private:

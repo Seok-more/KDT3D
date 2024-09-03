@@ -8,7 +8,8 @@
 #include <list>
 #include <stack>
 #include <queue>
-#include "BST/BinarySearchTree.h"
+#include "RedBlackTree/RBTree.h"
+#include <thread>
 
 using namespace std;
 
@@ -18,22 +19,32 @@ using namespace std;
 
 int main()
 {
-    BinarySearchTree<int> bst;
-    bst.insert(20);
-    bst.insert(10);
+    RBinarySearchTree<int> bst;
     bst.insert(30);
-    bst.insert(25);
-    bst.insert(26);
-    bst.insert(40);
-    bst.insert(50);
-
-    //bst.Print_Inorder();
-
-    bst.Delete(20);
-    bst.Delete(26);
-
     bst.Print();
+    this_thread::sleep_for(1s);
 
+    bst.insert(10);
+    bst.Print();
+    this_thread::sleep_for(1s);
+
+    bst.insert(20);
+    bst.Print();
+    this_thread::sleep_for(1s);
+
+    bst.insert(25);
+    bst.Print();
+    this_thread::sleep_for(1s);
+
+    bst.insert(40);
+    bst.Print();
+    this_thread::sleep_for(1s);
+
+    bst.insert(50);
+    bst.Print();
+    this_thread::sleep_for(1s);
+
+ 
 
     return 0;
 }

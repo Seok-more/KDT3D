@@ -28,27 +28,140 @@ void SetCursorPosition(int x, int y)
 
 
 template<typename T>
-inline BinarySearchTree<T>::BinarySearchTree()
+inline RBinarySearchTree<T>::RBinarySearchTree()
 {
-    _nil = new Node();
+    _nil = new Node<T>();
     _root = _nil;
 }
 
 template<typename T>
-inline BinarySearchTree<T>::~BinarySearchTree()
+inline RBinarySearchTree<T>::~RBinarySearchTree()
 {
 }
 
 template<typename T>
-inline void BinarySearchTree<T>::insertFixUp(Node<T>* In_node)
+inline void RBinarySearchTree<T>::insertFixUp(Node<T>* In_node)
 {
+    // 1) p = red, uncle = red
+    // -> p = black, u = black, pp = red
+    // 
+    // 2) p = red, uncle = black (triangle)
+    // -> Rotate를 통해 case 3으로 바꿈
+    // 
+    // 3) p = red, uncle = black (list)
+    // -> 색상 변경 + 회전
+
+
+    //           [pp(B)]
+    //      [p(R)]     [u(R)]
+    //  [n(R)]
+
+    while (In_node->_parent->_color == Color::Red)
+    {
+        if (In_node->_parent == In_node->_parent->_parent->_left)
+        {
+            Node<T>* uncle = In_node->_parent->_parent->_right;
+
+            //           [pp(B)]
+            //      [p(R)]     [u(R)]
+            //  [n(R)]
+
+            if (uncle->_color == Color::Red)
+            {
+                In_node->_parent->_color = Color::Black;         //p
+                uncle->_color = Color::Black;                    //u
+                In_node->_parent->_parent->_color = Color::Red;  //pp
+
+                In_node = In_node->_parent->_parent;
+            }
+            else
+            {
+                // Triangle------------------------------------
+                //           [pp(B)]
+                //      [p(R)]     [u(B)]
+                //          [n(R)]
+        
+                if (In_node == In_node->_parent->_right) 
+                {
+                    In_node = In_node->_parent;
+                    LeftRotate(In_node);
+                    // case3 로 만들어버림
+                }
+                // List------------------------------------
+                //           [pp(B)]
+                //      [p(R)]     [u(B)]
+                // [n(R)]
+
+                //           [p(B)]
+                //      [n(R)]     [pp(R)]
+                //                      [u(B)]
+
+                In_node->_parent->_color = Color::Black;
+                In_node->_parent->_parent->_color = Color::Red;
+                RightRotate(In_node->_parent->_parent);
+
+            }
+
+
+        }
+        else // (In_node->_parent == In_node->_parent->_parent->_right)
+        {
+            Node<T>* uncle = In_node->_parent->_parent->_left;
+
+            //           [pp(B)]
+            //      [u(R)]     [p(R)]
+            //                      [n(R)]
+
+            if (uncle->_color == Color::Red)
+            {
+                In_node->_parent->_color = Color::Black;         //p
+                uncle->_color = Color::Black;                    //u
+                In_node->_parent->_parent->_color = Color::Red;  //pp
+
+                In_node = In_node->_parent->_parent;
+            }
+            else
+            {
+                // Triangle------------------------------------   
+
+                 //           [pp(B)]
+                 //      [u(B)]      [p(R)]
+                 //              [n(R)]
+
+                if (In_node == In_node->_parent->_left)
+                {
+                    In_node = In_node->_parent;
+                    RightRotate(In_node);
+                    // case3 로 만들어버림
+                }
+                // List------------------------------------
+                //           [pp(B)]
+                //      [u(B)]      [p(R)]
+                //                       [n(R)]
+
+                //               [p(B)]
+                //          [pp(R)]     [n(R)]
+                //      [u(B)]
+
+                In_node->_parent->_color = Color::Black;
+                In_node->_parent->_parent->_color = Color::Red;
+                LeftRotate(In_node->_parent->_parent);
+
+            }
+
+
+        }
+
+    }
+
+    _root->_color = Color::Black;
 
 }
 
 
 
 template<typename T>
-void BinarySearchTree<T>::insert(int In_key)
+void RBinarySearchTree<T>::insert(int In_key)
 {
     Node<T>* newNode = new Node<T>();
     newNode->_key = In_key;
@@ -96,14 +209,14 @@ void BinarySearchTree<T>::insert(int In_key)
 }
 
 template<typename T>
-inline void BinarySearchTree<T>::Delete(int In_key)
+inline void RBinarySearchTree<T>::Delete(int In_key)
 {
     Node<T>* deleteNode = Search(_root, In_key);
     Delete(deleteNode);
 }
 
 template<typename T>
-inline void BinarySearchTree<T>::Delete(Node<T>* In_node)
+inline void RBinarySearchTree<T>::Delete(Node<T>* In_node)
 {
     if (In_node == _nil)
     {
@@ -130,7 +243,7 @@ inline void BinarySearchTree<T>::Delete(Node<T>* In_node)
 
 
 template<typename T>
-inline void BinarySearchTree<T>::Print(Node<T>* node, int x, int y)
+inline void RBinarySearchTree<T>::Print(Node<T>* node, int x, int y)
 {
     if (node == _nil)
     {
@@ -139,7 +252,7 @@ inline void BinarySearchTree<T>::Print(Node<T>* node, int x, int y)
 
     SetCursorPosition(x, y);
 
-    if (node->_color == Color::BLACK)
+    if (node->_color == Color::Black)
     {
         SetCursorColor(ConsoleColor::BLUE);
     }
@@ -157,7 +270,7 @@ inline void BinarySearchTree<T>::Print(Node<T>* node, int x, int y)
 }
 
 template<typename T>
-inline Node<T>* BinarySearchTree<T>::Search(Node<T>* In_node, int In_key)
+inline Node<T>* RBinarySearchTree<T>::Search(Node<T>* In_node, int In_key)
 {
     if (In_node == _nil || In_key == In_node->_key)
     {
@@ -175,7 +288,7 @@ inline Node<T>* BinarySearchTree<T>::Search(Node<T>* In_node, int In_key)
 }
 
 template<typename T>
-inline Node<T>* BinarySearchTree<T>::Min(Node<T>* In_node)
+inline Node<T>* RBinarySearchTree<T>::Min(Node<T>* In_node)
 {
     if (In_node == _nil)
     {
@@ -191,7 +304,7 @@ inline Node<T>* BinarySearchTree<T>::Min(Node<T>* In_node)
 }
 
 template<typename T>
-inline Node<T>* BinarySearchTree<T>::Max(Node<T>* In_node)
+inline Node<T>* RBinarySearchTree<T>::Max(Node<T>* In_node)
 {
     if (In_node == _nil)
     {
@@ -207,7 +320,7 @@ inline Node<T>* BinarySearchTree<T>::Max(Node<T>* In_node)
 }
 
 template<typename T>
-inline Node<T>* BinarySearchTree<T>::Next(Node<T>* In_node)
+inline Node<T>* RBinarySearchTree<T>::Next(Node<T>* In_node)
 {
     if (In_node->_right != _nil)
     {
@@ -228,7 +341,7 @@ inline Node<T>* BinarySearchTree<T>::Next(Node<T>* In_node)
 
 // u 서브트리를 v 서브트리로 교체, u 삭제
 template<typename T>
-inline void BinarySearchTree<T>::Replace(Node<T>* u, Node<T>* v)
+inline void RBinarySearchTree<T>::Replace(Node<T>* u, Node<T>* v)
 {
     // 지금 노드가 최고부모이다
     if (!u->_parent)
@@ -251,3 +364,87 @@ inline void BinarySearchTree<T>::Replace(Node<T>* u, Node<T>* v)
 
 }
 
+template<typename T>
+inline void RBinarySearchTree<T>::LeftRotate(Node<T>* x)
+{
+    //          [p]
+    //        [x]
+    //    [1]     [y]
+    //          [2] [3]
+    //----------ㅜ-----------
+    //          [p]
+    //        [y]
+    //    [x]     [3]
+    //  [1] [2]
+    
+    Node<T>* y = x->_right; // [y]
+
+    x->_right = y->_left; // [2]
+    if(y->_left != _nil) { y->_left->_parent = x; }
+
+
+    y->_parent = x->_parent; // [p]
+    if (x->_parent == _nil)  // 애초에 x가 root였다면
+    {
+        _root = y;
+    }
+    else if (x == x->_parent->_left)
+    {
+        //      [p]
+        //    [x]
+        x->_parent->_left = y;
+    }
+    else
+    {
+        //      [p]
+        //         [x]
+        x->_parent->_right = y;
+    }
+   
+    y->_left = x;
+    x->_parent = y;
+}
+
+
+template<typename T>
+inline void RBinarySearchTree<T>::RightRotate(Node<T>* y)
+{
+    //        [y]
+    //    [x]     [3]
+    //  [1] [2]
+    //----------ㅜ-----------
+    //        [x]
+    //    [1]     [y]
+    //          [2] [3]
+
+    Node<T>* x = y->_left; // [x]
+
+    y->_left = x->_right; // [2]
+    if (y->_right != _nil) { y->_right->_parent = y; }
+
+
+    x->_parent = y->_parent; // [p]
+    if (y->_parent == _nil)  // 애초에 x가 root였다면
+    {
+        _root = x;
+    }
+    else if (y == y->_parent->_left)
+    {
+        //      [p]
+        //    [x]
+        y->_parent->_left = x;
+    }
+    else
+    {
+        //      [p]
+        //         [x]
+        y->_parent->_right = x;
+    }
+
+    x->_right = y;
+    y->_parent = x;
+
+
+
+
+}

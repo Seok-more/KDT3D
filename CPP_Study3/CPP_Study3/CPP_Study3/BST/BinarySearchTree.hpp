@@ -9,7 +9,6 @@ void SetCursorPosition(int x, int y)
 }
 
 
-
 template<typename T>
 void BinarySearchTree<T>::insert(int In_key)
 {

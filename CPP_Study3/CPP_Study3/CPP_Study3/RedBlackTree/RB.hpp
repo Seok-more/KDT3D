@@ -27,6 +27,17 @@ void SetCursorPosition(int x, int y)
 }
 
 
+void ShowCosoleCursor(bool flag)
+{
+    HANDLE output = ::GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    ::GetConsoleCursorInfo(output, &cursorInfo);
+    cursorInfo.bVisible = flag;
+    ::SetConsoleCursorInfo(output, &cursorInfo);
+}
+
+
+
 template<typename T>
 inline RBinarySearchTree<T>::RBinarySearchTree()
 {
@@ -215,6 +226,12 @@ inline void RBinarySearchTree<T>::Delete(int In_key)
     Delete(deleteNode);
 }
 
+
+// 먼저 BST삭제 실행
+//          [20]
+//      [10]     [30]
+//        [15]  [25][40]
+
 template<typename T>
 inline void RBinarySearchTree<T>::Delete(Node<T>* In_node)
 {
@@ -223,13 +240,28 @@ inline void RBinarySearchTree<T>::Delete(Node<T>* In_node)
         return;
     }
 
-    if (!In_node->_left)
+    if (In_node->_left == _nil)
     {
+        Color color = In_node->_color;
+        Node<T>* right = In_node->_right;
         Replace(In_node, In_node->_right);
+
+        if (color == Color::Black)
+        {
+            DeleteFixup(right);
+        }
+
     }
-    else if (!In_node->_right)
+    else if (In_node->_right == _nil)
     {
+        Color color = In_node->_color;
+        Node<T>* right = In_node->_left;
         Replace(In_node, In_node->_left);
+
+        if (color == Color::Black)
+        {
+            DeleteFixup(right);
+        }
     }
     else
     {
@@ -241,6 +273,106 @@ inline void RBinarySearchTree<T>::Delete(Node<T>* In_node)
 
 }
 
+
+template<typename T>
+inline void RBinarySearchTree<T>::DeleteFixup(Node<T>* In_node)
+{
+    Node<T>* x = In_node;
+
+    // [Case1][Case2]
+    while (x != _root && x->_color == Color::Black)
+    {
+        if (x == x->_parent->_left)
+        {
+            // [Case3]
+            Node<T>* s = x->_parent->_right;
+            if (s->_color == Color::Red)
+            {
+                s->_color = Color::Black;
+                x->_parent->_color = Color::Red;
+
+                LeftRotate(x->_parent);
+                s = x->_parent->_right;
+            }
+
+            // [Case4]
+            if (s->_left->_color == Color::Black && s->_right->_color == Color::Black)
+            {
+                s->_color = Color::Red;
+                x = x->_parent;
+            }
+            else
+            {
+                // [Case5]
+                if (s->_right->_color == Color::Black)
+                {
+                    s->_left->_color == Color::Black;
+                    s->_color = Color::Red;
+                    RightRotate(s);
+                    s = x->_parent->_right;
+                }
+
+                // [Case6]
+                s->_color = x->_parent->_color;
+                x->_parent->_color = Color::Black;
+                s->_right->_color = Color::Black;
+                LeftRotate(x->_parent);
+                x = _root;
+            }
+
+
+        }
+        else
+        {
+            // [Case3]
+            Node<T>* s = x->_parent->_left;
+            if (s->_color == Color::Red)
+            {
+                s->_color = Color::Black;
+                x->_parent->_color = Color::Red;
+
+                RightRotate(x->_parent);
+                s = x->_parent->_left;
+            }
+
+            // [Case4]
+            if (s->_right->_color == Color::Black && s->_left->_color == Color::Black)
+            {
+                s->_color = Color::Red;
+                x = x->_parent;
+            }
+            else
+            {
+                // [Case5]
+                if (s->_left->_color == Color::Black)
+                {
+                    s->_right->_color == Color::Black;
+                    s->_color = Color::Red;
+                    LeftRotate(s);
+                    s = x->_parent->_left;
+                }
+
+                // [Case6]
+                s->_color = x->_parent->_color;
+                x->_parent->_color = Color::Black;
+                s->_left->_color = Color::Black;
+                RightRotate(x->_parent);
+                x = _root;
+            }
+        }
+    }
+
+    x->_color = Color::Black;
+}
+
+
+template<typename T>
+inline void RBinarySearchTree<T>::Print()
+{
+    ::system("cls");
+    ShowCosoleCursor(false);
+    Print(_root, 10, 0);
+}
 
 template<typename T>
 inline void RBinarySearchTree<T>::Print(Node<T>* node, int x, int y)
@@ -344,7 +476,7 @@ template<typename T>
 inline void RBinarySearchTree<T>::Replace(Node<T>* u, Node<T>* v)
 {
     // 지금 노드가 최고부모이다
-    if (!u->_parent)
+    if (u->_parent == _nil)
     {
         _root = v;
     }
@@ -357,7 +489,6 @@ inline void RBinarySearchTree<T>::Replace(Node<T>* u, Node<T>* v)
         u->_parent->_right = v;
     }
 
-    if (v)
         v->_parent = u->_parent;
 
     delete u;

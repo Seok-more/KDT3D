@@ -52,8 +52,9 @@ public:
 
     void Delete(int In_key);
     void Delete(Node<T>* In_node);
+    void DeleteFixup(Node<T>* In_node);
 
-    void Print() { Print(_root, 10, 0); }
+    void Print();
     void Print(Node<T>* node, int x, int y);
 
 

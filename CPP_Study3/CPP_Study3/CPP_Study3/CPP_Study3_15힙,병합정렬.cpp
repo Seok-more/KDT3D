@@ -23,7 +23,7 @@ void HeapSort(vector<int>& v)
     {
         pq.push(num);
     }
-    
+
     v.clear();
 
 
@@ -55,10 +55,10 @@ void MergeResult(vector<int>& v, int left, int mid, int right)
 {
     // [2][3][7][13]    [4][8][9][11]
     // [l]              [r]
-    
+
     int leftIdx = left;
     int rightIdx = mid + 1;
-    
+
     // [2]
     vector<int> temp;
 
@@ -80,7 +80,7 @@ void MergeResult(vector<int>& v, int left, int mid, int right)
     // 왼쪽이 먼저 끝났으면, 오른쪽 나머지 데이터 복사
     if (leftIdx > mid)
     {
-        
+
         while (rightIdx <= right)
         {
             temp.push_back(v[rightIdx]);
@@ -128,7 +128,7 @@ void MergeSort(vector<int>& v, int left, int right)
 int main()
 {
     vector<int> v;
-    
+
     srand(static_cast<unsigned int>(time(0)));
     for (int i = 0; i < 50; ++i)
     {
@@ -139,7 +139,7 @@ int main()
 
 
     //HeapSort(v);
-    MergeSort(v, 0, v.size()-1);
+    MergeSort(v, 0, v.size() - 1);
 
     return 0;
 }

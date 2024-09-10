@@ -74,7 +74,7 @@ void QuickSort(vector<int>& v, int left, int right)
 int main()
 {
     vector<int> v{ 1,3,5,2,4 };
-    QuickSort(v, 0, v.size()-1 );
+    QuickSort(v, 0, v.size() - 1);
     return 0;
 }
 

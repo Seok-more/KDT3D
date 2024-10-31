@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "IWBTRG",
+			"Path": "..\\Source\\IWBTRG.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "IWBTRGEditor",
+			"Path": "..\\Source\\IWBTRGEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

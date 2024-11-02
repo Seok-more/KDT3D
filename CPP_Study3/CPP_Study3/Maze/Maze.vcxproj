@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="Player.hpp">
       <FileType>CppCode</FileType>
     </ClInclude>

@@ -42,5 +42,6 @@
       <Filter>Board</Filter>
     </ClInclude>
     <ClInclude Include="test.h" />
+    <ClInclude Include="DisjointSet.h" />
   </ItemGroup>
 </Project>

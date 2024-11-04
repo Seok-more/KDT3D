@@ -13,13 +13,24 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 // 해시테이블
 
 // map vs hash_map(unordered_map)
+=======
+// 최소 스패닝 트리(Minimum Spanning Tree)
+// - 그래프/트리 응용
+// - 최소 간선이용 : 사이클이 있으면 안됨
+
+// KRUSKAL(크루스칼) MST 알고리즘
+// - greedy 방법 : 지금 이 순간에 최적인 답을 선택해서 결과를 도출하자
+// - 사이클이 있으면 안됨 : DisjointSet사용
+>>>>>>> 21590ad115785afe377187f441d71e8258af7ce8
 
 // map : Red-Black Tree
 // - 추가/탐색/삭제 : O(logN)
 
+<<<<<<< HEAD
 // hash_map(unordered_map) 
 // - 추가/탐색/삭제 : O(1)
 // 충돌만 자주 안나면 훨씬 빠름
@@ -131,14 +142,20 @@ void TestHashTableChaining()
     }
 
 }
+=======
+>>>>>>> 21590ad115785afe377187f441d71e8258af7ce8
 
 
 int main()
 {
+<<<<<<< HEAD
     //TestTable();
     //TestHash();
     TestHashTableChaining();
 
+=======
+ 
+>>>>>>> 21590ad115785afe377187f441d71e8258af7ce8
     return 0;
 }
 

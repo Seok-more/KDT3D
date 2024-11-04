@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "DisjointSet.h"
 
 const char* TILE = "■";
 
@@ -56,52 +57,66 @@ inline void Board::GenerateMap()
 				_tile[y][x] = TileType::EMPTY;
 			}
 		}
-	}
+	} 
 
-	// 랜덤으로 우측/아래로 길을 뚫는 작업
-	for (int32 y = 0; y < _size; ++y)
-	{
-		for (int32 x = 0; x < _size; ++x)
-		{	
-			// 미리 만들어둔 격자무늬에서는 실행하지 않는다.
-			if (x % 2 == 0 || y % 2 == 0)
-			{
-				continue;
-			}
+    vector<CostEdge> edges;
+    
+    // edges 후보를 랜덤 cost로 등록한다
+    for (int32 y = 0; y < _size; ++y)
+    {
+        for (int32 x = 0; x < _size; ++x)
+        {
+            if (x % 2 == 0 || y % 2 == 0) { continue; }
 
-
-			// 출구가 뚫리는 것을 일단 막아둔다
-			if (y == _size - 2 && x == _size - 2)
-			{
-				continue;
-			}
-
-
-			// 가장끝벽에서 한칸 떨어진 부분에서는 길을 터준다.
-			if (y == _size - 2)
-			{
-				_tile[y][x + 1] = TileType::EMPTY;
-				continue;
-			}
-			if (x == _size - 2)
-			{
-				_tile[y + 1][x] = TileType::EMPTY;
-				continue;
-			}
+            // 우측 연결하는 간선 후보
+            if (x < _size - 2)
+            {
+                // [노드][-][노드]
+                // 노드와 노드 사이를 연결함
+                const int32 randValue = ::rand() % 100;
+                edges.push_back(CostEdge(randValue, Pos{ y,x }, Pos{ y,x + 2 }));
+            }
 
 
-			// 격자무늬에서 랜덤으로 우측/아래를 뚫는다.
-			const int32 randValue = ::rand() % 2;
-			if (randValue == 0)
-			{
-				_tile[y][x + 1] = TileType::EMPTY;
-			}
-			else
-			{
-				_tile[y + 1][x] = TileType::EMPTY;
-			}
-		}
-	}
+            // 아래 연결하는 간선 후보
+            if (y < _size - 2)
+            {
+                // [노드]
+                // [ l  ]
+                // [노드]
+                // 노드와 노드 사이를 연결함
+                const int32 randValue = ::rand() % 100;
+                edges.push_back(CostEdge(randValue, Pos{ y,x }, Pos{ y + 2,x }));
+            }     
+        }
+    }
+
+    sort(edges.begin(), edges.end());
+
+    DisjointSet sets(_size * _size);
+
+    for (CostEdge& edge : edges)
+    {
+        // 2차원배열을 1차원으로 관리하는 공식
+        // [0][1][2][3]
+        // [4][5][6][7]
+        int u = edge.u._y * _size + edge.u._x;
+        int v = edge.v._y * _size + edge.v._x;
+
+        // 같은 그룹이면 스킵 (안그러면 사이클 발생함)
+        if (sets.Find(u) == sets.Find(v)) { continue; }
+
+        // 두 그룹을 합친다
+        sets.Merge(u, v);
+
+        // 맵에 적용
+        // [u][벽][v]
+        int y = (edge.u._y + edge.v._y) / 2;
+        int x = (edge.u._x + edge.v._x) / 2;
+
+        _tile[y][x] = TileType::EMPTY;
+    }
+
 
 }
 

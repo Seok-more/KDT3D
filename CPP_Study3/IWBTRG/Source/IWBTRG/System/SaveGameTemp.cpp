@@ -7,6 +7,7 @@
 USaveGameTemp::USaveGameTemp()
 {
 	PlayerTransform = FTransform::Identity;
+	Test = 0;
 }
 
 

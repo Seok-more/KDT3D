@@ -63,6 +63,10 @@ ACharacterBase::ACharacterBase()
 		CharacterMovementComponent->AirControlBoostVelocityThreshold = 800.0f;  // 일정 속도 이상에서만 공중 제어가 강화됨
 
 	}	
+	{
+		GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnBeginOverlap);
+		GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ThisClass::OnHit);
+	}
 
 
 	{
@@ -89,6 +93,15 @@ void ACharacterBase::BeginPlay()
 
 	// PlayerController의 Data확인용
 	UpdateData();
+
+
+	{	// GameInstanceBase 바인딩
+		UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+		if (GameInstanceBase)
+		{
+			GameInstanceBase->OnTempSave.AddDynamic(this, &ThisClass::OnTempSave);
+		}
+	}
 	
 }
 
@@ -121,6 +134,9 @@ void ACharacterBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		//}
 	}
 
+	{	
+		
+	}
 
 
 	{	// Movement
@@ -189,6 +205,14 @@ void ACharacterBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	FindOverlappedItem();
+
+	// Overlap bug
+	FVector NewLocation = GetActorLocation();
+	NewLocation.Z += 0.001f;  
+	SetActorLocation(NewLocation);
+	NewLocation.Z -= 0.001f;
+	SetActorLocation(NewLocation);
+
 }
 
 void ACharacterBase::UpdateData()
@@ -244,9 +268,46 @@ void ACharacterBase::FindOverlappedItem()
 	}
 }
 
+void ACharacterBase::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	AActorBase* OtherActorBase = Cast<AActorBase>(OtherActor);
+	APawnBase* OtherPawnBase = Cast<APawnBase>(OtherActor);
+
+	// 여기 여러개 겹치긴해
+	if (OtherPawnBase && !OtherPawnBase->IsFriendly())
+	{
+		StatusComponent->OnDie.Broadcast();
+	}
+
+
+}
+
+void ACharacterBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	AActorBase* OtherActorBase = Cast<AActorBase>(OtherActor);
+	APawnBase* OtherPawnBase = Cast<APawnBase>(OtherActor);
+
+	// 여기 여러개 겹치긴해
+	if (OtherPawnBase && !OtherPawnBase->IsFriendly())
+	{
+		StatusComponent->OnDie.Broadcast();
+	}
+}
+
 void ACharacterBase::OnDie()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Die"));
+	Destroy();
+}
+
+
+
+void ACharacterBase::OnTempSave()
+{
+	UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+	GameInstanceBase->PlayerTransformToTempSave = GetActorTransform();
+	GameInstanceBase->CurrentLevelNameToTempSave = UGameplayStatics::GetCurrentLevelName(GetWorld());
+	GameInstanceBase->ControllerRotatorToTempSave = GetControlRotation();
 }
 
 

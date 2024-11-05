@@ -6,6 +6,7 @@
 #include "System/PlayerCameraManagerBase.h"
 #include "CharacterBase.h"
 #include "Components/StatusComponent.h"
+#include "System/MainHUD.h"
 #include "GameFramework/Character.h"
 
 APlayerControllerBase::APlayerControllerBase()
@@ -124,6 +125,16 @@ void APlayerControllerBase::SetupInputComponent()
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("IA_Shot is disabled"));
+	}
+
+	if (const UInputAction* InputAction = FUtils::GetInputActionFromName(IMC_Array, TEXT("IA_Reset")))
+	{
+		EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Started, this, &ThisClass::OnReset);
+		UE_LOG(LogTemp, Warning, TEXT("IA_Reset is abled"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("IA_Reset is disabled"));
 	}
 
 
@@ -245,6 +256,12 @@ void APlayerControllerBase::OnPick(const FInputActionValue& InputActionValue)
 void APlayerControllerBase::OnShot(const FInputActionValue& InputActionValue)
 {
 	Attack();
+}
+
+void APlayerControllerBase::OnReset(const FInputActionValue& InputActionValue)
+{
+	AMainHUD* MainHUD = Cast<AMainHUD>(GetHUD());
+	MainHUD->OpenCurrentLevelFromReset();
 }
 
 

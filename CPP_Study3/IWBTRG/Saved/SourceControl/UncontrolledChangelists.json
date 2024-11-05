@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Levels/LV_Stage0.umap",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/UI/UI_Loading.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/UI/UI_Misc.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Data/DT_Projectile.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Data/DT_PawnBase.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Data/DT_ActorBase.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/AI/PathTracing/BT_PathTracing.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Data/Input/Base/IMC_Base.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Data/Input/Base/IA_Reset.uasset",
+				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Misc/NewBlueprint.uasset"
+			]
+		}
+	]
+}

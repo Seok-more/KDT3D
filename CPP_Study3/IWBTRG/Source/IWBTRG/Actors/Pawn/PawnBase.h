@@ -86,6 +86,11 @@ public: // MID
 	UPROPERTY(EditAnywhere, Category = "MID")
 	FLinearColor MIDColor_temp = FLinearColor(1.0, 1.0, 1.0, 1.0);
 
+public: // Friendly
+	UPROPERTY(EditAnywhere, Category = "Friendly")
+	bool bFriendly = false;
+
+
 public:	// AI
 	UPROPERTY(EditAnywhere, Category = "AI")
 	TSubclassOf<AAIController> AIControllerClass;;
@@ -135,6 +140,9 @@ public:
 	virtual void UpdateData();
 	virtual void Destroy();
 
+	
+	virtual bool IsFriendly() {return bIsFriendly;}
+
 
 
 protected:
@@ -172,7 +180,7 @@ public:
 
 protected:
 	bool bHasMID = false;
-
+	bool bIsFriendly = false;
 
 protected:
 	UPROPERTY(EditAnywhere, meta = (RowType = "/Script/IWBTRG.PawnBaseTableRow"))

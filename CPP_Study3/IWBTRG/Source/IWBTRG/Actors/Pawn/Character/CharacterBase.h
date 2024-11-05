@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Actors/ActorBase.h"
 #include "Actors/ActorItem.h"
+#include "Actors/ActorSave.h"
 #include "GameFramework/Character.h"
 #include "Components/ZoomSpringArmComponent.h"
 #include "Actors/ActorProjectile.h"
@@ -14,6 +14,7 @@
 #include "Animation/AnimInstanceBase.h"
 #include "../PawnBase.h"
 #include "MotionWarpingComponent.h"
+#include "System/GameInstanceBase.h"
 #include "CharacterBase.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(FOnCharacterBaseTableRowChanged)
@@ -88,9 +89,21 @@ public:
 
 	virtual void FindOverlappedItem();
 
+protected:
+
+	UFUNCTION()
+	virtual void OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	virtual void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+
 public:
 	UFUNCTION()
 	virtual void OnDie();
+
+	UFUNCTION()
+	virtual void OnTempSave();
 
 public:
 	UPROPERTY(VisibleAnywhere)
@@ -121,7 +134,7 @@ public:
 
 protected:
 	bool bHasMID = false;
-
+	bool bIsFriendly = true;
 
 
 protected:

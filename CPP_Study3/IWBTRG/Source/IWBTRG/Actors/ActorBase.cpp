@@ -75,9 +75,7 @@ AActorBase::AActorBase(const FObjectInitializer& ObjectInitializer)
 		StatusComponent = CreateDefaultSubobject<UStatusComponent>(TEXT("StatusComponent"));
 	}
 
-	{
-
-	}
+		
 
 }
 
@@ -141,6 +139,13 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		{
 			ensureMsgf(false, TEXT("Class is not equal to DataTable"));
 		}
+
+		// IsFriendly
+		if (Data)
+		{
+			bIsFriendly = Data->bFriendly;
+		}
+
 	}
 
 	{	// Mesh
@@ -305,6 +310,10 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 			}
 		}
 	
+	}
+
+	{	// Projectile
+		ProjectileData = Data->Projectile.GetRow<FProjectileTableRow>(TEXT("Projectile"));
 	}
 }
 

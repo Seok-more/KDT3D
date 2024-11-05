@@ -48,6 +48,8 @@ protected: // Input
 
 	void OnShot(const FInputActionValue& InputActionValue);
 
+	void OnReset(const FInputActionValue& InputActionValue);
+
 protected:	// Input method
 	void Attack();
 

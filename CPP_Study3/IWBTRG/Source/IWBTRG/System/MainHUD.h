@@ -30,7 +30,10 @@ public:
 	virtual void UISetting();
 
 	UFUNCTION(BlueprintCallable)
-	virtual void OpenCurrentLevel();
+	virtual void OpenCurrentLevelFromUI();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void OpenCurrentLevelFromReset();
 
 public:
 	class UUserWidget* Widget = nullptr;

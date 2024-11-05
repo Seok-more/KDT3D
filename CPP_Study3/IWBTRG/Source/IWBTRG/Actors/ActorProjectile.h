@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Actors/ActorBase.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Components/StatusComponent.h"
 #include "Actors/Effect/EffectBase.h"
 #include "Actors/Effect/EffecDecal.h"
 #include "ActorProjectile.generated.h"
@@ -39,6 +39,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Projectile")
 	float InitialLifeSpan = 5.f;
 
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	float Damage = 0.f;
+
 public: // Transform
 	UPROPERTY(EditAnywhere, Category = "Transform")
 	FVector Scale = FVector::OneVector;
@@ -57,6 +60,13 @@ public: // MID
 
 	UPROPERTY(EditAnywhere, Category = "MID")
 	FLinearColor MIDColor_temp = FLinearColor(1.0, 1.0, 1.0, 1.0);
+
+public: // Friendly
+	UPROPERTY(EditAnywhere, Category = "Friendly")
+	bool bFriendly = false;
+
+	UPROPERTY(EditAnywhere, Category = "Friendly")
+	bool bOnlyPawn = false;
 
 public:
 
@@ -92,6 +102,9 @@ public:
 	virtual void UpdateData();
 	virtual void Destroy();
 
+	virtual bool IsFriendly() { return bIsFriendly; }
+	virtual bool SetIsFriendly(bool Friendly) { return bIsFriendly = Friendly; }
+
 public:
 	UFUNCTION()
 	virtual void OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
@@ -106,12 +119,21 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStatusComponent> StatusComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	float Damage;
+
+	UPROPERTY(VisibleAnywhere)
+	float FinalDamage;
 	
 public:
 	UPROPERTY(VisibleAnywhere)
 	AEffectBase* WithEffect;
 
 protected:
+	bool bIsFriendly = false;
+
+public:
 	UPROPERTY(VisibleAnywhere)
 	UProjectileMovementComponent* ProjectileMovementComponent;
 

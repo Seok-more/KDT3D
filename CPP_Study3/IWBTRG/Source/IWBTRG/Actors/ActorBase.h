@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Misc/Utils.h"
+#include "Actors/ActorProjectile.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/BoxComponent.h"
@@ -63,8 +64,15 @@ public: // MID
 
 	UPROPERTY(EditAnywhere, Category = "MID")
 	FLinearColor MIDColor_temp = FLinearColor(1.0, 1.0, 1.0, 1.0);
+	
+public: // Friendly
+	UPROPERTY(EditAnywhere, Category = "Friendly")
+	bool bFriendly = false;
 
 
+public: // Projectile
+	UPROPERTY(EditAnywhere, Category = "Projectile", meta = (RowType = "/Script/IWBTRG.ProjectileTableRow"))
+	FDataTableRowHandle Projectile;
 
 public:
 
@@ -105,6 +113,7 @@ public:
 	virtual void UpdateData();
 	virtual void Destroy();
 
+	virtual bool IsFriendly() { return bIsFriendly; }
 
 protected:
 	UFUNCTION()
@@ -163,10 +172,16 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStatusComponent> StatusComponent;
 
+public:
+	FProjectileTableRow* ProjectileData;
+
+
 protected:
 	bool bHasMID = false;
 
 	bool bIsProjectile = false;
+
+	bool bIsFriendly = false;
 
 protected:
 	UPROPERTY(EditAnywhere)

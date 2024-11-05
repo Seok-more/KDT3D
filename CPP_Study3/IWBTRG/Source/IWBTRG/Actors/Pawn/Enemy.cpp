@@ -23,6 +23,13 @@ void AEnemy::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 {
 	Super::SetData(InDataTableRowHandle);
 
+	{
+		if (Data->PawnClass = AEnemy::StaticClass())
+		{
+			Data->bFriendly = false;
+		}
+	}
+
 	// Error
 	if (Data && Data->AIControllerClass)
 	{

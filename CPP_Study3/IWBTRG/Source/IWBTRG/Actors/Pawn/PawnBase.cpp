@@ -64,6 +64,11 @@ APawnBase::APawnBase(const FObjectInitializer& ObjectInitializer)
 		HPWidgetComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		HPWidgetComponent->SetWidgetClass(WidgetClass.Class);
 	}
+
+	{
+		
+	}
+
 }
 
 // Called when the game starts or when spawned
@@ -111,6 +116,12 @@ void APawnBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		{
 			ensureMsgf(false, TEXT("Class is not equal to DataTable"));
 		} 
+
+		// IsFriendly
+		if (Data)
+		{
+			bIsFriendly = Data->bFriendly;
+		}
 	}
 
 	{	// Mesh
@@ -260,6 +271,7 @@ void APawnBase::Destroy()
 
 void APawnBase::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+
 }
 
 float APawnBase::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)

@@ -15,6 +15,8 @@ namespace CollisionProfileName
 	static inline FName Enemy = TEXT("Enemy");
 	static inline FName Projectile = TEXT("Projectile");
 	static inline FName Projectile2 = TEXT("Projectile2");
+	static inline FName OnlyCharacter = TEXT("OnlyCharacter");
+
 }
 namespace SocketName
 {

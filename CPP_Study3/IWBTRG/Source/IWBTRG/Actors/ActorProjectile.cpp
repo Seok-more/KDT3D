@@ -6,6 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Subsystem/ActorPoolSubsystem.h"
 #include "Actors/Pawn/Character/CharacterBase.h"
+#include "Actors/Pawn/PawnBase.h"
+
 
 
 FProjectileTableRow::FProjectileTableRow()
@@ -71,13 +73,24 @@ void AActorProjectile::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	if (!Data) { ensure(false); return; }
 
 	{
-	
+		// IsFriendly
+		if (Data)
+		{
+			bIsFriendly = Data->bFriendly;
+		}
 	}
 
 	{
 		StaticMeshComponent->SetStaticMesh(Data->StaticMesh);
-		StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::Projectile);
 		StaticMeshComponent->SetRelativeScale3D(Data->Scale);
+		if (Data->bOnlyPawn)
+		{
+			StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::PawnTrigger);
+		}
+		else
+		{
+			StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::Projectile);
+		}
 	
 		StaticMeshComponent->MoveIgnoreActors.Empty();
 		StaticMeshComponent->MoveIgnoreActors.Add(GetOwner());
@@ -113,7 +126,15 @@ void AActorProjectile::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 				StaticMeshComponent->SetMaterial(i, Data->StaticMesh->GetMaterial(i));
 			}
 		}
-	}	
+	}
+
+
+	{	// Damage;
+		Damage = Data->Damage;
+
+		FinalDamage = Damage; // + Something
+	}
+
 }
 
 void AActorProjectile::Tick(float DeltaTime)
@@ -147,22 +168,47 @@ void AActorProjectile::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedCompone
 	FVector Location = GetActorLocation();
 	if (!IsValid(this)) { return; }
 	
-	if (!bFromSweep)
+	AActorBase* OtherActorBase = Cast<AActorBase>(OtherActor);
+	APawnBase* OtherPawnBase = Cast<APawnBase>(OtherActor);
+	ACharacterBase* Chara = Cast<ACharacterBase>(OtherActor);
+
+	if((OtherActorBase && !OtherActorBase->IsFriendly()) || (OtherPawnBase && !OtherPawnBase->IsFriendly()))
 	{
+		if (!bFromSweep)
+		{
+			Destroy();
+			check(false);
+			return;
+		}
+
+		FTransform NewTransform;
+		NewTransform.SetLocation(SweepResult.ImpactPoint);
+		FRotator Rotation = UKismetMathLibrary::Conv_VectorToRotator(SweepResult.ImpactNormal);
+		NewTransform.SetRotation(Rotation.Quaternion());
+		GetWorld()->GetSubsystem<UActorPoolSubsystem>()->SpawnHitEffectWithDecal(NewTransform, Data->HitEffectTableRowHandle);
 		Destroy();
-		check(false);
+
+		UGameplayStatics::ApplyDamage(OtherActor, FinalDamage, GetInstigator()->GetController(), this, nullptr);
+	}
+
+	// 여기 캐릭터랑 중복되는 상황이긴해
+	else if (Chara && !IsFriendly())
+	{
+
+		Chara->StatusComponent->OnDie.Broadcast();
+
+		if (!bFromSweep)
+		{
+			Destroy();
+			return;
+		}
+	}
+	else
+	{
 		return;
 	}
-	
-	FTransform NewTransform;
-	NewTransform.SetLocation(SweepResult.ImpactPoint);
-	FRotator Rotation = UKismetMathLibrary::Conv_VectorToRotator(SweepResult.ImpactNormal);
-	NewTransform.SetRotation(Rotation.Quaternion());
-	GetWorld()->GetSubsystem<UActorPoolSubsystem>()->SpawnHitEffectWithDecal(NewTransform, Data->HitEffectTableRowHandle);
-	Destroy();
-	
-	UGameplayStatics::ApplyDamage(OtherActor, 1.f, GetInstigator()->GetController(), this, nullptr);
 }
+	
 
 AEffectBase* AActorProjectile::AddEffect(AEffectBase* InTemplate)
 {

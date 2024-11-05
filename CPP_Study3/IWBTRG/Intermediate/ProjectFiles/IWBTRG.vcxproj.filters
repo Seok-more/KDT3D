@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\IWBTRG.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\IWBTRG.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\IWBTRGEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\IWBTRG">
+      <UniqueIdentifier>{E6E8D5BB-E654-3C6D-888A-20CD3FE3B60F}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\IWBTRG\IWBTRG.Build.cs">
+      <Filter>Source\IWBTRG</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\IWBTRG\IWBTRG.cpp">
+      <Filter>Source\IWBTRG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\IWBTRG.h">
+      <Filter>Source\IWBTRG</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Actors">
+      <UniqueIdentifier>{BF3209CE-9929-3668-A69B-5A45C7D9EEE4}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorBase.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorBase.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorEnemy.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorEnemy.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorItem.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorItem.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorProjectile.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorProjectile.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorSave.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorSave.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\PooledActor.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\PooledActor.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Actors\AI">
+      <UniqueIdentifier>{B8E4B7CB-05AD-3894-8F04-5BC5CC79B4EC}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\AI\AIControllerBasicEnemy.cpp">
+      <Filter>Source\IWBTRG\Actors\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\AI\AIControllerBasicEnemy.h">
+      <Filter>Source\IWBTRG\Actors\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\AI\AIControllerPathTracing.cpp">
+      <Filter>Source\IWBTRG\Actors\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\AI\AIControllerPathTracing.h">
+      <Filter>Source\IWBTRG\Actors\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\AI\PatrolPath.cpp">
+      <Filter>Source\IWBTRG\Actors\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\AI\PatrolPath.h">
+      <Filter>Source\IWBTRG\Actors\AI</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Actors\Effect">
+      <UniqueIdentifier>{0C28FE64-23F2-3EF0-B9DD-1A4A01319A97}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Effect\EffecDecal.cpp">
+      <Filter>Source\IWBTRG\Actors\Effect</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Effect\EffecDecal.h">
+      <Filter>Source\IWBTRG\Actors\Effect</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase.cpp">
+      <Filter>Source\IWBTRG\Actors\Effect</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase.h">
+      <Filter>Source\IWBTRG\Actors\Effect</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Actors\Pawn">
+      <UniqueIdentifier>{983AC8DF-0836-33E3-80CC-6B5CFF276AD8}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Pawn\Enemy.cpp">
+      <Filter>Source\IWBTRG\Actors\Pawn</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Pawn\Enemy.h">
+      <Filter>Source\IWBTRG\Actors\Pawn</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Pawn\PawnBase.cpp">
+      <Filter>Source\IWBTRG\Actors\Pawn</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Pawn\PawnBase.h">
+      <Filter>Source\IWBTRG\Actors\Pawn</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Actors\Pawn\Character">
+      <UniqueIdentifier>{C3629735-51C6-3FEA-88E0-C1BB1082C55E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Pawn\Character\CharacterBase.cpp">
+      <Filter>Source\IWBTRG\Actors\Pawn\Character</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Pawn\Character\CharacterBase.h">
+      <Filter>Source\IWBTRG\Actors\Pawn\Character</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Pawn\Character\PlayerControllerBase.cpp">
+      <Filter>Source\IWBTRG\Actors\Pawn\Character</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Pawn\Character\PlayerControllerBase.h">
+      <Filter>Source\IWBTRG\Actors\Pawn\Character</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Actors\Trigger">
+      <UniqueIdentifier>{276EA22E-7E4B-356F-82A3-B85E608B92AD}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Trigger\TriggerBoxBase.cpp">
+      <Filter>Source\IWBTRG\Actors\Trigger</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Trigger\TriggerBoxBase.h">
+      <Filter>Source\IWBTRG\Actors\Trigger</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Animation">
+      <UniqueIdentifier>{761F1ADE-02A3-38DB-B445-33284780239B}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Animation\AnimInstanceBase.cpp">
+      <Filter>Source\IWBTRG\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Animation\AnimInstanceBase.h">
+      <Filter>Source\IWBTRG\Animation</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Animation\AnimNotify_effect.cpp">
+      <Filter>Source\IWBTRG\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Animation\AnimNotify_effect.h">
+      <Filter>Source\IWBTRG\Animation</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Animation\AnimNotify_Projectile.cpp">
+      <Filter>Source\IWBTRG\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Animation\AnimNotify_Projectile.h">
+      <Filter>Source\IWBTRG\Animation</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Components">
+      <UniqueIdentifier>{E8B81342-3271-3230-876E-9BDB0F44765A}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Components\AdvancedFloatingPawnMovement.cpp">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Components\AdvancedFloatingPawnMovement.h">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Components\StatusComponent.cpp">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Components\StatusComponent.h">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Components\ZoomSpringArmComponent.cpp">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Components\ZoomSpringArmComponent.h">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Misc">
+      <UniqueIdentifier>{4DF4EBB4-9C69-387D-A092-7CD5C04A80E3}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Misc\ActorPool.cpp">
+      <Filter>Source\IWBTRG\Misc</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Misc\ActorPool.h">
+      <Filter>Source\IWBTRG\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\IWBTRG\Misc\Utils.h">
+      <Filter>Source\IWBTRG\Misc</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Node">
+      <UniqueIdentifier>{03A7D983-2D89-3E38-8B19-600AB7293289}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Base.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Base.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_PathTrace.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_PathTrace.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\Subsystem">
+      <UniqueIdentifier>{3F055DFF-9945-3025-B8BB-ED99527689C7}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Subsystem\ActorPoolSubsystem.cpp">
+      <Filter>Source\IWBTRG\Subsystem</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Subsystem\ActorPoolSubsystem.h">
+      <Filter>Source\IWBTRG\Subsystem</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\System">
+      <UniqueIdentifier>{7BAA5392-2E14-3160-B66A-67314F9F1150}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\System\GameInstanceBase.cpp">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\System\GameInstanceBase.h">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\System\MainGameModeBase.cpp">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\System\MainGameModeBase.h">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\System\MainGameState.cpp">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\System\MainGameState.h">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\System\MainHUD.cpp">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\System\MainHUD.h">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\System\PlayerCameraManagerBase.cpp">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\System\PlayerCameraManagerBase.h">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\System\PlayerStateBase.cpp">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\System\PlayerStateBase.h">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\System\SaveGameTemp.cpp">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\System\SaveGameTemp.h">
+      <Filter>Source\IWBTRG\System</Filter>
+    </ClInclude>
+    <Filter Include="Source\IWBTRG\UI">
+      <UniqueIdentifier>{CEF2C458-C128-3997-A58A-A9295A3DEC01}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\UI\HPBarWidget.cpp">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\UI\HPBarWidget.h">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\UI\WidgetBase.cpp">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\UI\WidgetBase.h">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

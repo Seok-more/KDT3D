@@ -27,4 +27,10 @@ public:
 	UPROPERTY()
 	FTransform PlayerTransform;
 
+	UPROPERTY()
+	float Test;
+
+	//UPROPERTY()
+	// Current Level
+
 };

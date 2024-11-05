@@ -17,12 +17,11 @@ class IWBTRG_API AMainGameState : public AGameStateBase
 
 
 public:
-
+	AMainGameState();
 
 protected:
 	UFUNCTION()
 	void OnLevelTransition();
-
 
 public:
 	UPROPERTY(BlueprintAssignable)
@@ -30,5 +29,6 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnGameClear OnGameOver;
+
 
 };

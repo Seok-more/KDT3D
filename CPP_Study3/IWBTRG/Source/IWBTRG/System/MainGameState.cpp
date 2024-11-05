@@ -4,8 +4,16 @@
 #include "System/MainGameState.h"
 #include "Kismet/GamePlayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "SaveGameTemp.h"
+
+AMainGameState::AMainGameState()
+{
+
+}
 
 void AMainGameState::OnLevelTransition()
 {
 	//UGameplayStatics::OpenLevel(this, TEXT("Secondmap"));
 }
+
+

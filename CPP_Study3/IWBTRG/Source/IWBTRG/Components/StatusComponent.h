@@ -59,6 +59,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	bool bDie = false;
 
+	UPROPERTY()
+	FTransform CurrentTransform;
+
 public:
 	AController* LastInstigator = nullptr;
 

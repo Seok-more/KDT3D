@@ -8,6 +8,7 @@
 #include "Actors/Pawn/Character/PlayerControllerBase.h"
 #include "Actors/Pawn/Character/CharacterBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "System/GameInstanceBase.h"
 
 AMainHUD::AMainHUD()
 {
@@ -31,6 +32,18 @@ void AMainHUD::BeginPlay()
 		check(StatusComponent);
 
 		StatusComponent->OnDie.AddDynamic(this, &ThisClass::OnPlayerDie);
+	}
+
+	{
+		UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+		if (!GameInstanceBase->PlayerTransformToTempSave.Equals(FTransform::Identity))
+		{
+			ControlledChara->SetActorTransform(GameInstanceBase->PlayerTransformToTempSave);
+			PlayerController->SetControlRotation(GameInstanceBase->ControllerRotatorToTempSave);
+		}
+
+		
+
 	}
 }
 
@@ -77,12 +90,11 @@ void AMainHUD::OnPlayerDie()
 				TextBlock->SetVisibility(ESlateVisibility::Visible);
 			}
 		}
-
 	}
-	
-	//UKismetSystemLibrary::K2_SetTimer(this, TEXT("UISetting"), 2.f, false);
-	UISetting();
 
+	{
+		UISetting();
+	}
 }
 
 void AMainHUD::UISetting()
@@ -103,18 +115,44 @@ void AMainHUD::UISetting()
 	}
 }
 
-void AMainHUD::OpenCurrentLevel()
+void AMainHUD::OpenCurrentLevelFromUI()
 {
-	FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
-	UGameplayStatics::OpenLevel(GetWorld(), FName(CurrentLevelName));
+	UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+
+	if (GameInstanceBase && !GameInstanceBase->CurrentLevelNameToTempSave.IsEmpty())
+	{
+		UGameplayStatics::OpenLevel(GetWorld(), FName(GameInstanceBase->CurrentLevelNameToTempSave));
+	}
+	else
+	{
+		FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+		UGameplayStatics::OpenLevel(GetWorld(), FName(CurrentLevelName));
+	}
 
 	Widget->SetIsFocusable(false);
 
 	FInputModeGameOnly InputMode;  // 게임 입력 전용 모드
 	PlayerController->SetInputMode(InputMode);
-	
+
 	// 마우스 커서 숨기기
 	PlayerController->bShowMouseCursor = false;
+	
 
+
+}
+
+void AMainHUD::OpenCurrentLevelFromReset()
+{
+	UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+
+	if (GameInstanceBase && !GameInstanceBase->CurrentLevelNameToTempSave.IsEmpty())
+	{
+		UGameplayStatics::OpenLevel(GetWorld(), FName(GameInstanceBase->CurrentLevelNameToTempSave));
+	}
+	else
+	{
+		FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+		UGameplayStatics::OpenLevel(GetWorld(), FName(CurrentLevelName));
+	}
 
 }

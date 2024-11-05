@@ -11,17 +11,11 @@ void AActorEnemy::OnMeshHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 	{
 		Chara->StatusComponent->OnDie.Broadcast();
 
-
 	}
 }
 
 void AActorEnemy::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-
-
-
-
-
 
 }
 

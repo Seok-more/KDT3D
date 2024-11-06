@@ -2,7 +2,6 @@
 
 
 #include "Actors/ActorSave.h"
-#include "Kismet/GameplayStatics.h"
 #include "Actors/Pawn/Character/CharacterBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "System/GameInstanceBase.h"
@@ -23,8 +22,30 @@ void AActorSave::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor*
 		UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
 		GameInstanceBase->OnTempSave.Broadcast();
 
-		
-		
+		{
+			// Shooting Progress
+			UWorld* World = GetWorld();
+
+			ACharacterBase* ControlledChara = Cast<ACharacterBase>(UGameplayStatics::GetPlayerCharacter(World, 0));
+
+			FVector StartLocation = GetActorLocation();
+			FVector TargetLocation = ControlledChara->GetActorLocation();
+
+			FVector Direction = (TargetLocation - StartLocation).GetSafeNormal();
+
+			if (ProjectileData)
+			{
+				AActorProjectile* Projectile = World->SpawnActorDeferred<AActorProjectile>(ProjectileData->ActorClass,
+					FTransform::Identity, ControlledChara, ControlledChara, ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
+
+				Projectile->SetData(Data->Projectile);
+
+				FTransform NewTransform;
+				NewTransform.SetLocation(SweepResult.ImpactPoint);
+				NewTransform.SetRotation(Direction.Rotation().Quaternion());
+				Projectile->FinishSpawning(NewTransform);
+			}
+		}
 	}
 }
 
@@ -57,17 +78,9 @@ void AActorSave::OnColliderBeginOverlap(UPrimitiveComponent* OverlappedComp, AAc
 
 				FTransform NewTransform;
 				NewTransform.SetLocation(SweepResult.ImpactPoint);
-				//NewTransform.SetLocation(FVector(-2010.0, 2240.0, 300));
-
 				NewTransform.SetRotation(Direction.Rotation().Quaternion());
-
 				Projectile->FinishSpawning(NewTransform);
 			}
-
-			
 		}
-
-
-
 	}
 }

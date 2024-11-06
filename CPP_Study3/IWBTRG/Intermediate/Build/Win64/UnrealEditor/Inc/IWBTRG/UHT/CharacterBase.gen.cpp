@@ -376,6 +376,7 @@ struct Z_Construct_UClass_ACharacterBase_Statics
 		{ "HideCategories", "Navigation" },
 		{ "IncludePath", "Actors/Pawn/Character/CharacterBase.h" },
 		{ "ModuleRelativePath", "Actors/Pawn/Character/CharacterBase.h" },
+		{ "ObjectInitializerConstructorDeclared", "" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatusComponent_MetaData[] = {
 		{ "Category", "CharacterBase" },
@@ -470,10 +471,10 @@ struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IW
 		{ FCharacterBaseTableRow::StaticStruct, Z_Construct_UScriptStruct_FCharacterBaseTableRow_Statics::NewStructOps, TEXT("CharacterBaseTableRow"), &Z_Registration_Info_UScriptStruct_CharacterBaseTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCharacterBaseTableRow), 4224931554U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ACharacterBase, ACharacterBase::StaticClass, TEXT("ACharacterBase"), &Z_Registration_Info_UClass_ACharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterBase), 1072241711U) },
+		{ Z_Construct_UClass_ACharacterBase, ACharacterBase::StaticClass, TEXT("ACharacterBase"), &Z_Registration_Info_UClass_ACharacterBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACharacterBase), 2527768265U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_Character_CharacterBase_h_520553272(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_Character_CharacterBase_h_779081405(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_Character_CharacterBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_Character_CharacterBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_Character_CharacterBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_Character_CharacterBase_h_Statics::ScriptStructInfo),
 	nullptr, 0);

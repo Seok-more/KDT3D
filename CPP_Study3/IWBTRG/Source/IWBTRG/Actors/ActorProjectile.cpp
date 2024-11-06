@@ -92,9 +92,9 @@ void AActorProjectile::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 			StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::Projectile);
 		}
 	
-		StaticMeshComponent->MoveIgnoreActors.Empty();
-		StaticMeshComponent->MoveIgnoreActors.Add(GetOwner());
-
+		//StaticMeshComponent->MoveIgnoreActors.Empty();
+		//StaticMeshComponent->MoveIgnoreActors.Add(GetOwner());
+	
 	}
 
 	{

@@ -364,6 +364,14 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorItem.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorMovable.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorMovable.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorPortal.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorPortal.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorProjectile.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -428,6 +436,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Animation\AnimNotify_Projectile.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Components\AdCharacterMovementComponent.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Components\AdCharacterMovementComponent.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Components\AdvancedFloatingPawnMovement.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -477,10 +489,6 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\System\PlayerCameraManagerBase.h"/>
-    <ClCompile Include="..\..\Source\IWBTRG\System\PlayerStateBase.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\IWBTRG\System\PlayerStateBase.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\System\SaveGameTemp.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

@@ -67,8 +67,8 @@ class IWBTRG_API ACharacterBase : public ACharacter
 
 public:
 	// Sets default values for this character's properties
-	ACharacterBase();
-
+	//ACharacterBase();
+	ACharacterBase(const FObjectInitializer& ObjectInitializer);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -86,6 +86,10 @@ public:
 
 	virtual void OnStartCrouch(float HeightAdjust, float ScaledHeightAdjust) override;
 	virtual void OnEndCrouch(float HeightAdjust, float ScaledHeightAdjust) override;
+
+
+public:
+
 
 	virtual void FindOverlappedItem();
 
@@ -135,7 +139,6 @@ public:
 protected:
 	bool bHasMID = false;
 	bool bIsFriendly = true;
-
 
 protected:
 	UPROPERTY(EditAnywhere, meta = (RowType = "/Script/IWBTRG.CharacterBaseTableRow"))

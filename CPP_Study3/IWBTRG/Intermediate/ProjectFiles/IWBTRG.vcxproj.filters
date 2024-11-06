@@ -60,6 +60,18 @@
     <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorItem.h">
       <Filter>Source\IWBTRG\Actors</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorMovable.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorMovable.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorPortal.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorPortal.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorProjectile.cpp">
       <Filter>Source\IWBTRG\Actors</Filter>
     </ClCompile>
@@ -177,6 +189,12 @@
     <Filter Include="Source\IWBTRG\Components">
       <UniqueIdentifier>{E8B81342-3271-3230-876E-9BDB0F44765A}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Components\AdCharacterMovementComponent.cpp">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Components\AdCharacterMovementComponent.h">
+      <Filter>Source\IWBTRG\Components</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\IWBTRG\Components\AdvancedFloatingPawnMovement.cpp">
       <Filter>Source\IWBTRG\Components</Filter>
     </ClCompile>
@@ -262,12 +280,6 @@
       <Filter>Source\IWBTRG\System</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\System\PlayerCameraManagerBase.h">
-      <Filter>Source\IWBTRG\System</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\IWBTRG\System\PlayerStateBase.cpp">
-      <Filter>Source\IWBTRG\System</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\IWBTRG\System\PlayerStateBase.h">
       <Filter>Source\IWBTRG\System</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\IWBTRG\System\SaveGameTemp.cpp">

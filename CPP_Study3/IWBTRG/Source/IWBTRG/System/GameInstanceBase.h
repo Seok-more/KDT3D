@@ -38,7 +38,17 @@ public:
 
 	FOnTempSave OnTempSave;
 
-public: // Temp
+public: // Level Change
+	UPROPERTY()
+	FString FromLevelName;
+
+	UPROPERTY()
+	FRotator PlayerRotatorToLevel;
+	
+	UPROPERTY()
+	FRotator ControllerRotatorToLevel;
+
+public: // TempSave
 	UPROPERTY()
 	FTransform PlayerTransformToTempSave;
 

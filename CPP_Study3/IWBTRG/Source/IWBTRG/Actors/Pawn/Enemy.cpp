@@ -24,9 +24,12 @@ void AEnemy::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	Super::SetData(InDataTableRowHandle);
 
 	{
-		if (Data->PawnClass = AEnemy::StaticClass())
+		if (Data)
 		{
-			Data->bFriendly = false;
+			if (Data->PawnClass = AEnemy::StaticClass())
+			{
+				Data->bFriendly = false;
+			}
 		}
 	}
 

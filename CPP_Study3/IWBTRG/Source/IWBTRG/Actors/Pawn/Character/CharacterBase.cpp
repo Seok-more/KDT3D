@@ -3,6 +3,7 @@
 
 #include "CharacterBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/AdCharacterMovementComponent.h"
 #include "Components/ZoomSpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/SkinnedAssetCommon.h"
@@ -27,10 +28,10 @@ void FCharacterBaseTableRow::OnDataTableChanged(const UDataTable* InDataTable, c
 #endif
 // ------------------------------------------------------------------------------
 
-// Sets default values
-ACharacterBase::ACharacterBase()
+ACharacterBase::ACharacterBase(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer.SetDefaultSubobjectClass<UAdCharacterMovementComponent>(Super::CharacterMovementComponentName))
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	{
@@ -52,6 +53,8 @@ ACharacterBase::ACharacterBase()
 		const FVector Translation = FVector(0., 0., 90.0);
 		FTransform SpringArmTransform = FTransform(Rotation, Translation, FVector::OneVector);
 		SpringArm->SetRelativeTransform(SpringArmTransform);
+
+		Camera->SetRelativeLocation(FVector(0.f, -50.f, 70.f));
 	}
 	
 	{	// Basic Setting
@@ -68,7 +71,7 @@ ACharacterBase::ACharacterBase()
 		GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ThisClass::OnHit);
 	}
 
-
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	{
 		StatusComponent = CreateDefaultSubobject<UStatusComponent>(TEXT("StatusComponent"));
 	}
@@ -80,12 +83,75 @@ ACharacterBase::ACharacterBase()
 		StatusComponent->OnDie.AddDynamic(this, &ThisClass::OnDie);
 	}
 
-
-
-
-
+	{
+		// Jagged Error fix try
+		
+	}
 }
 
+// Sets default values
+//ACharacterBase::ACharacterBase()
+//{
+// 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+//	PrimaryActorTick.bCanEverTick = true;
+//
+//	{
+//		SpringArm = CreateDefaultSubobject<UZoomSpringArmComponent>(TEXT("SpringArm"));
+//		Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+//	}
+//	
+//	{
+//		SpringArm->SetupAttachment(GetMesh());
+//		SpringArm->ProbeSize = 5.0;
+//		SpringArm->bUsePawnControlRotation = true;
+//		SpringArm->bInheritRoll = false;
+//		SpringArm->SetMinMaxTargetArmLength(100.f, SpringArm->GetMaxTargetArmLength());
+//		Camera->SetupAttachment(SpringArm);
+//	
+//		bUseControllerRotationYaw = false;
+//	
+//		const FRotator Rotation = FRotator(0., 90.0, 0.);
+//		const FVector Translation = FVector(0., 0., 90.0);
+//		FTransform SpringArmTransform = FTransform(Rotation, Translation, FVector::OneVector);
+//		SpringArm->SetRelativeTransform(SpringArmTransform);
+//	}
+//	
+//	{	// Basic Setting
+//		UCharacterMovementComponent* CharacterMovementComponent = GetCharacterMovement();
+//
+//		JumpMaxCount = 2; // UE_LOG(LogTemp, Warning, TEXT("Current Jump Count: %d"), CurrentJumpCount);
+//		CharacterMovementComponent->AirControl = 0.2f;
+//		CharacterMovementComponent->AirControlBoostMultiplier = 1.3f;
+//		CharacterMovementComponent->AirControlBoostVelocityThreshold = 800.0f;  // 일정 속도 이상에서만 공중 제어가 강화됨
+//
+//	}	
+//	{
+//		GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnBeginOverlap);
+//		GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ThisClass::OnHit);
+//	}
+//
+//	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+//	{
+//		StatusComponent = CreateDefaultSubobject<UStatusComponent>(TEXT("StatusComponent"));
+//	}
+//	{
+//		//MotionWarpComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpComponent"));
+//	}
+//
+//	{
+//		StatusComponent->OnDie.AddDynamic(this, &ThisClass::OnDie);
+//	}
+//
+//	{
+//		// Jagged Error fix try
+//		
+//	}
+//
+//
+//
+//
+//}
+//
 // Called when the game starts or when spawned
 void ACharacterBase::BeginPlay()
 {
@@ -206,12 +272,20 @@ void ACharacterBase::Tick(float DeltaTime)
 
 	FindOverlappedItem();
 
-	// Overlap bug
-	FVector NewLocation = GetActorLocation();
-	NewLocation.Z += 0.001f;  
-	SetActorLocation(NewLocation);
-	NewLocation.Z -= 0.001f;
-	SetActorLocation(NewLocation);
+	{	// Collision doesn't work when character stops bug -> fix_temp
+		// 언리얼 캡슐 콜리젼은 가만히 있을때는 바운더리가 아닌, 중심에서만 콜리젼 체크를 한다는데 뭔
+		FHitResult OutHit;
+		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, 0.01f), GetActorRotation(), true, OutHit);
+		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, -0.01f), GetActorRotation(), true, OutHit);
+	}
+
+	{	// 끼임사
+		UAdCharacterMovementComponent* AdCharacterMovementComponent = Cast<UAdCharacterMovementComponent>(GetCharacterMovement());
+		if (AdCharacterMovementComponent && AdCharacterMovementComponent->bPushed)
+		{
+			StatusComponent->OnDie.Broadcast();
+		}
+	}
 
 }
 
@@ -287,11 +361,14 @@ void ACharacterBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPr
 	AActorBase* OtherActorBase = Cast<AActorBase>(OtherActor);
 	APawnBase* OtherPawnBase = Cast<APawnBase>(OtherActor);
 
-	// 여기 여러개 겹치긴해
+	// 여기 여러개 겹치긴해 -> ActorEnemy로 분리해야 깔끔함
 	if (OtherPawnBase && !OtherPawnBase->IsFriendly())
 	{
 		StatusComponent->OnDie.Broadcast();
 	}
+
+	
+
 }
 
 void ACharacterBase::OnDie()

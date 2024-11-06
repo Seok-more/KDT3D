@@ -13,6 +13,18 @@ void AActorItem::Tick(float DeltaTime)
 	{
 		UE_LOG(LogTemp, Log, TEXT("CharacterOverlapped"));
 	}
+
+	{
+		FRotator NewRotation = GetActorRotation();
+		NewRotation.Yaw += 100.0f * DeltaTime;
+		SetActorRotation(NewRotation);
+
+		FVector NewLocation = GetActorLocation();
+		float RunningTime = GetWorld()->GetTimeSeconds();
+		float AddHeight = FMath::Sin(RunningTime * 2.0f) * 0.5f;
+		NewLocation.Z += AddHeight;
+		SetActorLocation(NewLocation);
+	}
 	
 }
 

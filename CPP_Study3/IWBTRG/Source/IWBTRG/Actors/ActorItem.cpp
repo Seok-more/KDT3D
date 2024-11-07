@@ -53,24 +53,19 @@ void AActorItem::UpdateData()
 void AActorItem::Destroy()
 {
 	Super::Destroy();
-	UE_LOG(LogTemp, Warning, TEXT("De"));
 }
 
 void AActorItem::OnColliderBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	Super::OnColliderBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
-	// Main UI -> Press E to pick create
 
 	bOverlapped = true;
-
-
-
 }
 
 void AActorItem::OnColliderEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	Super::OnColliderEndOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex);
-	// Main UI -> Press E to pick remove
+	
 
 	bOverlapped = false;
 }

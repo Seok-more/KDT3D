@@ -60,8 +60,11 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& ObjectInitializer)
 	{	// Basic Setting
 		UCharacterMovementComponent* CharacterMovementComponent = GetCharacterMovement();
 
+		// 캐릭터 난간 임계점 작을수록 잘떨어짐(기본40)
+		CharacterMovementComponent->PerchRadiusThreshold = 35.0f;
+
 		JumpMaxCount = 2; // UE_LOG(LogTemp, Warning, TEXT("Current Jump Count: %d"), CurrentJumpCount);
-		CharacterMovementComponent->AirControl = 0.2f;
+		CharacterMovementComponent->AirControl = 0.4f;
 		CharacterMovementComponent->AirControlBoostMultiplier = 1.3f;
 		CharacterMovementComponent->AirControlBoostVelocityThreshold = 800.0f;  // 일정 속도 이상에서만 공중 제어가 강화됨
 
@@ -82,76 +85,8 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& ObjectInitializer)
 	{
 		StatusComponent->OnDie.AddDynamic(this, &ThisClass::OnDie);
 	}
-
-	{
-		// Jagged Error fix try
-		
-	}
 }
 
-// Sets default values
-//ACharacterBase::ACharacterBase()
-//{
-// 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-//	PrimaryActorTick.bCanEverTick = true;
-//
-//	{
-//		SpringArm = CreateDefaultSubobject<UZoomSpringArmComponent>(TEXT("SpringArm"));
-//		Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-//	}
-//	
-//	{
-//		SpringArm->SetupAttachment(GetMesh());
-//		SpringArm->ProbeSize = 5.0;
-//		SpringArm->bUsePawnControlRotation = true;
-//		SpringArm->bInheritRoll = false;
-//		SpringArm->SetMinMaxTargetArmLength(100.f, SpringArm->GetMaxTargetArmLength());
-//		Camera->SetupAttachment(SpringArm);
-//	
-//		bUseControllerRotationYaw = false;
-//	
-//		const FRotator Rotation = FRotator(0., 90.0, 0.);
-//		const FVector Translation = FVector(0., 0., 90.0);
-//		FTransform SpringArmTransform = FTransform(Rotation, Translation, FVector::OneVector);
-//		SpringArm->SetRelativeTransform(SpringArmTransform);
-//	}
-//	
-//	{	// Basic Setting
-//		UCharacterMovementComponent* CharacterMovementComponent = GetCharacterMovement();
-//
-//		JumpMaxCount = 2; // UE_LOG(LogTemp, Warning, TEXT("Current Jump Count: %d"), CurrentJumpCount);
-//		CharacterMovementComponent->AirControl = 0.2f;
-//		CharacterMovementComponent->AirControlBoostMultiplier = 1.3f;
-//		CharacterMovementComponent->AirControlBoostVelocityThreshold = 800.0f;  // 일정 속도 이상에서만 공중 제어가 강화됨
-//
-//	}	
-//	{
-//		GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnBeginOverlap);
-//		GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ThisClass::OnHit);
-//	}
-//
-//	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-//	{
-//		StatusComponent = CreateDefaultSubobject<UStatusComponent>(TEXT("StatusComponent"));
-//	}
-//	{
-//		//MotionWarpComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpComponent"));
-//	}
-//
-//	{
-//		StatusComponent->OnDie.AddDynamic(this, &ThisClass::OnDie);
-//	}
-//
-//	{
-//		// Jagged Error fix try
-//		
-//	}
-//
-//
-//
-//
-//}
-//
 // Called when the game starts or when spawned
 void ACharacterBase::BeginPlay()
 {
@@ -199,11 +134,6 @@ void ACharacterBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		//	ensureMsgf(false, TEXT("Class is not equal to DataTable"));
 		//}
 	}
-
-	{	
-		
-	}
-
 
 	{	// Movement
 		Movement->RotationRate = Data->RotationRate;
@@ -263,6 +193,7 @@ void ACharacterBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 			}
 		}
 	}
+
 }
 
 // Called every frame
@@ -361,13 +292,10 @@ void ACharacterBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPr
 	AActorBase* OtherActorBase = Cast<AActorBase>(OtherActor);
 	APawnBase* OtherPawnBase = Cast<APawnBase>(OtherActor);
 
-	// 여기 여러개 겹치긴해 -> ActorEnemy로 분리해야 깔끔함
 	if (OtherPawnBase && !OtherPawnBase->IsFriendly())
 	{
 		StatusComponent->OnDie.Broadcast();
 	}
-
-	
 
 }
 
@@ -386,5 +314,6 @@ void ACharacterBase::OnTempSave()
 	GameInstanceBase->CurrentLevelNameToTempSave = UGameplayStatics::GetCurrentLevelName(GetWorld());
 	GameInstanceBase->ControllerRotatorToTempSave = GetControlRotation();
 }
+
 
 

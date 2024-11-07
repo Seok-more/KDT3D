@@ -109,6 +109,7 @@ public:
 	UFUNCTION()
 	virtual void OnTempSave();
 
+
 public:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStatusComponent> StatusComponent;
@@ -122,6 +123,12 @@ public:
 
 	FProjectileTableRow* ProjectileData;
 	
+
+public:
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	UDataTable* ProjectileTest;
+
+
 
 
 public:

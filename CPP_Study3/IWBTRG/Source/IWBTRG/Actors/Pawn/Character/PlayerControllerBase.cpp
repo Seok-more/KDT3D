@@ -7,6 +7,7 @@
 #include "CharacterBase.h"
 #include "Components/StatusComponent.h"
 #include "System/MainHUD.h"
+#include "System/GameInstanceBase.h"
 #include "GameFramework/Character.h"
 
 APlayerControllerBase::APlayerControllerBase()
@@ -34,6 +35,7 @@ void APlayerControllerBase::BeginPlay()
 		Camera = GetPawn()->GetComponentByClass<UCameraComponent>();
 		check(Camera);
 	}
+
 	UpdateData();
 	SetupInputComponent();
 
@@ -67,7 +69,7 @@ void APlayerControllerBase::SetupInputComponent()
 	if (const UInputAction* InputAction = FUtils::GetInputActionFromName(IMC_Array, TEXT("IA_LookMouse")))
 	{
 		EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Triggered, this, &ThisClass::OnLook);
-		UE_LOG(LogTemp, Warning, TEXT("IA_LookMouse is abled"));
+		//UE_LOG(LogTemp, Warning, TEXT("IA_LookMouse is abled"));
 	}
 	else
 	{
@@ -197,7 +199,6 @@ void APlayerControllerBase::OnLook(const FInputActionValue& InputActionValue)
 void APlayerControllerBase::OnZoomIn(const FInputActionValue& InputActionValue)
 {
 	SpringArm->SetDesiredZoom(100.f);
-	//Camera->SetFieldOfView(70.f);
 
 	ACharacterBase* ControlledChara = Cast<ACharacterBase>(GetPawn());
 	UStatusComponent* Status = ControlledChara->GetComponentByClass<UStatusComponent>();
@@ -208,11 +209,11 @@ void APlayerControllerBase::OnZoomIn(const FInputActionValue& InputActionValue)
 void APlayerControllerBase::OnZoomOut(const FInputActionValue& InputActionValue)
 {
 	SpringArm->SetDesiredZoom(300.f);
-	//Camera->SetFieldOfView(90.f);
 
 	ACharacterBase* ControlledChara = Cast<ACharacterBase>(GetPawn());
 	UStatusComponent* Status = ControlledChara->GetComponentByClass<UStatusComponent>();
 	Status->SetIsAimming(false);
+
 }
 
 void APlayerControllerBase::OnJump(const FInputActionValue& InputActionValue)
@@ -247,8 +248,9 @@ void APlayerControllerBase::OnPick(const FInputActionValue& InputActionValue)
 	{
 		if (ControlledChara->OverlappedItems.IsEmpty()) { return; }
 
-		AActorBase* Item = static_cast<AActorBase*>(*(ControlledChara->OverlappedItems).begin());
+		AActorItem* Item = static_cast<AActorItem*>(*(ControlledChara->OverlappedItems).begin());
 		// Use item function needed
+
 		Item->Destroy();
 	}
 }
@@ -260,8 +262,13 @@ void APlayerControllerBase::OnShot(const FInputActionValue& InputActionValue)
 
 void APlayerControllerBase::OnReset(const FInputActionValue& InputActionValue)
 {
+
 	AMainHUD* MainHUD = Cast<AMainHUD>(GetHUD());
+
+	UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+
 	MainHUD->OpenCurrentLevelFromReset();
+
 }
 
 
@@ -276,15 +283,17 @@ void APlayerControllerBase::Attack()
 		
 		if (!AnimInstance->Montage_IsPlaying(nullptr))
 		{
-			if (ControlledChara->StatusComponent->IsAimming())
-			{
-				AnimInstance->Montage_Play(ControlledChara->Data->ShotMontage);
-			}
-			else
-			{
-				ControlledChara->StatusComponent->CanMove();
-				AnimInstance->Montage_Play(ControlledChara->Data->AttackMontage);
-			}
+			//if (ControlledChara->StatusComponent->IsAimming())
+			//{
+			//	AnimInstance->Montage_Play(ControlledChara->Data->ShotMontage);
+			//}
+			//else
+			//{
+			//	ControlledChara->StatusComponent->CanMove();
+			//	AnimInstance->Montage_Play(ControlledChara->Data->AttackMontage);
+			//}
+
+			AnimInstance->Montage_Play(ControlledChara->Data->ShotMontage);
 		}
 	}
 }

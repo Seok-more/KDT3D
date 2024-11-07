@@ -43,6 +43,6 @@ void UZoomSpringArmComponent::UpdateDesiredTargetArmLength(const float DeltaTime
 	}
 
 	const float DeltaSpeed = FMath::Clamp(DeltaTime * WheelSpeed, 0.f, 1.f);
-	TargetArmLength = FMath::Lerp(TargetArmLength, DesiredTargetArmLength, DeltaSpeed);
+	TargetArmLength = FMath::Lerp(TargetArmLength, DesiredTargetArmLength, DeltaSpeed * 1.2f);
 	TargetArmLength = FMath::Clamp(TargetArmLength, MinTargetArmLength, MaxTargetArmLength);
 }

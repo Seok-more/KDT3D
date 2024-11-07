@@ -4,6 +4,9 @@
 #include "System/GameInstanceBase.h"
 #include "Kismet/GamePlayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Actors/Pawn/Character/CharacterBase.h"
+#include "Actors/Pawn/Character/PlayerControllerBase.h"
+#include "System/MainHUD.h"
 #include "SaveGameTemp.h"
 
 
@@ -12,8 +15,15 @@ void UGameInstanceBase::Init()
 	Super::Init();
 
 	LoadGame();
-	TestToSave += 1;
-	UE_LOG(LogTemp, Warning, TEXT("TestTOSave: %f"), TestToSave);
+	{
+		TestToSave += 1;
+		UE_LOG(LogTemp, Warning, TEXT("TestTOSave: %f"), TestToSave);
+	}
+
+	{
+		// 레벨이 전환되고 모든 세팅이 완료된 후
+		FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &UGameInstanceBase::OnOpenLevelToLevel);
+	}
 
 }
 
@@ -21,6 +31,10 @@ void UGameInstanceBase::FinishDestroy()
 {
 	SaveGame();
 	Super::FinishDestroy();
+
+	{
+		FCoreUObjectDelegates::PostLoadMapWithWorld.RemoveAll(this);
+	}
 
 }
 
@@ -71,3 +85,23 @@ void UGameInstanceBase::LoadGame()
 	}
 
 }
+
+void UGameInstanceBase::OnOpenLevelToLevel(UWorld* thisworld)
+{
+	ACharacterBase* ControlledChara = Cast<ACharacterBase>(UGameplayStatics::GetPlayerCharacter(this, 0));
+	APlayerControllerBase* PlayerController = Cast<APlayerControllerBase>(ControlledChara->GetController());
+	AMainHUD* MainHUD = Cast<AMainHUD>(PlayerController->GetHUD());
+
+	if (ControlledChara && bJustPortal)
+	{
+		// 여기서 캐릭터 스테이터스 옮김
+		ControlledChara->SetActorRotation(PlayerRotatorToLevel);
+		PlayerController->SetControlRotation(ControllerRotatorToLevel);
+
+		ControlledChara->SetActorLocation(MainHUD->InitialLocation);
+	}
+	
+	bJustPortal = false;
+}
+
+

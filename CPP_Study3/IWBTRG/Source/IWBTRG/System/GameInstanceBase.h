@@ -8,6 +8,8 @@
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTempSave);
+
+
 /**
  * 
  */
@@ -28,8 +30,11 @@ public:
 
 	virtual void LoadGame();
 
-
 public:
+	virtual void OnOpenLevelToLevel(UWorld* thisworld);
+
+
+public: // Not Using yet
 	UPROPERTY()
 	FTransform PlayerTransformToSave;
 
@@ -40,17 +45,17 @@ public:
 
 public: // Level Change
 	UPROPERTY()
-	FString FromLevelName;
-
-	UPROPERTY()
 	FRotator PlayerRotatorToLevel;
 	
 	UPROPERTY()
 	FRotator ControllerRotatorToLevel;
 
+	UPROPERTY()
+	ULevel* FromLevel;
+
 public: // TempSave
 	UPROPERTY()
-	FTransform PlayerTransformToTempSave;
+	FTransform PlayerTransformToTempSave = FTransform::Identity;
 
 	UPROPERTY()
 	FString CurrentLevelNameToTempSave;
@@ -59,5 +64,7 @@ public: // TempSave
 	FRotator ControllerRotatorToTempSave;
 
 
+public:
+	bool bJustPortal = false;
 	
 };

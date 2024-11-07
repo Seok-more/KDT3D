@@ -22,7 +22,11 @@ IWBTRG_API void FOnHPChanged_DelegateWrapper(const FMulticastScriptDelegate& OnH
 IWBTRG_API void FOnDie_DelegateWrapper(const FMulticastScriptDelegate& OnDie);
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_11_DELEGATE \
+IWBTRG_API void FOnStaminaChanged_DelegateWrapper(const FMulticastScriptDelegate& OnStaminaChanged, float CurrentStamina, float MaxStamina);
+
+
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUStatusComponent(); \
 	friend struct Z_Construct_UClass_UStatusComponent_Statics; \
@@ -31,7 +35,7 @@ public: \
 	DECLARE_SERIALIZER(UStatusComponent)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UStatusComponent(UStatusComponent&&); \
@@ -43,12 +47,12 @@ public: \
 	NO_API virtual ~UStatusComponent();
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_12_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_15_GENERATED_BODY \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_13_PROLOG
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_15_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_15_ENHANCED_CONSTRUCTORS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_16_INCLASS_NO_PURE_DECLS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

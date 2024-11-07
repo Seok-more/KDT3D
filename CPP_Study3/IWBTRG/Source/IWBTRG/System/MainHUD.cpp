@@ -2,6 +2,7 @@
 
 
 #include "System/MainHUD.h"
+#include "UI/WidgetBase.h"
 #include "Components/StatusComponent.h"
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
@@ -16,16 +17,31 @@ AMainHUD::AMainHUD()
 
 void AMainHUD::BeginPlay()
 {
-	ControlledChara = Cast<ACharacterBase>(GetOwningPawn());
-	PlayerController = Cast<APlayerControllerBase>(ControlledChara->GetController());
+	Super::BeginPlay();
 
+	{
+		ControlledChara = Cast<ACharacterBase>(GetOwningPawn());
+		PlayerController = Cast<APlayerControllerBase>(ControlledChara->GetController());
+		InitialLocation = ControlledChara->GetActorLocation();
+	}
 
-	UClass* WidgetClass = LoadClass<UUserWidget>(nullptr,
-		TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/UI/UI_Misc.UI_Misc_C'"));
-	check(WidgetClass);
-	Widget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass);
-	Widget->AddToViewport();
+	{
+		UClass* WidgetClassMain = LoadClass<UUserWidget>(nullptr,
+			TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/UI/UI_Misc.UI_Misc_C'"));
+		check(WidgetClassMain);
+		WidgetMain = CreateWidget<UUserWidget>(GetWorld(), WidgetClassMain);
+		WidgetMain->AddToViewport();
+	}
 
+	{
+		UClass* WidgetClassStamina = LoadClass<UWidgetBase>(nullptr,
+			TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/UI/UI_StaminaBar.UI_StaminaBar_C'"));
+		check(WidgetClassStamina);
+		WidgetStamina = CreateWidget<UWidgetBase>(GetWorld(), WidgetClassStamina);
+		WidgetStamina->SetOwningPawn(GetOwningPawn());
+		WidgetStamina->AddToViewport();
+
+	}
 	{
 		APawn* Pawn = GetOwningPawn();
 		UStatusComponent* StatusComponent = Pawn->GetComponentByClass<UStatusComponent>();
@@ -33,17 +49,18 @@ void AMainHUD::BeginPlay()
 
 		StatusComponent->OnDie.AddDynamic(this, &ThisClass::OnPlayerDie);
 	}
+	
 
-	{
+
+	//------------------------------------------------------------------------------------
+
+	{	// LevelToLevel 캐릭터 위치시키기
 		UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
 		if (!GameInstanceBase->PlayerTransformToTempSave.Equals(FTransform::Identity))
 		{
 			ControlledChara->SetActorTransform(GameInstanceBase->PlayerTransformToTempSave);
 			PlayerController->SetControlRotation(GameInstanceBase->ControllerRotatorToTempSave);
 		}
-
-		
-
 	}
 }
 
@@ -55,41 +72,42 @@ void AMainHUD::Tick(float DeltaSeconds)
 void AMainHUD::OnPlayerDie()
 {
 	{	// UI 
-		UWidget* CrossWidget = Widget->GetWidgetFromName(TEXT("Cross"));
-
+		UWidget* CrossWidget = WidgetMain->GetWidgetFromName(TEXT("Cross"));
 		if (CrossWidget)
 		{
 			UImage* ImageWidget = Cast<UImage>(CrossWidget);
 			if (ImageWidget)
 			{
-				// Visibility 설정
 				ImageWidget->SetVisibility(ESlateVisibility::Hidden);
 			}
 		}
 
-		UWidget* Widget_1 = Widget->GetWidgetFromName(TEXT("YouDie"));
-
+		UWidget* Widget_1 = WidgetMain->GetWidgetFromName(TEXT("YouDie"));
 		if (Widget_1)
 		{
 			UTextBlock* TextBlock = Cast<UTextBlock>(Widget_1);
 			if (TextBlock)
 			{
-				// Visibility 설정
 				TextBlock->SetVisibility(ESlateVisibility::Visible);
 			}
 		}
 
-		UWidget* Widget_2 = Widget->GetWidgetFromName(TEXT("PressR"));
-
+		UWidget* Widget_2 = WidgetMain->GetWidgetFromName(TEXT("PressR"));
 		if (Widget_2)
 		{
 			UTextBlock* TextBlock = Cast<UTextBlock>(Widget_2);
 			if (TextBlock)
 			{
-				// Visibility 설정
 				TextBlock->SetVisibility(ESlateVisibility::Visible);
 			}
 		}
+
+		{
+
+		}
+		
+
+
 	}
 
 	{
@@ -99,14 +117,12 @@ void AMainHUD::OnPlayerDie()
 
 void AMainHUD::UISetting()
 {
-	
-
 	{	// UI 기능
-		Widget->SetIsFocusable(true);
+		WidgetMain->SetIsFocusable(true);
 
 		FInputModeUIOnly InputMode;
-		InputMode.SetWidgetToFocus(Widget->TakeWidget());  // 포커스할 위젯 설정
-		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);  // 마우스 잠금 설정
+		InputMode.SetWidgetToFocus(WidgetMain->TakeWidget());  // 포커스할 위젯 설정
+		InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 		PlayerController->SetInputMode(InputMode);
 
 		// 마우스 커서 표시
@@ -129,7 +145,7 @@ void AMainHUD::OpenCurrentLevelFromUI()
 		UGameplayStatics::OpenLevel(GetWorld(), FName(CurrentLevelName));
 	}
 
-	Widget->SetIsFocusable(false);
+	WidgetMain->SetIsFocusable(false);
 
 	FInputModeGameOnly InputMode;  // 게임 입력 전용 모드
 	PlayerController->SetInputMode(InputMode);

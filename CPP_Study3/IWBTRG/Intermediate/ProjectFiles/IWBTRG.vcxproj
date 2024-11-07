@@ -497,6 +497,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\UI\HPBarWidget.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\UI\StaminaBarWidget.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\UI\StaminaBarWidget.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\UI\WidgetBase.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

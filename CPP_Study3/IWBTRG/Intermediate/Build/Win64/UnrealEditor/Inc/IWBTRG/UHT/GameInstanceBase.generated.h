@@ -18,7 +18,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 IWBTRG_API void FOnTempSave_DelegateWrapper(const FMulticastScriptDelegate& OnTempSave);
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGameInstanceBase(); \
 	friend struct Z_Construct_UClass_UGameInstanceBase_Statics; \
@@ -27,7 +27,7 @@ public: \
 	DECLARE_SERIALIZER(UGameInstanceBase)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_19_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UGameInstanceBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -41,12 +41,12 @@ public: \
 	NO_API virtual ~UGameInstanceBase();
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_14_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_17_GENERATED_BODY \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_16_PROLOG
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_17_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_17_ENHANCED_CONSTRUCTORS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_19_INCLASS_NO_PURE_DECLS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

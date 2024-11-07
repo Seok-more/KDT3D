@@ -66,7 +66,16 @@ void UAnimNotify_Projectile::Notify(USkeletalMeshComponent* MeshComp, UAnimSeque
 	AActorProjectile* Projectile = World->SpawnActorDeferred<AActorProjectile>(ControlledChara->ProjectileData->ActorClass,
 		FTransform::Identity, OwningPawn, OwningPawn, ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 	
-	Projectile->SetData(ControlledChara->Data->Projectile);
+
+	if (ControlledChara->StatusComponent->GetHasProjectile())
+	{
+		
+	}
+	else
+	{
+		Projectile->SetData(ControlledChara->Data->Projectile);
+	}
+
 
 	FTransform NewTransform;
 

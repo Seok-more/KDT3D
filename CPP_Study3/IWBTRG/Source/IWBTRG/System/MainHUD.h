@@ -36,8 +36,13 @@ public:
 	virtual void OpenCurrentLevelFromReset();
 
 public:
-	class UUserWidget* Widget = nullptr;
+	class UUserWidget* WidgetMain = nullptr;
+	class UWidgetBase* WidgetStamina = nullptr;
+
 	class ACharacterBase* ControlledChara;
 	class APlayerControllerBase* PlayerController;
+
+public:
+	FVector InitialLocation;
 
 };

@@ -2,6 +2,8 @@
 
 
 #include "Components/StatusComponent.h"
+#include "Actors/Pawn/Character/CharacterBase.h"
+#include "Actors/Pawn/Character/PlayerControllerBase.h"
 
 // Sets default values for this component's properties
 UStatusComponent::UStatusComponent()
@@ -20,6 +22,14 @@ void UStatusComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
+
+	ControlledChara = Cast<ACharacterBase>(GetOwner());
+	if(ControlledChara)
+	{
+		PlayerController = Cast<APlayerControllerBase>(ControlledChara->GetController());
+		float test = 1.f;
+	}
+	
 	
 }
 
@@ -29,7 +39,40 @@ void UStatusComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	OnStaminaChanged.Broadcast(CurrentStamina, MaxStamina);
+
+	if (ControlledChara)
+	{
+		if (bIsAimming && !bExhausted)
+		{
+			IsAimming();
+		}
+		
+		else if (bExhausted)
+		{
+			GotExhausted();
+		}
+
+		else
+		{
+			IsNormal();
+		}
+
+		CurrentStamina += 0.03f;
+		CurrentStamina = FMath::Clamp(CurrentStamina, 0.f, MaxStamina);
+	}
+}
+
+void UStatusComponent::IsNormal()
+{
+	GetWorld()->GetWorldSettings()->SetTimeDilation(1.0f);
+	PlayerController->GetSpringArm()->SetDesiredZoom(300.f);
+	ControlledChara->Movement->RotationRate.Yaw = ControlledChara->Data->RotationRate.Yaw;
+	ControlledChara->Movement->MaxWalkSpeed = ControlledChara->Data->MovementMaxSpeed;
+	bIsAimming = false;
+	bExhausted = false;
+
+
 }
 
 float UStatusComponent::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -55,5 +98,39 @@ float UStatusComponent::TakeDamage(float Damage, FDamageEvent const& DamageEvent
 
 
 	return NewDamage;
+}
+
+void UStatusComponent::IsAimming()
+{
+	if (bExhausted) { return; }
+
+	bIsAimming = true;
+
+	GetWorld()->GetWorldSettings()->SetTimeDilation(0.3f);
+
+	CurrentStamina -= 0.1f;
+	CurrentStamina = FMath::Clamp(CurrentStamina, 0.f, CurrentStamina);
+	OnStaminaChanged.Broadcast(CurrentStamina, MaxStamina);
+
+	if (CurrentStamina == 0.f)
+	{
+		bExhausted = true;
+	}
+}
+
+void UStatusComponent::GotExhausted()
+{
+	{
+		GetWorld()->GetWorldSettings()->SetTimeDilation(1.0f);
+		PlayerController->GetSpringArm()->SetDesiredZoom(300.f);
+
+		ControlledChara->Movement->RotationRate.Yaw = ControlledChara->Data->RotationRate.Yaw / 2.f;
+		ControlledChara->Movement->MaxWalkSpeed = ControlledChara->Data->MovementMaxSpeed / 5.f;
+	}
+
+	if (CurrentStamina == MaxStamina)
+	{
+		bExhausted = false;
+	}
 }
 

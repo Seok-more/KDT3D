@@ -14,7 +14,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define IWBTRG_ActorPortal_generated_h
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_16_INCLASS_NO_PURE_DECLS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_17_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FActorPortalTableRow_Statics; \
+	static class UScriptStruct* StaticStruct(); \
+	typedef FActorBaseTableRow Super;
+
+
+template<> IWBTRG_API UScriptStruct* StaticStruct<struct FActorPortalTableRow>();
+
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_29_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAActorPortal(); \
 	friend struct Z_Construct_UClass_AActorPortal_Statics; \
@@ -23,9 +31,7 @@ public: \
 	DECLARE_SERIALIZER(AActorPortal)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_16_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API AActorPortal(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_29_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AActorPortal(AActorPortal&&); \
@@ -37,12 +43,12 @@ public: \
 	NO_API virtual ~AActorPortal();
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_13_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_16_GENERATED_BODY \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_26_PROLOG
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_29_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_16_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_16_ENHANCED_CONSTRUCTORS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_29_INCLASS_NO_PURE_DECLS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorPortal_h_29_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

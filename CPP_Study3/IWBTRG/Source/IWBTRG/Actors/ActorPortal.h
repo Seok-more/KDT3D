@@ -10,11 +10,26 @@
 /**
  * 
  */
+
+USTRUCT()
+struct IWBTRG_API FActorPortalTableRow : public FActorBaseTableRow
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, Category = "Level")
+	TSoftObjectPtr<UWorld> ToLevel;
+
+};
+
+
 UCLASS()
 class IWBTRG_API AActorPortal : public AActorBase
 {
 	GENERATED_BODY()
 
+public:
+	AActorPortal(const FObjectInitializer& ObjectInitializer);
 
 public:
 	virtual void SetData(const FDataTableRowHandle& InDataTableRowHandle) override;
@@ -29,10 +44,9 @@ protected:	// TriggerBox Overlapped
 	virtual void OnDeactive_Implementation(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level Selection")
+	UPROPERTY(VisibleAnywhere)
 	TSoftObjectPtr<UWorld> ToLevel;
 
-
-
+	
 
 };

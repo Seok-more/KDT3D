@@ -29,6 +29,9 @@ public:
 
 	virtual void UpdateData();
 
+public:
+	virtual UZoomSpringArmComponent* GetSpringArm() { return SpringArm; }
+
 protected:
 	virtual void OnPossess(APawn* InPawn);
 
@@ -62,7 +65,6 @@ protected:
 	UZoomSpringArmComponent* SpringArm;
 	UCameraComponent* Camera;
 
-	// CharacterBaseTableRow->IMCs 
 	TArray<UInputMappingContext*> IMC_Array;
 	TArray<UInputMappingContext*> IMC_Emergency;
 };

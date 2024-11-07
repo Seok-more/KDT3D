@@ -16,6 +16,7 @@ IWBTRG_API UClass* Z_Construct_UClass_UStatusComponent();
 IWBTRG_API UClass* Z_Construct_UClass_UStatusComponent_NoRegister();
 IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature();
 IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnHPChanged__DelegateSignature();
+IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature();
 UPackage* Z_Construct_UPackage__Script_IWBTRG();
 // End Cross Module References
 
@@ -95,6 +96,56 @@ void FOnDie_DelegateWrapper(const FMulticastScriptDelegate& OnDie)
 }
 // End Delegate FOnDie
 
+// Begin Delegate FOnStaminaChanged
+struct Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics
+{
+	struct _Script_IWBTRG_eventOnStaminaChanged_Parms
+	{
+		float CurrentStamina;
+		float MaxStamina;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentStamina;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxStamina;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::NewProp_CurrentStamina = { "CurrentStamina", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_IWBTRG_eventOnStaminaChanged_Parms, CurrentStamina), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::NewProp_MaxStamina = { "MaxStamina", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_IWBTRG_eventOnStaminaChanged_Parms, MaxStamina), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::NewProp_CurrentStamina,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::NewProp_MaxStamina,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_IWBTRG, nullptr, "OnStaminaChanged__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::_Script_IWBTRG_eventOnStaminaChanged_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::_Script_IWBTRG_eventOnStaminaChanged_Parms) < MAX_uint16);
+UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+void FOnStaminaChanged_DelegateWrapper(const FMulticastScriptDelegate& OnStaminaChanged, float CurrentStamina, float MaxStamina)
+{
+	struct _Script_IWBTRG_eventOnStaminaChanged_Parms
+	{
+		float CurrentStamina;
+		float MaxStamina;
+	};
+	_Script_IWBTRG_eventOnStaminaChanged_Parms Parms;
+	Parms.CurrentStamina=CurrentStamina;
+	Parms.MaxStamina=MaxStamina;
+	OnStaminaChanged.ProcessMulticastDelegate<UObject>(&Parms);
+}
+// End Delegate FOnStaminaChanged
+
 // Begin Class UStatusComponent
 void UStatusComponent::StaticRegisterNativesUStatusComponent()
 {
@@ -121,6 +172,14 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 		{ "Category", "StatusComponent" },
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxStamina_MetaData[] = {
+		{ "Category", "StatusComponent" },
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentStamina_MetaData[] = {
+		{ "Category", "StatusComponent" },
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsAimming_MetaData[] = {
 		{ "Category", "StatusComponent" },
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
@@ -133,18 +192,32 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 		{ "Category", "StatusComponent" },
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bExhausted_MetaData[] = {
+		{ "Category", "StatusComponent" },
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bHasProjectile_MetaData[] = {
+		{ "Category", "StatusComponent" },
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentTransform_MetaData[] = {
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHP;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHP;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxStamina;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentStamina;
 	static void NewProp_bIsAimming_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsAimming;
 	static void NewProp_bCanMove_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bCanMove;
 	static void NewProp_bDie_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDie;
+	static void NewProp_bExhausted_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bExhausted;
+	static void NewProp_bHasProjectile_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bHasProjectile;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CurrentTransform;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -155,6 +228,8 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxHP = { "MaxHP", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, MaxHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHP_MetaData), NewProp_MaxHP_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentHP = { "CurrentHP", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentHP_MetaData), NewProp_CurrentHP_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxStamina = { "MaxStamina", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, MaxStamina), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxStamina_MetaData), NewProp_MaxStamina_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentStamina = { "CurrentStamina", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentStamina), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentStamina_MetaData), NewProp_CurrentStamina_MetaData) };
 void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bIsAimming_SetBit(void* Obj)
 {
 	((UStatusComponent*)Obj)->bIsAimming = 1;
@@ -170,13 +245,27 @@ void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bDie_SetBit(void* Obj)
 	((UStatusComponent*)Obj)->bDie = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_bDie = { "bDie", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatusComponent), &Z_Construct_UClass_UStatusComponent_Statics::NewProp_bDie_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bDie_MetaData), NewProp_bDie_MetaData) };
+void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted_SetBit(void* Obj)
+{
+	((UStatusComponent*)Obj)->bExhausted = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted = { "bExhausted", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatusComponent), &Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bExhausted_MetaData), NewProp_bExhausted_MetaData) };
+void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile_SetBit(void* Obj)
+{
+	((UStatusComponent*)Obj)->bHasProjectile = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile = { "bHasProjectile", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatusComponent), &Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bHasProjectile_MetaData), NewProp_bHasProjectile_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentTransform = { "CurrentTransform", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentTransform_MetaData), NewProp_CurrentTransform_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatusComponent_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxHP,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentHP,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxStamina,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentStamina,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bIsAimming,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bCanMove,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bDie,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentTransform,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UStatusComponent_Statics::PropPointers) < 2048);
@@ -220,10 +309,10 @@ UStatusComponent::~UStatusComponent() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatusComponent, UStatusComponent::StaticClass, TEXT("UStatusComponent"), &Z_Registration_Info_UClass_UStatusComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusComponent), 2702369853U) },
+		{ Z_Construct_UClass_UStatusComponent, UStatusComponent::StaticClass, TEXT("UStatusComponent"), &Z_Registration_Info_UClass_UStatusComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusComponent), 3179196853U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_1527619189(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_2956882453(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

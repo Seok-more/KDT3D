@@ -297,6 +297,12 @@
     <ClInclude Include="..\..\Source\IWBTRG\UI\HPBarWidget.h">
       <Filter>Source\IWBTRG\UI</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\UI\StaminaBarWidget.cpp">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\UI\StaminaBarWidget.h">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\IWBTRG\UI\WidgetBase.cpp">
       <Filter>Source\IWBTRG\UI</Filter>
     </ClCompile>

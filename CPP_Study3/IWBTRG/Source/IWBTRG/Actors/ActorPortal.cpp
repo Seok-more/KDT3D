@@ -5,17 +5,55 @@
 #include "Actors/Pawn/Character/CharacterBase.h"
 #include "Kismet/GameplayStatics.h"
 
+AActorPortal::AActorPortal(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
+{
+	
+}
+
 void AActorPortal::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 {
 	Super::SetData(InDataTableRowHandle);
 
-	StaticMeshComponent->SetCollisionProfileName(TEXT("PawnTrigger"));
-	SkeletalMeshComponent->SetCollisionProfileName(TEXT("PawnTrigger"));
-	Collider->SetCollisionProfileName(TEXT("PawnTrigger"));
+	{
+		StaticMeshComponent->SetCollisionProfileName(TEXT("PawnTrigger"));
+		SkeletalMeshComponent->SetCollisionProfileName(TEXT("PawnTrigger"));
+		Collider->SetCollisionProfileName(TEXT("PawnTrigger"));
+	}
+
+	{
+		FActorPortalTableRow* PortalData = static_cast<FActorPortalTableRow*>(Data);
+		if (PortalData)
+		{
+			// ToLevel 세팅 예외처리 없음
+			ToLevel = PortalData->ToLevel;
+		}
+	}
 }
 
 void AActorPortal::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+	GameInstanceBase->bJustPortal = true;
+
+	if (GameInstanceBase)
+	{
+		{	// Save Info
+			ACharacterBase* ControlledChara = Cast<ACharacterBase>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+
+			GameInstanceBase->PlayerRotatorToLevel = ControlledChara->GetActorTransform().Rotator();
+			GameInstanceBase->ControllerRotatorToLevel = ControlledChara->GetControlRotation();
+
+			GameInstanceBase->FromLevel = GetWorld()->GetCurrentLevel();
+		}
+
+		{	// OpenLevel
+			{
+				UGameplayStatics::OpenLevel(GetWorld(), FName(ToLevel.GetAssetName()));
+			}
+
+		}
+	}
 }
 
 void AActorPortal::OnColliderBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -28,19 +66,15 @@ void AActorPortal::OnColliderBeginOverlap(UPrimitiveComponent* OverlappedComp, A
 			ACharacterBase* ControlledChara = Cast<ACharacterBase>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 
 			GameInstanceBase->PlayerRotatorToLevel = ControlledChara->GetActorTransform().Rotator();
-			GameInstanceBase->FromLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
 			GameInstanceBase->ControllerRotatorToLevel = ControlledChara->GetControlRotation();
+
+			GameInstanceBase->FromLevel = GetWorld()->GetCurrentLevel();
 		}
 
 		{	// OpenLevel
-			if (ToLevel.IsValid() || ToLevel.LoadSynchronous())
 			{
 				UGameplayStatics::OpenLevel(GetWorld(), FName(ToLevel.GetAssetName()));
 			}
-		}
-
-		{	// 여기가 애매한데 이동한 레벨이 있는 캐릭터의 로테이션값과, 카메라 로테이터 값을 바꿔야해서 여기서하면 안됨
-			UE_LOG(LogTemp, Warning, TEXT("levelasdasd"));
 
 		}
 	}

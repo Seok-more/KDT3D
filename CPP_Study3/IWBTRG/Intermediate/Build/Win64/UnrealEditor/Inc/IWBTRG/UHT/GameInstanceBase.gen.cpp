@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeGameInstanceBase() {}
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 ENGINE_API UClass* Z_Construct_UClass_UGameInstance();
+ENGINE_API UClass* Z_Construct_UClass_ULevel_NoRegister();
 IWBTRG_API UClass* Z_Construct_UClass_UGameInstanceBase();
 IWBTRG_API UClass* Z_Construct_UClass_UGameInstanceBase_NoRegister();
 IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnTempSave__DelegateSignature();
@@ -65,12 +66,18 @@ struct Z_Construct_UClass_UGameInstanceBase_Statics
 		{ "ModuleRelativePath", "System/GameInstanceBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerTransformToSave_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Not Using yet\n" },
+#endif
 		{ "ModuleRelativePath", "System/GameInstanceBase.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Not Using yet" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TestToSave_MetaData[] = {
 		{ "ModuleRelativePath", "System/GameInstanceBase.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FromLevelName_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerRotatorToLevel_MetaData[] = {
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "// Level Change\n" },
 #endif
@@ -79,10 +86,10 @@ struct Z_Construct_UClass_UGameInstanceBase_Statics
 		{ "ToolTip", "Level Change" },
 #endif
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerRotatorToLevel_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ControllerRotatorToLevel_MetaData[] = {
 		{ "ModuleRelativePath", "System/GameInstanceBase.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ControllerRotatorToLevel_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FromLevel_MetaData[] = {
 		{ "ModuleRelativePath", "System/GameInstanceBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerTransformToTempSave_MetaData[] = {
@@ -103,9 +110,9 @@ struct Z_Construct_UClass_UGameInstanceBase_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStructPropertyParams NewProp_PlayerTransformToSave;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_TestToSave;
-	static const UECodeGen_Private::FStrPropertyParams NewProp_FromLevelName;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_PlayerRotatorToLevel;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ControllerRotatorToLevel;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_FromLevel;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_PlayerTransformToTempSave;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_CurrentLevelNameToTempSave;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ControllerRotatorToTempSave;
@@ -118,18 +125,18 @@ struct Z_Construct_UClass_UGameInstanceBase_Statics
 };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerTransformToSave = { "PlayerTransformToSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, PlayerTransformToSave), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerTransformToSave_MetaData), NewProp_PlayerTransformToSave_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_TestToSave = { "TestToSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, TestToSave), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TestToSave_MetaData), NewProp_TestToSave_MetaData) };
-const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_FromLevelName = { "FromLevelName", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, FromLevelName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FromLevelName_MetaData), NewProp_FromLevelName_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerRotatorToLevel = { "PlayerRotatorToLevel", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, PlayerRotatorToLevel), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerRotatorToLevel_MetaData), NewProp_PlayerRotatorToLevel_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_ControllerRotatorToLevel = { "ControllerRotatorToLevel", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, ControllerRotatorToLevel), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ControllerRotatorToLevel_MetaData), NewProp_ControllerRotatorToLevel_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_FromLevel = { "FromLevel", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, FromLevel), Z_Construct_UClass_ULevel_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FromLevel_MetaData), NewProp_FromLevel_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerTransformToTempSave = { "PlayerTransformToTempSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, PlayerTransformToTempSave), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerTransformToTempSave_MetaData), NewProp_PlayerTransformToTempSave_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_CurrentLevelNameToTempSave = { "CurrentLevelNameToTempSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, CurrentLevelNameToTempSave), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentLevelNameToTempSave_MetaData), NewProp_CurrentLevelNameToTempSave_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_ControllerRotatorToTempSave = { "ControllerRotatorToTempSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, ControllerRotatorToTempSave), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ControllerRotatorToTempSave_MetaData), NewProp_ControllerRotatorToTempSave_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UGameInstanceBase_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerTransformToSave,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_TestToSave,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_FromLevelName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerRotatorToLevel,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_ControllerRotatorToLevel,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_FromLevel,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerTransformToTempSave,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_CurrentLevelNameToTempSave,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_ControllerRotatorToTempSave,
@@ -176,10 +183,10 @@ UGameInstanceBase::~UGameInstanceBase() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UGameInstanceBase, UGameInstanceBase::StaticClass, TEXT("UGameInstanceBase"), &Z_Registration_Info_UClass_UGameInstanceBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameInstanceBase), 1494812584U) },
+		{ Z_Construct_UClass_UGameInstanceBase, UGameInstanceBase::StaticClass, TEXT("UGameInstanceBase"), &Z_Registration_Info_UClass_UGameInstanceBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameInstanceBase), 1561734308U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_2752981759(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_183404090(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

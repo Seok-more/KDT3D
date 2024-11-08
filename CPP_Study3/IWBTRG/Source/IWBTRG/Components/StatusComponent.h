@@ -7,8 +7,9 @@
 #include "StatusComponent.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHPChanged, float, CurrentHP, float, MaxHP);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDie);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnStaminaChanged, float, CurrentStamina, float, MaxStamina);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnShotChanged, int32, CurrentProjectileNum);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDie);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class IWBTRG_API UStatusComponent : public UActorComponent
@@ -30,7 +31,7 @@ public:
 public:
 	float GetHP() const { return CurrentHP; }
 	float GetStamina() const{ return CurrentStamina; }
-	bool GetHasProjectile() const { return bHasProjectile; }
+	
 
 
 	AController* GetLastInstigator() const { return LastInstigator; }
@@ -66,6 +67,7 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	float CurrentStamina = MaxStamina;
 
+protected:
 	UPROPERTY(BlueprintReadWrite)
 	bool bIsAimming;
 
@@ -78,9 +80,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	bool bExhausted = false;
 
+public:
 	UPROPERTY(BlueprintReadWrite)
-	bool bHasProjectile = false;
-
+	int32 CurrentProjectileNum;
 
 	UPROPERTY()
 	FTransform CurrentTransform;
@@ -91,6 +93,7 @@ public:
 	FOnHPChanged OnHPChanged;
 	FOnDie OnDie;
 	FOnStaminaChanged OnStaminaChanged;
+	FOnShotChanged OnShotChanged;
 
 private:
 	class ACharacterBase* ControlledChara;

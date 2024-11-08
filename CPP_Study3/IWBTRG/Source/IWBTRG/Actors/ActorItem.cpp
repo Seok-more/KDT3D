@@ -4,6 +4,21 @@
 #include "Actors/ActorItem.h"
 
 
+
+
+void AActorItem::SetData(const FDataTableRowHandle& InDataTableRowHandle)
+{
+	Super::SetData(InDataTableRowHandle);
+
+	{
+		FActorItemTableRow* ItemData = static_cast<FActorItemTableRow*>(Data);
+		if (ItemData)
+		{
+			Uses = ItemData->Uses;
+		}
+	}
+}
+
 void AActorItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -14,7 +29,7 @@ void AActorItem::Tick(float DeltaTime)
 		UE_LOG(LogTemp, Log, TEXT("CharacterOverlapped"));
 	}
 
-	{
+	{	// Floating
 		FRotator NewRotation = GetActorRotation();
 		NewRotation.Yaw += 100.0f * DeltaTime;
 		SetActorRotation(NewRotation);
@@ -45,7 +60,7 @@ void AActorItem::UpdateData()
 	{
 		StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		SkeletalMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		Collider->SetCollisionProfileName(CollisionProfileName::PawnTrigger);
+		Collider->SetCollisionProfileName(CollisionProfileName::PlayerTrigger);
 	}
 	
 }
@@ -59,6 +74,8 @@ void AActorItem::OnColliderBeginOverlap(UPrimitiveComponent* OverlappedComp, AAc
 {
 	Super::OnColliderBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 
+	OnUsed.AddDynamic(this, &ThisClass::Used);
+
 	bOverlapped = true;
 }
 
@@ -66,6 +83,12 @@ void AActorItem::OnColliderEndOverlap(UPrimitiveComponent* OverlappedComp, AActo
 {
 	Super::OnColliderEndOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex);
 	
-
 	bOverlapped = false;
+	OnUsed.RemoveDynamic(this, &ThisClass::Used);
+
+}
+
+void AActorItem::Used()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Use %s"), *this->GetName());
 }

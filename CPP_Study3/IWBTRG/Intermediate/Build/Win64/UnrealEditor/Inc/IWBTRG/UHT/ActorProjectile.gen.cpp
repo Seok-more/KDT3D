@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeActorProjectile() {}
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FLinearColor();
+COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
@@ -59,7 +60,10 @@ struct Z_Construct_UScriptStruct_FProjectileTableRow_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StaticMesh_MetaData[] = {
 		{ "Category", "Mesh" },
-		{ "EditCondition", "bStaticMesh" },
+		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AdditionalStaticMesh_MetaData[] = {
+		{ "Category", "Mesh" },
 		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InitialSpeed_MetaData[] = {
@@ -82,6 +86,10 @@ struct Z_Construct_UScriptStruct_FProjectileTableRow_Statics
 		{ "Category", "Projectile" },
 		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ShotDelay_MetaData[] = {
+		{ "Category", "Projectile" },
+		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Scale_MetaData[] = {
 		{ "Category", "Transform" },
 #if !UE_BUILD_SHIPPING
@@ -91,6 +99,10 @@ struct Z_Construct_UScriptStruct_FProjectileTableRow_Statics
 #if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Transform" },
 #endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AdditionalTransform_MetaData[] = {
+		{ "Category", "Transform" },
+		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WithEffectTableRowHandle_MetaData[] = {
 		{ "Category", "Effect" },
@@ -133,12 +145,15 @@ struct Z_Construct_UScriptStruct_FProjectileTableRow_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FClassPropertyParams NewProp_ActorClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StaticMesh;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_AdditionalStaticMesh;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_InitialSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ProjectileGravityScale;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_InitialLifeSpan;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Damage;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ShotDelay;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_Scale;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_AdditionalTransform;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_WithEffectTableRowHandle;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_HitEffectTableRowHandle;
 	static void NewProp_bMID_SetBit(void* Obj);
@@ -157,12 +172,15 @@ struct Z_Construct_UScriptStruct_FProjectileTableRow_Statics
 };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_ActorClass = { "ActorClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, ActorClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AActorProjectile_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ActorClass_MetaData), NewProp_ActorClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_StaticMesh = { "StaticMesh", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, StaticMesh), Z_Construct_UClass_UStaticMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaticMesh_MetaData), NewProp_StaticMesh_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_AdditionalStaticMesh = { "AdditionalStaticMesh", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, AdditionalStaticMesh), Z_Construct_UClass_UStaticMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AdditionalStaticMesh_MetaData), NewProp_AdditionalStaticMesh_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_InitialSpeed = { "InitialSpeed", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, InitialSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InitialSpeed_MetaData), NewProp_InitialSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_MaxSpeed = { "MaxSpeed", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, MaxSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxSpeed_MetaData), NewProp_MaxSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_ProjectileGravityScale = { "ProjectileGravityScale", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, ProjectileGravityScale), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileGravityScale_MetaData), NewProp_ProjectileGravityScale_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_InitialLifeSpan = { "InitialLifeSpan", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, InitialLifeSpan), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InitialLifeSpan_MetaData), NewProp_InitialLifeSpan_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_Damage = { "Damage", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, Damage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Damage_MetaData), NewProp_Damage_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_ShotDelay = { "ShotDelay", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, ShotDelay), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ShotDelay_MetaData), NewProp_ShotDelay_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_Scale = { "Scale", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, Scale), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Scale_MetaData), NewProp_Scale_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_AdditionalTransform = { "AdditionalTransform", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, AdditionalTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AdditionalTransform_MetaData), NewProp_AdditionalTransform_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_WithEffectTableRowHandle = { "WithEffectTableRowHandle", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, WithEffectTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WithEffectTableRowHandle_MetaData), NewProp_WithEffectTableRowHandle_MetaData) }; // 1360917958
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_HitEffectTableRowHandle = { "HitEffectTableRowHandle", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FProjectileTableRow, HitEffectTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HitEffectTableRowHandle_MetaData), NewProp_HitEffectTableRowHandle_MetaData) }; // 1360917958
 void Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_bMID_SetBit(void* Obj)
@@ -184,12 +202,15 @@ const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FProjecti
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FProjectileTableRow_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_ActorClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_StaticMesh,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_AdditionalStaticMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_InitialSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_MaxSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_ProjectileGravityScale,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_InitialLifeSpan,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_Damage,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_ShotDelay,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_Scale,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_AdditionalTransform,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_WithEffectTableRowHandle,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_HitEffectTableRowHandle,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewProp_bMID,
@@ -328,6 +349,11 @@ struct Z_Construct_UClass_AActorProjectile_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AdditionalStaticMeshComponent_MetaData[] = {
+		{ "Category", "ActorProjectile" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatusComponent_MetaData[] = {
 		{ "Category", "ActorProjectile" },
 		{ "EditInline", "true" },
@@ -338,6 +364,10 @@ struct Z_Construct_UClass_AActorProjectile_Statics
 		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FinalDamage_MetaData[] = {
+		{ "Category", "ActorProjectile" },
+		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ShotDelay_MetaData[] = {
 		{ "Category", "ActorProjectile" },
 		{ "ModuleRelativePath", "Actors/ActorProjectile.h" },
 	};
@@ -357,9 +387,11 @@ struct Z_Construct_UClass_AActorProjectile_Statics
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StaticMeshComponent;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_AdditionalStaticMeshComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StatusComponent;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Damage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_FinalDamage;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ShotDelay;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_WithEffect;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ProjectileMovementComponent;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_DataTableRowHandle;
@@ -375,17 +407,21 @@ struct Z_Construct_UClass_AActorProjectile_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_StaticMeshComponent = { "StaticMeshComponent", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, StaticMeshComponent), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaticMeshComponent_MetaData), NewProp_StaticMeshComponent_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_AdditionalStaticMeshComponent = { "AdditionalStaticMeshComponent", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, AdditionalStaticMeshComponent), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AdditionalStaticMeshComponent_MetaData), NewProp_AdditionalStaticMeshComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_StatusComponent = { "StatusComponent", nullptr, (EPropertyFlags)0x01140000000a0009, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, StatusComponent), Z_Construct_UClass_UStatusComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusComponent_MetaData), NewProp_StatusComponent_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_Damage = { "Damage", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, Damage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Damage_MetaData), NewProp_Damage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_FinalDamage = { "FinalDamage", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, FinalDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FinalDamage_MetaData), NewProp_FinalDamage_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_ShotDelay = { "ShotDelay", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, ShotDelay), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ShotDelay_MetaData), NewProp_ShotDelay_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_WithEffect = { "WithEffect", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, WithEffect), Z_Construct_UClass_AEffectBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WithEffect_MetaData), NewProp_WithEffect_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_ProjectileMovementComponent = { "ProjectileMovementComponent", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, ProjectileMovementComponent), Z_Construct_UClass_UProjectileMovementComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileMovementComponent_MetaData), NewProp_ProjectileMovementComponent_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AActorProjectile_Statics::NewProp_DataTableRowHandle = { "DataTableRowHandle", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorProjectile, DataTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DataTableRowHandle_MetaData), NewProp_DataTableRowHandle_MetaData) }; // 1360917958
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AActorProjectile_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_StaticMeshComponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_AdditionalStaticMeshComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_StatusComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_Damage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_FinalDamage,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_ShotDelay,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_WithEffect,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_ProjectileMovementComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorProjectile_Statics::NewProp_DataTableRowHandle,
@@ -431,13 +467,13 @@ AActorProjectile::~AActorProjectile() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorProjectile_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FProjectileTableRow::StaticStruct, Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewStructOps, TEXT("ProjectileTableRow"), &Z_Registration_Info_UScriptStruct_ProjectileTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FProjectileTableRow), 2907405413U) },
+		{ FProjectileTableRow::StaticStruct, Z_Construct_UScriptStruct_FProjectileTableRow_Statics::NewStructOps, TEXT("ProjectileTableRow"), &Z_Registration_Info_UScriptStruct_ProjectileTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FProjectileTableRow), 2514575988U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AActorProjectile, AActorProjectile::StaticClass, TEXT("AActorProjectile"), &Z_Registration_Info_UClass_AActorProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorProjectile), 2270078403U) },
+		{ Z_Construct_UClass_AActorProjectile, AActorProjectile::StaticClass, TEXT("AActorProjectile"), &Z_Registration_Info_UClass_AActorProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorProjectile), 460073115U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorProjectile_h_4059445218(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorProjectile_h_3233608566(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorProjectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorProjectile_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorProjectile_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorProjectile_h_Statics::ScriptStructInfo),
 	nullptr, 0);

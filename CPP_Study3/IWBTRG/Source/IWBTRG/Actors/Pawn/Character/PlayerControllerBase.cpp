@@ -8,6 +8,7 @@
 #include "Components/StatusComponent.h"
 #include "System/MainHUD.h"
 #include "System/GameInstanceBase.h"
+#include "Actors/ActorProjectile.h"
 #include "GameFramework/Character.h"
 
 APlayerControllerBase::APlayerControllerBase()
@@ -139,6 +140,16 @@ void APlayerControllerBase::SetupInputComponent()
 		UE_LOG(LogTemp, Warning, TEXT("IA_Reset is disabled"));
 	}
 
+	if (const UInputAction* InputAction = FUtils::GetInputActionFromName(IMC_Array, TEXT("IA_Sui")))
+	{
+		EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Started, this, &ThisClass::OnSuicide);
+		UE_LOG(LogTemp, Warning, TEXT("IA_Sui is abled"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("IA_Sui is disabled"));
+	}
+
 
 }
 
@@ -249,7 +260,8 @@ void APlayerControllerBase::OnPick(const FInputActionValue& InputActionValue)
 		if (ControlledChara->OverlappedItems.IsEmpty()) { return; }
 
 		AActorItem* Item = static_cast<AActorItem*>(*(ControlledChara->OverlappedItems).begin());
-		// Use item function needed
+		
+		Item->Used();
 
 		Item->Destroy();
 	}
@@ -264,11 +276,14 @@ void APlayerControllerBase::OnReset(const FInputActionValue& InputActionValue)
 {
 
 	AMainHUD* MainHUD = Cast<AMainHUD>(GetHUD());
-
-	UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
-
 	MainHUD->OpenCurrentLevelFromReset();
 
+}
+
+void APlayerControllerBase::OnSuicide(const FInputActionValue& InputActionValue)
+{
+	ACharacterBase* ControlledChara = Cast<ACharacterBase>(GetPawn());
+	ControlledChara->StatusComponent->OnDie.Broadcast();
 }
 
 
@@ -277,12 +292,15 @@ void APlayerControllerBase::OnReset(const FInputActionValue& InputActionValue)
 void APlayerControllerBase::Attack()
 {
 	ACharacterBase* ControlledChara = Cast<ACharacterBase>(GetPawn());
+	UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
+
 	if (ControlledChara->Data->ShotMontage)
 	{
 		UAnimInstance* AnimInstance = ControlledChara->SkeletalMeshComponent->GetAnimInstance();
-		
+
 		if (!AnimInstance->Montage_IsPlaying(nullptr))
 		{
+			// 근접공격..굳이?
 			//if (ControlledChara->StatusComponent->IsAimming())
 			//{
 			//	AnimInstance->Montage_Play(ControlledChara->Data->ShotMontage);
@@ -292,8 +310,23 @@ void APlayerControllerBase::Attack()
 			//	ControlledChara->StatusComponent->CanMove();
 			//	AnimInstance->Montage_Play(ControlledChara->Data->AttackMontage);
 			//}
-
+			FProjectileTableRow* ProjectileData = ControlledChara->Data->Projectile.GetRow<FProjectileTableRow>(TEXT("Projectile"));
 			AnimInstance->Montage_Play(ControlledChara->Data->ShotMontage);
+			AnimInstance->Montage_SetPlayRate(ControlledChara->Data->ShotMontage, ProjectileData->ShotDelay);
+
+			if (ControlledChara->Data->Projectile != ControlledChara->InitialProjectileData)
+			{
+				ControlledChara->StatusComponent->CurrentProjectileNum -= 1;
+				ControlledChara->StatusComponent->OnShotChanged.Broadcast(ControlledChara->StatusComponent->CurrentProjectileNum);
+				UE_LOG(LogTemp, Warning, TEXT("CurrentProjectileNum: %d"), ControlledChara->StatusComponent->CurrentProjectileNum);
+
+				if (ControlledChara->StatusComponent->CurrentProjectileNum == 0)
+				{
+					ControlledChara->Data->Projectile = ControlledChara->InitialProjectileData;
+				}
+			}
+
+
 		}
 	}
 }

@@ -24,8 +24,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Class")
 	TSubclassOf<AActorProjectile> ActorClass;
 
-	UPROPERTY(EditAnywhere, Category = "Mesh", meta = (EditCondition = "bStaticMesh"))
+	UPROPERTY(EditAnywhere, Category = "Mesh")
 	UStaticMesh* StaticMesh = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = "Mesh")
+	UStaticMesh* AdditionalStaticMesh = nullptr;
 
 	UPROPERTY(EditAnywhere, Category = "Projectile")
 	float InitialSpeed = 5000.0f;
@@ -42,9 +45,16 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Projectile")
 	float Damage = 0.f;
 
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	float ShotDelay = 1.f;
+
 public: // Transform
 	UPROPERTY(EditAnywhere, Category = "Transform")
 	FVector Scale = FVector::OneVector;
+
+	UPROPERTY(EditAnywhere, Category = "Transform")
+	FTransform AdditionalTransform;
+
 
 public:
 
@@ -118,6 +128,9 @@ public:
 	UStaticMeshComponent* StaticMeshComponent;
 
 	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* AdditionalStaticMeshComponent;
+
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStatusComponent> StatusComponent;
 
 	UPROPERTY(VisibleAnywhere)
@@ -125,6 +138,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	float FinalDamage;
+
+	UPROPERTY(VisibleAnywhere)
+	float ShotDelay;
 	
 public:
 	UPROPERTY(VisibleAnywhere)

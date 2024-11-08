@@ -74,6 +74,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void OnConstruction(const FTransform& Transform) override;
 	virtual void SetData(const FDataTableRowHandle& InDataTableRowHandle);
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:	
 	// Called every frame
@@ -87,11 +88,9 @@ public:
 	virtual void OnStartCrouch(float HeightAdjust, float ScaledHeightAdjust) override;
 	virtual void OnEndCrouch(float HeightAdjust, float ScaledHeightAdjust) override;
 
-
 public:
-
-
 	virtual void FindOverlappedItem();
+	virtual float RayTest();
 
 protected:
 
@@ -122,14 +121,7 @@ public:
 	TObjectPtr<UCharacterMovementComponent> Movement = GetCharacterMovement();
 
 	FProjectileTableRow* ProjectileData;
-	
-
-public:
-	UPROPERTY(EditAnywhere, Category = "Projectile")
-	UDataTable* ProjectileTest;
-
-
-
+	FDataTableRowHandle InitialProjectileData;
 
 public:
 
@@ -154,5 +146,5 @@ protected:
 
 	FDelegateHandle CharacterBaseTableRowChangedHandle;
 	
-	
+
 };

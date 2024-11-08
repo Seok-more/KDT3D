@@ -22,7 +22,7 @@ void UActorPoolSubsystem::SpawnHitEffectWithDecal(const FTransform& SpawnTransfo
 
 void UActorPoolSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
-	EffectPool.InitializePool(&InWorld, 2);
+	EffectPool.InitializePool(&InWorld, 10);
 	DecalEffectPool.InitializePool(&InWorld, 20);
 }
 

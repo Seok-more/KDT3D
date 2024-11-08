@@ -15,6 +15,8 @@ AActorSave::AActorSave(const FObjectInitializer& ObjectInitializer)
 
 void AActorSave::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	UE_LOG(LogTemp, Error, TEXT("TempSaved"));
+
 	AActorProjectile* OtherProjectile = Cast<AActorProjectile>(OtherActor);
 
 	if (OtherProjectile && OtherProjectile->IsFriendly())
@@ -51,6 +53,8 @@ void AActorSave::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor*
 
 void AActorSave::OnColliderBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	UE_LOG(LogTemp, Error, TEXT("TempSaved"));
+
 	AActorProjectile* OtherProjectile = Cast<AActorProjectile>(OtherActor);
 
 	if (OtherProjectile && OtherProjectile->IsFriendly())

@@ -17,8 +17,6 @@ class IWBTRG_API UStaminaBarWidget : public UWidgetBase
 	GENERATED_BODY()
 
 protected:
-	virtual void NativeOnInitialized();
-	virtual void NativePreConstruct();
 	virtual void NativeConstruct();
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime);
 

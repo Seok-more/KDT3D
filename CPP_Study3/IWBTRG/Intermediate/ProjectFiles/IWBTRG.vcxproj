@@ -364,6 +364,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorItem.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorItem_Projectile.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorItem_Projectile.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorMovable.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -404,6 +408,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase_UnPooled.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase_UnPooled.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Actors\Pawn\Enemy.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -489,14 +497,18 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\System\PlayerCameraManagerBase.h"/>
-    <ClCompile Include="..\..\Source\IWBTRG\System\SaveGameTemp.cpp">
+    <ClCompile Include="..\..\Source\IWBTRG\System\SaveGamefile.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClInclude Include="..\..\Source\IWBTRG\System\SaveGameTemp.h"/>
+    <ClInclude Include="..\..\Source\IWBTRG\System\SaveGamefile.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\UI\HPBarWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\UI\HPBarWidget.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\UI\ShotNumWidget.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\UI\ShotNumWidget.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\UI\StaminaBarWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

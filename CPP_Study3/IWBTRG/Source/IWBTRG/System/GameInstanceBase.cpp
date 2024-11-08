@@ -7,7 +7,7 @@
 #include "Actors/Pawn/Character/CharacterBase.h"
 #include "Actors/Pawn/Character/PlayerControllerBase.h"
 #include "System/MainHUD.h"
-#include "SaveGameTemp.h"
+#include "SaveGamefile.h"
 
 
 void UGameInstanceBase::Init()
@@ -16,9 +16,13 @@ void UGameInstanceBase::Init()
 
 	LoadGame();
 	{
-		TestToSave += 1;
-		UE_LOG(LogTemp, Warning, TEXT("TestTOSave: %f"), TestToSave);
+		UE_LOG(LogTemp, Warning, TEXT("JSM Save LevelName: %s"), *LevelName);
 	}
+
+	{
+		GetWorld()->GetWorldSettings()->SetTimeDilation(1.1f);
+	}
+
 
 	{
 		// 레벨이 전환되고 모든 세팅이 완료된 후
@@ -27,11 +31,16 @@ void UGameInstanceBase::Init()
 
 }
 
-void UGameInstanceBase::FinishDestroy()
-{
+void UGameInstanceBase::Shutdown()
+{	// 게임이 꺼지기 직전임
 	SaveGame();
-	Super::FinishDestroy();
+	Super::Shutdown();
+	
+}
 
+void UGameInstanceBase::FinishDestroy()
+{	// 게임이 꺼진 직후임
+	Super::FinishDestroy();
 	{
 		FCoreUObjectDelegates::PostLoadMapWithWorld.RemoveAll(this);
 	}
@@ -41,20 +50,20 @@ void UGameInstanceBase::FinishDestroy()
 void UGameInstanceBase::CreateSaveFile()
 {
 	// Create SaveGame Object and Save to the Default Slot
-	USaveGameTemp* DataToSave = Cast<USaveGameTemp>(UGameplayStatics::CreateSaveGameObject(USaveGameTemp::StaticClass()));
+	USaveGamefile* DataToSave = Cast<USaveGamefile>(UGameplayStatics::CreateSaveGameObject(USaveGamefile::StaticClass()));
 	UGameplayStatics::SaveGameToSlot(DataToSave, "Slot1", 0);
 }
 
 void UGameInstanceBase::SaveGame()
 {
 	// Initialize Data to Save
-	USaveGameTemp* DataToSave = Cast<USaveGameTemp>(UGameplayStatics::LoadGameFromSlot("Slot1", 0));
+	USaveGamefile* DataToSave = Cast<USaveGamefile>(UGameplayStatics::LoadGameFromSlot("Slot1", 0));
 
 	// If there is a valid SaveGame Object to use for saving
 	if (DataToSave)
 	{
-		DataToSave->PlayerTransform = PlayerTransformToSave;
-		DataToSave->Test = TestToSave;
+		LevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+		DataToSave->LevelNameToSave = LevelName;
 		UGameplayStatics::SaveGameToSlot(DataToSave, "Slot1", 0);
 
 		// Should be PlayerStatus in here
@@ -65,24 +74,28 @@ void UGameInstanceBase::SaveGame()
 		// Create a Default Save File
 		CreateSaveFile();
 	}
+
+	UE_LOG(LogTemp, Error, TEXT("JSM SaveGame"));
 }
 
 
 void UGameInstanceBase::LoadGame()
 {
 	// Cast Data to Load
-	USaveGameTemp* DataToLoad = Cast<USaveGameTemp>(UGameplayStatics::LoadGameFromSlot("Slot1", 0));
+	USaveGamefile* DataToLoad = Cast<USaveGamefile>(UGameplayStatics::LoadGameFromSlot("Slot1", 0));
 
 	if (DataToLoad)
 	{
-		PlayerTransformToSave = DataToLoad->PlayerTransform;
-		TestToSave = DataToLoad->Test;
+		LevelName = DataToLoad->LevelNameToSave;
+		UGameplayStatics::OpenLevel(GetWorld(), FName(LevelName));
 	}
 	else if (!UGameplayStatics::DoesSaveGameExist("Slot1", 0))
 	{
 		// Create a Default Save File
 		CreateSaveFile();
 	}
+
+	UE_LOG(LogTemp, Error, TEXT("JSM LoadGame"));
 
 }
 
@@ -97,8 +110,10 @@ void UGameInstanceBase::OnOpenLevelToLevel(UWorld* thisworld)
 		// 여기서 캐릭터 스테이터스 옮김
 		ControlledChara->SetActorRotation(PlayerRotatorToLevel);
 		PlayerController->SetControlRotation(ControllerRotatorToLevel);
-
 		ControlledChara->SetActorLocation(MainHUD->InitialLocation);
+
+		ControlledChara->Data->Projectile = PlayerProjectileDataToLevel;
+		ControlledChara->StatusComponent->CurrentProjectileNum = PlayerProjectileNumToLevel;
 	}
 	
 	bJustPortal = false;

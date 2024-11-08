@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
 #include "Components/StatusComponent.h"
-#include "SaveGameTemp.generated.h"
+#include "SaveGamefile.generated.h"
 
 
 /**
@@ -13,24 +13,18 @@
  */
 
 UCLASS()
-class IWBTRG_API USaveGameTemp : public USaveGame
+class IWBTRG_API USaveGamefile : public USaveGame
 {
 	GENERATED_BODY()
 
 public:
-	USaveGameTemp();
+	USaveGamefile();
 
 public:
 	UPROPERTY()
 	UStatusComponent* StatusComponent;
 
 	UPROPERTY()
-	FTransform PlayerTransform;
-
-	UPROPERTY()
-	float Test;
-
-	//UPROPERTY()
-	// Current Level
+	FString LevelNameToSave;
 
 };

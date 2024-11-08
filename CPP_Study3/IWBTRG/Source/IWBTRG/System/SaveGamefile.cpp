@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "System/SaveGameTemp.h"
+#include "System/SaveGamefile.h"
 #include "Kismet/GameplayStatics.h"
 
-USaveGameTemp::USaveGameTemp()
+USaveGamefile::USaveGamefile()
 {
-	PlayerTransform = FTransform::Identity;
-	Test = 0;
+	LevelNameToSave = "Null";
+	
 }
 
 

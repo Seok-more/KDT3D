@@ -53,6 +53,8 @@ protected: // Input
 
 	void OnReset(const FInputActionValue& InputActionValue);
 
+	void OnSuicide(const FInputActionValue& InputActionValue);
+
 protected:	// Input method
 	void Attack();
 

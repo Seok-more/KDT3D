@@ -2,9 +2,9 @@
 
 
 #include "CharacterBase.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "Components/AdCharacterMovementComponent.h"
 #include "Components/ZoomSpringArmComponent.h"
+#include "Actors/Effect/EffectBase_UnPooled.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/SkinnedAssetCommon.h"
 
@@ -69,12 +69,17 @@ ACharacterBase::ACharacterBase(const FObjectInitializer& ObjectInitializer)
 		CharacterMovementComponent->AirControlBoostVelocityThreshold = 800.0f;  // 일정 속도 이상에서만 공중 제어가 강화됨
 
 	}	
+
+	{
+		GetCapsuleComponent()->SetCollisionProfileName(CollisionProfileName::Player);
+		GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+
 	{
 		GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnBeginOverlap);
 		GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ThisClass::OnHit);
 	}
 
-	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	{
 		StatusComponent = CreateDefaultSubobject<UStatusComponent>(TEXT("StatusComponent"));
 	}
@@ -103,6 +108,10 @@ void ACharacterBase::BeginPlay()
 			GameInstanceBase->OnTempSave.AddDynamic(this, &ThisClass::OnTempSave);
 		}
 	}
+
+	{	// Projectle Data 저장
+		InitialProjectileData = Data->Projectile;
+	}
 	
 }
 
@@ -127,13 +136,6 @@ void ACharacterBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	if (DataTableRowHandle.IsNull()) { return; }
 	Data = DataTableRowHandle.GetRow<FCharacterBaseTableRow>(TEXT("Character"));
 	if (!Data) { ensure(false); return; }
-
-	{	// Class Check -> CharacterBase is not child of PawnBase
-		//if (Data->PawnClass != GetClass())
-		//{
-		//	ensureMsgf(false, TEXT("Class is not equal to DataTable"));
-		//}
-	}
 
 	{	// Movement
 		Movement->RotationRate = Data->RotationRate;
@@ -196,12 +198,20 @@ void ACharacterBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 
 }
 
+void ACharacterBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	Data->Projectile = InitialProjectileData;
+}
+
 // Called every frame
 void ACharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FindOverlappedItem();
+	{	// 아이템 겹침 체크
+		FindOverlappedItem();
+	}
 
 	{	// Collision doesn't work when character stops bug -> fix_temp
 		// 언리얼 캡슐 콜리젼은 가만히 있을때는 바운더리가 아닌, 중심에서만 콜리젼 체크를 한다는데 뭔
@@ -210,11 +220,13 @@ void ACharacterBase::Tick(float DeltaTime)
 		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, -0.01f), GetActorRotation(), true, OutHit);
 	}
 
-	{	// 끼임사
-		UAdCharacterMovementComponent* AdCharacterMovementComponent = Cast<UAdCharacterMovementComponent>(GetCharacterMovement());
-		if (AdCharacterMovementComponent && AdCharacterMovementComponent->bPushed)
+	{	// 위아래 압사
 		{
-			StatusComponent->OnDie.Broadcast();
+			float CapsuleHeight = GetCapsuleComponent()->GetScaledCapsuleHalfHeight() * 2;
+			if (CapsuleHeight > RayTest())
+			{
+				StatusComponent->OnDie.Broadcast();
+			}
 		}
 	}
 
@@ -260,6 +272,8 @@ void ACharacterBase::OnEndCrouch(float HeightAdjust, float ScaledHeightAdjust)
 	BaseTranslationOffset.Z = MeshRelativeLocation.Z;
 	
 	K2_OnEndCrouch(HeightAdjust, ScaledHeightAdjust);
+
+	// UnCrouch할때 아주아주 미세하게 콜리젼이 위로 올라가는거 앎?
 }
 
 void ACharacterBase::FindOverlappedItem()
@@ -271,6 +285,62 @@ void ACharacterBase::FindOverlappedItem()
 	{
 		OverlappedItems = MoveTemp(Temp);
 	}
+}
+
+float ACharacterBase::RayTest()
+{
+	// 측면 압사 구현하고싶으면 레이를 측면으로 8방향정도 쏘고, 캡슐의 반지름하고 비교해도되고 뭐
+
+	UCapsuleComponent* CapsuleComp = GetCapsuleComponent();
+	FVector CapsuleCenter = CapsuleComp->GetComponentLocation();
+	float CapsuleHalfHeight = CapsuleComp->GetScaledCapsuleHalfHeight();
+
+	FVector TraceStartUp = CapsuleCenter; 
+	FVector TraceEndUp = CapsuleCenter + FVector(0.f, 0.f, CapsuleHalfHeight + 1000.f); 
+
+	FVector TraceStartDown = CapsuleCenter; 
+	FVector TraceEndDown = CapsuleCenter - FVector(0.f, 0.f, CapsuleHalfHeight + 1000.f); 
+
+	FHitResult HitResultUp;
+	FHitResult HitResultDown;
+
+	FCollisionQueryParams CollisionParamsUp;
+	CollisionParamsUp.AddIgnoredActor(this); 
+
+	bool bHitUp = GetWorld()->LineTraceSingleByChannel(HitResultUp, TraceStartUp, TraceEndUp, ECC_Visibility, CollisionParamsUp);
+
+	FCollisionQueryParams CollisionParamsDown;
+	CollisionParamsDown.AddIgnoredActor(this); 
+
+	bool bHitDown = GetWorld()->LineTraceSingleByChannel(HitResultDown, TraceStartDown, TraceEndDown, ECC_Visibility, CollisionParamsDown);
+
+	float UpRayLength = 0.f;
+	float DownRayLength = 0.f;
+
+	if (bHitUp)
+	{
+		UpRayLength = (HitResultUp.ImpactPoint - TraceStartUp).Size();
+	}
+	else
+	{
+		UpRayLength = (TraceEndUp - TraceStartUp).Size(); 
+	}
+
+	if (bHitDown)
+	{
+		DownRayLength = (HitResultDown.ImpactPoint - TraceStartDown).Size();
+	}
+	else
+	{
+		DownRayLength = (TraceEndDown - TraceStartDown).Size(); 
+	}
+
+	float TotalRayLength = UpRayLength + DownRayLength;
+
+	//DrawDebugLine(GetWorld(), TraceStartUp, TraceEndUp, FColor::Green, false, 1.f, 0, 1.f); 
+	//DrawDebugLine(GetWorld(), TraceStartDown, TraceEndDown, FColor::Red, false, 1.f, 0, 1.f); 
+
+	return TotalRayLength;
 }
 
 void ACharacterBase::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -302,6 +372,10 @@ void ACharacterBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPr
 void ACharacterBase::OnDie()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Die"));
+
+	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
+	SkeletalMeshComponent->SetVisibility(false);
+
 	Destroy();
 }
 
@@ -313,6 +387,8 @@ void ACharacterBase::OnTempSave()
 	GameInstanceBase->PlayerTransformToTempSave = GetActorTransform();
 	GameInstanceBase->CurrentLevelNameToTempSave = UGameplayStatics::GetCurrentLevelName(GetWorld());
 	GameInstanceBase->ControllerRotatorToTempSave = GetControlRotation();
+	GameInstanceBase->PlayerProjectileDataToTempSave = Data->Projectile;
+	GameInstanceBase->PlayerProjectileNumToTempSave = StatusComponent->CurrentProjectileNum;
 }
 
 

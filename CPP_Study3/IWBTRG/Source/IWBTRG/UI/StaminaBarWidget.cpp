@@ -7,15 +7,6 @@
 #include "Actors/Pawn/Character/CharacterBase.h"
 #include "Kismet/GameplayStatics.h"
 
-void UStaminaBarWidget::NativeOnInitialized()
-{
-	Super::NativeOnInitialized();
-}
-
-void UStaminaBarWidget::NativePreConstruct()
-{
-	Super::NativePreConstruct();
-}
 
 void UStaminaBarWidget::NativeConstruct()
 {
@@ -37,7 +28,7 @@ void UStaminaBarWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 	const float EffectPercent = StaminaBarEffect->GetPercent();
 	if (!FMath::IsNearlyEqual(EffectPercent, Percent))
 	{
-		const float NewEffectPercent = FMath::Lerp(EffectPercent, Percent, InDeltaTime * 2.f);
+		const float NewEffectPercent = FMath::Lerp(EffectPercent, Percent, InDeltaTime * 4.f);
 		StaminaBarEffect->SetPercent(NewEffectPercent);
 	}
 }

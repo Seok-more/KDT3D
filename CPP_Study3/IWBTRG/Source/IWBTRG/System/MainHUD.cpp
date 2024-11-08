@@ -43,6 +43,17 @@ void AMainHUD::BeginPlay()
 
 	}
 	{
+		UClass* WidgetClassShotNum = LoadClass<UWidgetBase>(nullptr,
+			TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/UI/UI_ShotNum.UI_ShotNum_C'"));
+		check(WidgetClassShotNum);
+		WidgetShotNum = CreateWidget<UWidgetBase>(GetWorld(), WidgetClassShotNum);
+		WidgetShotNum->SetOwningPawn(GetOwningPawn());
+		WidgetShotNum->AddToViewport();
+
+	}
+
+
+	{
 		APawn* Pawn = GetOwningPawn();
 		UStatusComponent* StatusComponent = Pawn->GetComponentByClass<UStatusComponent>();
 		check(StatusComponent);
@@ -54,12 +65,15 @@ void AMainHUD::BeginPlay()
 
 	//------------------------------------------------------------------------------------
 
-	{	// LevelToLevel 캐릭터 위치시키기
+	{	// R 캐릭터 위치시키기
 		UGameInstanceBase* GameInstanceBase = Cast<UGameInstanceBase>(GetGameInstance());
 		if (!GameInstanceBase->PlayerTransformToTempSave.Equals(FTransform::Identity))
 		{
 			ControlledChara->SetActorTransform(GameInstanceBase->PlayerTransformToTempSave);
 			PlayerController->SetControlRotation(GameInstanceBase->ControllerRotatorToTempSave);
+			ControlledChara->Data->Projectile = GameInstanceBase->PlayerProjectileDataToTempSave;
+			ControlledChara->StatusComponent->CurrentProjectileNum = GameInstanceBase->PlayerProjectileNumToTempSave;
+	
 		}
 	}
 }
@@ -101,11 +115,6 @@ void AMainHUD::OnPlayerDie()
 				TextBlock->SetVisibility(ESlateVisibility::Visible);
 			}
 		}
-
-		{
-
-		}
-		
 
 
 	}
@@ -153,8 +162,6 @@ void AMainHUD::OpenCurrentLevelFromUI()
 	// 마우스 커서 숨기기
 	PlayerController->bShowMouseCursor = false;
 	
-
-
 }
 
 void AMainHUD::OpenCurrentLevelFromReset()

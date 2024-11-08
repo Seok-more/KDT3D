@@ -11,7 +11,7 @@
 #include "Components/BoxComponent.h"
 #include "Trigger/TriggerBoxBase.h"
 #include "Materials/MaterialInterface.h"
-#include "Effect/EffectBase.h"
+#include "Effect/EffectBase_UnPooled.h"
 #include "ActorBase.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(FOnActorBaseTableRowChanged)
@@ -146,13 +146,13 @@ protected:
 	virtual void PreEditChange(FProperty* PropertyAboutToChange) override;
 	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
 
-	TArray<AEffectBase*> PrevEffects;
+	TArray<AEffectBase_UnPooled*> PrevEffects;
 	TArray<ATriggerBoxBase*> PrevTriggerBoxes;
 #endif
 
 protected:
 
-	AEffectBase* AddEffect(AEffectBase* InTemplate = nullptr);
+	AEffectBase_UnPooled* AddEffect(AEffectBase_UnPooled* InTemplate = nullptr);
 	ATriggerBoxBase* AddTriggerBox(ATriggerBoxBase* InTemplate = nullptr);
 
 	
@@ -185,7 +185,7 @@ protected:
 
 protected:
 	UPROPERTY(EditAnywhere)
-	TArray<AEffectBase*> Effects;
+	TArray<AEffectBase_UnPooled*> Effects;
 
 	UPROPERTY(EditAnywhere)
 	TArray<ATriggerBoxBase*> TriggerBoxes;

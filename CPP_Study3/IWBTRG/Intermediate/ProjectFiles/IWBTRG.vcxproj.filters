@@ -60,6 +60,12 @@
     <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorItem.h">
       <Filter>Source\IWBTRG\Actors</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorItem_Projectile.cpp">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\ActorItem_Projectile.h">
+      <Filter>Source\IWBTRG\Actors</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\IWBTRG\Actors\ActorMovable.cpp">
       <Filter>Source\IWBTRG\Actors</Filter>
     </ClCompile>
@@ -124,6 +130,12 @@
       <Filter>Source\IWBTRG\Actors\Effect</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase.h">
+      <Filter>Source\IWBTRG\Actors\Effect</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase_UnPooled.cpp">
+      <Filter>Source\IWBTRG\Actors\Effect</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Effect\EffectBase_UnPooled.h">
       <Filter>Source\IWBTRG\Actors\Effect</Filter>
     </ClInclude>
     <Filter Include="Source\IWBTRG\Actors\Pawn">
@@ -282,10 +294,10 @@
     <ClInclude Include="..\..\Source\IWBTRG\System\PlayerCameraManagerBase.h">
       <Filter>Source\IWBTRG\System</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\IWBTRG\System\SaveGameTemp.cpp">
+    <ClCompile Include="..\..\Source\IWBTRG\System\SaveGamefile.cpp">
       <Filter>Source\IWBTRG\System</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\IWBTRG\System\SaveGameTemp.h">
+    <ClInclude Include="..\..\Source\IWBTRG\System\SaveGamefile.h">
       <Filter>Source\IWBTRG\System</Filter>
     </ClInclude>
     <Filter Include="Source\IWBTRG\UI">
@@ -295,6 +307,12 @@
       <Filter>Source\IWBTRG\UI</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\UI\HPBarWidget.h">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\UI\ShotNumWidget.cpp">
+      <Filter>Source\IWBTRG\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\UI\ShotNumWidget.h">
       <Filter>Source\IWBTRG\UI</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\IWBTRG\UI\StaminaBarWidget.cpp">

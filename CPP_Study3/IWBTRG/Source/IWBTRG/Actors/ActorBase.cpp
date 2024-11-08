@@ -338,7 +338,7 @@ void AActorBase::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor*
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Mesh Begin MeshOverlap with actor: %s"), *OtherActor->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Mesh Begin MeshOverlap with actor: %s"), *OtherActor->GetName());
 	}
 }
 
@@ -346,7 +346,7 @@ void AActorBase::OnMeshEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* O
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Mesh End MeshOverlap with actor: %s"), *OtherActor->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Mesh End MeshOverlap with actor: %s"), *OtherActor->GetName());
 	}
 }
 
@@ -354,7 +354,7 @@ void AActorBase::OnColliderBeginOverlap(UPrimitiveComponent* OverlappedComp, AAc
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Collider Begin ColliderOverlap with actor: %s"), *OtherActor->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Collider Begin ColliderOverlap with actor: %s"), *OtherActor->GetName());
 	}
 }
 
@@ -362,7 +362,7 @@ void AActorBase::OnColliderEndOverlap(UPrimitiveComponent* OverlappedComp, AActo
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Collider End ColliderOverlap with actor: %s"), *OtherActor->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Collider End ColliderOverlap with actor: %s"), *OtherActor->GetName());
 	}
 }
 
@@ -370,7 +370,7 @@ void AActorBase::OnColliderHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Collider Hit with actor: %s"), *OtherActor->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Collider Hit with actor: %s"), *OtherActor->GetName());
 	}
 }
 
@@ -425,7 +425,7 @@ void AActorBase::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEv
 		{
 			if (PrevEffects[Index])
 			{
-				AEffectBase* EffectBase = PrevEffects[Index];
+				AEffectBase_UnPooled* EffectBase = PrevEffects[Index];
 				EffectBase->Destroy();
 			}
 			break;
@@ -440,7 +440,7 @@ void AActorBase::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEv
 		}
 		case EPropertyChangeType::ArrayClear:
 		{
-			for (AEffectBase* EffectBase : PrevEffects)
+			for (AEffectBase_UnPooled* EffectBase : PrevEffects)
 			{
 				if (EffectBase)
 				{
@@ -503,7 +503,7 @@ void AActorBase::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEv
 	}
 }
 
-AEffectBase* AActorBase::AddEffect(AEffectBase* InTemplate)
+AEffectBase_UnPooled* AActorBase::AddEffect(AEffectBase_UnPooled* InTemplate)
 {
 	
 	
@@ -514,7 +514,7 @@ AEffectBase* AActorBase::AddEffect(AEffectBase* InTemplate)
 	ActorSpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	ActorSpawnParameters.TransformScaleMethod = ESpawnActorScaleMethod::OverrideRootScale;
 
-	AEffectBase* EffectBase = World->SpawnActor<AEffectBase>(AEffectBase::StaticClass(), FTransform::Identity, ActorSpawnParameters);
+	AEffectBase_UnPooled* EffectBase = World->SpawnActor<AEffectBase_UnPooled>(AEffectBase_UnPooled::StaticClass(), FTransform::Identity, ActorSpawnParameters);
 
 	if (!InTemplate)
 	{

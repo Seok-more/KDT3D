@@ -66,19 +66,10 @@ void UAnimNotify_Projectile::Notify(USkeletalMeshComponent* MeshComp, UAnimSeque
 	AActorProjectile* Projectile = World->SpawnActorDeferred<AActorProjectile>(ControlledChara->ProjectileData->ActorClass,
 		FTransform::Identity, OwningPawn, OwningPawn, ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 	
-
-	if (ControlledChara->StatusComponent->GetHasProjectile())
-	{
-		
-	}
-	else
-	{
-		Projectile->SetData(ControlledChara->Data->Projectile);
-	}
-
+	Projectile->SetData(ControlledChara->Data->Projectile);
+	Projectile->SetIsFriendly(true);
 
 	FTransform NewTransform;
-
 	const FVector IndexLocation = ControlledChara->SkeletalMeshComponent->GetSocketLocation(SocketName::Index);
 	NewTransform.SetLocation(IndexLocation);
 

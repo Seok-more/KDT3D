@@ -36,11 +36,20 @@ AActorProjectile::AActorProjectile()
 
 		StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 		RootComponent = StaticMeshComponent;
+		StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::Projectile);
+		StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnMeshBeginOverlap);
+
+
+		AdditionalStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("AdditionalStaticMeshComponent"));
+		AdditionalStaticMeshComponent->SetupAttachment(RootComponent);
+		AdditionalStaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 		ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
 	
-		StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::Projectile);
-		StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnMeshBeginOverlap);
+		
+
+		// StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::Projectile);
+		// StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnMeshBeginOverlap);
 	}
 
 	
@@ -73,8 +82,7 @@ void AActorProjectile::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	if (!Data) { ensure(false); return; }
 
 	{
-		// IsFriendly
-		if (Data)
+		if(Data)
 		{
 			bIsFriendly = Data->bFriendly;
 		}
@@ -83,6 +91,13 @@ void AActorProjectile::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	{
 		StaticMeshComponent->SetStaticMesh(Data->StaticMesh);
 		StaticMeshComponent->SetRelativeScale3D(Data->Scale);
+
+		if(Data->AdditionalStaticMesh)
+		{
+			AdditionalStaticMeshComponent->SetStaticMesh(Data->AdditionalStaticMesh);
+			AdditionalStaticMeshComponent->SetRelativeTransform(Data->AdditionalTransform);
+		}
+
 		if (Data->bOnlyPawn)
 		{
 			StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::PawnTrigger);
@@ -91,7 +106,7 @@ void AActorProjectile::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		{
 			StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::Projectile);
 		}
-	
+
 		//StaticMeshComponent->MoveIgnoreActors.Empty();
 		//StaticMeshComponent->MoveIgnoreActors.Add(GetOwner());
 	
@@ -129,10 +144,11 @@ void AActorProjectile::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	}
 
 
-	{	// Damage;
+	{	// Shot Status;
 		Damage = Data->Damage;
-
 		FinalDamage = Damage; // + Something
+
+		ShotDelay = Data->ShotDelay;
 	}
 
 }
@@ -177,7 +193,7 @@ void AActorProjectile::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedCompone
 		if (!bFromSweep)
 		{
 			Destroy();
-			check(false);
+			//check(false);
 			return;
 		}
 
@@ -191,10 +207,8 @@ void AActorProjectile::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedCompone
 		UGameplayStatics::ApplyDamage(OtherActor, FinalDamage, GetInstigator()->GetController(), this, nullptr);
 	}
 
-	// 여기 캐릭터랑 중복되는 상황이긴해
 	else if (Chara && !IsFriendly())
 	{
-
 		Chara->StatusComponent->OnDie.Broadcast();
 
 		if (!bFromSweep)

@@ -38,6 +38,7 @@ public:
 public:
 	class UUserWidget* WidgetMain = nullptr;
 	class UWidgetBase* WidgetStamina = nullptr;
+	class UWidgetBase* WidgetShotNum = nullptr;
 
 	class ACharacterBase* ControlledChara;
 	class APlayerControllerBase* PlayerController;

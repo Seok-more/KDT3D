@@ -16,6 +16,7 @@ IWBTRG_API UClass* Z_Construct_UClass_UStatusComponent();
 IWBTRG_API UClass* Z_Construct_UClass_UStatusComponent_NoRegister();
 IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature();
 IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnHPChanged__DelegateSignature();
+IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature();
 IWBTRG_API UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature();
 UPackage* Z_Construct_UPackage__Script_IWBTRG();
 // End Cross Module References
@@ -70,32 +71,6 @@ void FOnHPChanged_DelegateWrapper(const FMulticastScriptDelegate& OnHPChanged, f
 }
 // End Delegate FOnHPChanged
 
-// Begin Delegate FOnDie
-struct Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Components/StatusComponent.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_IWBTRG, nullptr, "OnDie__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-void FOnDie_DelegateWrapper(const FMulticastScriptDelegate& OnDie)
-{
-	OnDie.ProcessMulticastDelegate<UObject>(NULL);
-}
-// End Delegate FOnDie
-
 // Begin Delegate FOnStaminaChanged
 struct Z_Construct_UDelegateFunction_IWBTRG_OnStaminaChanged__DelegateSignature_Statics
 {
@@ -145,6 +120,76 @@ void FOnStaminaChanged_DelegateWrapper(const FMulticastScriptDelegate& OnStamina
 	OnStaminaChanged.ProcessMulticastDelegate<UObject>(&Parms);
 }
 // End Delegate FOnStaminaChanged
+
+// Begin Delegate FOnShotChanged
+struct Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics
+{
+	struct _Script_IWBTRG_eventOnShotChanged_Parms
+	{
+		int32 CurrentProjectileNum;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentProjectileNum;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::NewProp_CurrentProjectileNum = { "CurrentProjectileNum", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_IWBTRG_eventOnShotChanged_Parms, CurrentProjectileNum), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::NewProp_CurrentProjectileNum,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_IWBTRG, nullptr, "OnShotChanged__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::_Script_IWBTRG_eventOnShotChanged_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::_Script_IWBTRG_eventOnShotChanged_Parms) < MAX_uint16);
+UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_IWBTRG_OnShotChanged__DelegateSignature_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+void FOnShotChanged_DelegateWrapper(const FMulticastScriptDelegate& OnShotChanged, int32 CurrentProjectileNum)
+{
+	struct _Script_IWBTRG_eventOnShotChanged_Parms
+	{
+		int32 CurrentProjectileNum;
+	};
+	_Script_IWBTRG_eventOnShotChanged_Parms Parms;
+	Parms.CurrentProjectileNum=CurrentProjectileNum;
+	OnShotChanged.ProcessMulticastDelegate<UObject>(&Parms);
+}
+// End Delegate FOnShotChanged
+
+// Begin Delegate FOnDie
+struct Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_IWBTRG, nullptr, "OnDie__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_IWBTRG_OnDie__DelegateSignature_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+void FOnDie_DelegateWrapper(const FMulticastScriptDelegate& OnDie)
+{
+	OnDie.ProcessMulticastDelegate<UObject>(NULL);
+}
+// End Delegate FOnDie
 
 // Begin Class UStatusComponent
 void UStatusComponent::StaticRegisterNativesUStatusComponent()
@@ -196,7 +241,7 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 		{ "Category", "StatusComponent" },
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bHasProjectile_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentProjectileNum_MetaData[] = {
 		{ "Category", "StatusComponent" },
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
 	};
@@ -216,8 +261,7 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDie;
 	static void NewProp_bExhausted_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bExhausted;
-	static void NewProp_bHasProjectile_SetBit(void* Obj);
-	static const UECodeGen_Private::FBoolPropertyParams NewProp_bHasProjectile;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentProjectileNum;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CurrentTransform;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -250,12 +294,8 @@ void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted_SetBit(void
 	((UStatusComponent*)Obj)->bExhausted = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted = { "bExhausted", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatusComponent), &Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bExhausted_MetaData), NewProp_bExhausted_MetaData) };
-void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile_SetBit(void* Obj)
-{
-	((UStatusComponent*)Obj)->bHasProjectile = 1;
-}
-const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile = { "bHasProjectile", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatusComponent), &Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bHasProjectile_MetaData), NewProp_bHasProjectile_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentTransform = { "CurrentTransform", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentTransform_MetaData), NewProp_CurrentTransform_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentProjectileNum = { "CurrentProjectileNum", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentProjectileNum), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentProjectileNum_MetaData), NewProp_CurrentProjectileNum_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentTransform = { "CurrentTransform", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentTransform_MetaData), NewProp_CurrentTransform_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatusComponent_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxHP,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentHP,
@@ -265,7 +305,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatusCo
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bCanMove,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bDie,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bHasProjectile,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentProjectileNum,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentTransform,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UStatusComponent_Statics::PropPointers) < 2048);
@@ -309,10 +349,10 @@ UStatusComponent::~UStatusComponent() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatusComponent, UStatusComponent::StaticClass, TEXT("UStatusComponent"), &Z_Registration_Info_UClass_UStatusComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusComponent), 3179196853U) },
+		{ Z_Construct_UClass_UStatusComponent, UStatusComponent::StaticClass, TEXT("UStatusComponent"), &Z_Registration_Info_UClass_UStatusComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusComponent), 730978769U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_2956882453(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_1216126802(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

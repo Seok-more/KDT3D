@@ -4,12 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "Actors/ActorProjectile.h"
 #include "GameInstanceBase.generated.h"
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTempSave);
-
-
 /**
  * 
  */
@@ -20,6 +19,7 @@ class IWBTRG_API UGameInstanceBase : public UGameInstance
 
 public:
 	virtual void Init() override;
+	virtual void Shutdown() override;
 
 	virtual void FinishDestroy() override;
 
@@ -34,12 +34,9 @@ public:
 	virtual void OnOpenLevelToLevel(UWorld* thisworld);
 
 
-public: // Not Using yet
+public: // Total Save
 	UPROPERTY()
-	FTransform PlayerTransformToSave;
-
-	UPROPERTY()
-	float TestToSave;
+	FString LevelName;
 
 	FOnTempSave OnTempSave;
 
@@ -53,6 +50,12 @@ public: // Level Change
 	UPROPERTY()
 	ULevel* FromLevel;
 
+	UPROPERTY()
+	FDataTableRowHandle PlayerProjectileDataToLevel;
+
+	UPROPERTY()
+	int32 PlayerProjectileNumToLevel;
+
 public: // TempSave
 	UPROPERTY()
 	FTransform PlayerTransformToTempSave = FTransform::Identity;
@@ -62,6 +65,12 @@ public: // TempSave
 
 	UPROPERTY()
 	FRotator ControllerRotatorToTempSave;
+
+	UPROPERTY()
+	FDataTableRowHandle PlayerProjectileDataToTempSave;
+
+	UPROPERTY()
+	int32 PlayerProjectileNumToTempSave;
 
 
 public:

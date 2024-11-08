@@ -27,7 +27,6 @@ void UStatusComponent::BeginPlay()
 	if(ControlledChara)
 	{
 		PlayerController = Cast<APlayerControllerBase>(ControlledChara->GetController());
-		float test = 1.f;
 	}
 	
 	
@@ -43,32 +42,36 @@ void UStatusComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 	if (ControlledChara)
 	{
-		if (bIsAimming && !bExhausted)
-		{
-			IsAimming();
-		}
-		
-		else if (bExhausted)
-		{
-			GotExhausted();
-		}
+		{	// Stamina
+			if (bIsAimming && !bExhausted)
+			{
+				IsAimming();
+			}
 
-		else
-		{
-			IsNormal();
-		}
+			else if (bExhausted)
+			{
+				GotExhausted();
+			}
 
-		CurrentStamina += 0.03f;
-		CurrentStamina = FMath::Clamp(CurrentStamina, 0.f, MaxStamina);
+			else
+			{
+				IsNormal();
+			}
+
+			CurrentStamina += 0.03f;
+			CurrentStamina = FMath::Clamp(CurrentStamina, 0.f, MaxStamina);
+
+		}
 	}
 }
 
 void UStatusComponent::IsNormal()
 {
-	GetWorld()->GetWorldSettings()->SetTimeDilation(1.0f);
+	GetWorld()->GetWorldSettings()->SetTimeDilation(1.1f);
 	PlayerController->GetSpringArm()->SetDesiredZoom(300.f);
 	ControlledChara->Movement->RotationRate.Yaw = ControlledChara->Data->RotationRate.Yaw;
 	ControlledChara->Movement->MaxWalkSpeed = ControlledChara->Data->MovementMaxSpeed;
+	ControlledChara->Movement->MaxWalkSpeedCrouched = 200.0f;
 	bIsAimming = false;
 	bExhausted = false;
 
@@ -126,6 +129,7 @@ void UStatusComponent::GotExhausted()
 
 		ControlledChara->Movement->RotationRate.Yaw = ControlledChara->Data->RotationRate.Yaw / 2.f;
 		ControlledChara->Movement->MaxWalkSpeed = ControlledChara->Data->MovementMaxSpeed / 5.f;
+		ControlledChara->Movement->MaxWalkSpeedCrouched = 40.0f;
 	}
 
 	if (CurrentStamina == MaxStamina)
@@ -133,4 +137,5 @@ void UStatusComponent::GotExhausted()
 		bExhausted = false;
 	}
 }
+
 

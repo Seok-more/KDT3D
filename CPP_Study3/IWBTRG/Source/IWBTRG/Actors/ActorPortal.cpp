@@ -16,9 +16,9 @@ void AActorPortal::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	Super::SetData(InDataTableRowHandle);
 
 	{
-		StaticMeshComponent->SetCollisionProfileName(TEXT("PawnTrigger"));
-		SkeletalMeshComponent->SetCollisionProfileName(TEXT("PawnTrigger"));
-		Collider->SetCollisionProfileName(TEXT("PawnTrigger"));
+		StaticMeshComponent->SetCollisionProfileName(TEXT("PlayerTrigger"));
+		SkeletalMeshComponent->SetCollisionProfileName(TEXT("PlayerTrigger"));
+		Collider->SetCollisionProfileName(TEXT("PlayerTrigger"));
 	}
 
 	{
@@ -43,6 +43,9 @@ void AActorPortal::OnMeshBeginOverlap(UPrimitiveComponent* OverlappedComp, AActo
 
 			GameInstanceBase->PlayerRotatorToLevel = ControlledChara->GetActorTransform().Rotator();
 			GameInstanceBase->ControllerRotatorToLevel = ControlledChara->GetControlRotation();
+			GameInstanceBase->PlayerProjectileDataToLevel = ControlledChara->Data->Projectile;
+			GameInstanceBase->PlayerProjectileNumToLevel = ControlledChara->StatusComponent->CurrentProjectileNum;
+
 
 			GameInstanceBase->FromLevel = GetWorld()->GetCurrentLevel();
 		}

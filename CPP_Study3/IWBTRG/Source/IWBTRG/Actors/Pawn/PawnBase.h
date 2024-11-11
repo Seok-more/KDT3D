@@ -152,7 +152,7 @@ protected:
 
 protected:
 	UFUNCTION()
-	void OnDie();
+	virtual void OnDie();
 
 public:
 	UPROPERTY(VisibleAnywhere)
@@ -182,12 +182,12 @@ protected:
 	bool bHasMID = false;
 	bool bIsFriendly = false;
 
-protected:
+public:
 	UPROPERTY(EditAnywhere, meta = (RowType = "/Script/IWBTRG.PawnBaseTableRow"))
 	FDataTableRowHandle DataTableRowHandle;
 
 	FPawnBaseTableRow* Data = nullptr;
-
+protected:
 	FDelegateHandle PawnBaseTableRowChangedHandle;
 
 	UAnimMontage* CurrentDieMontage;

@@ -205,6 +205,8 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 				SkeletalMeshComponent->SetRelativeLocation(Data->Location);
 			}
 		}
+
+
 	}
 
 	{	// Collider
@@ -246,8 +248,15 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 			Collider->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		}
 
-		
+	}
 
+	{	// No Collision(Master)
+		if (Data->bNoCollision)
+		{
+			StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			SkeletalMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			Collider->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		}
 	}
 
 

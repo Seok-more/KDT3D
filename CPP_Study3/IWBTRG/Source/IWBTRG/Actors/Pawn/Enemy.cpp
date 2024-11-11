@@ -26,10 +26,7 @@ void AEnemy::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	{
 		if (Data)
 		{
-			if (Data->PawnClass = AEnemy::StaticClass())
-			{
-				Data->bFriendly = false;
-			}
+			Data->bFriendly = false;
 		}
 	}
 

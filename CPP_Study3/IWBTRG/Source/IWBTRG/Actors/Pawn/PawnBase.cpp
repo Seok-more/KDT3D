@@ -209,7 +209,8 @@ void APawnBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		}
 	}
 
-	{	
+	{	// AI
+		AIControllerClass = Data->AIControllerClass;
 	}
 }
 

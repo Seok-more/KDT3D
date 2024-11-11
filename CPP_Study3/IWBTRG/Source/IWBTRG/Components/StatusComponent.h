@@ -24,9 +24,12 @@ public:
 	bool CanMove() const { return bCanMove; }
 	bool IsAimming() const { return bIsAimming; }
 	bool IsDie() const { return bDie; }
+	bool bIsPoisoned() const { return bPoisoned; }
 
 public:
 	bool SetIsAimming(bool Is) { return bIsAimming = Is; }
+	float SetMaxHP(float Max) { return MaxHP = Max; }
+	float SetCurrentHP() { return CurrentHP = MaxHP; }
 
 public:
 	float GetHP() const { return CurrentHP; }
@@ -54,8 +57,10 @@ public:
 
 	virtual void GotExhausted();
 
+	virtual void GotPoisoned();
+
 protected:
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere ,BlueprintReadWrite)
 	float MaxHP = 4.f;
 
 	UPROPERTY(BlueprintReadWrite)
@@ -79,6 +84,9 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	bool bExhausted = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bPoisoned = false;
 
 public:
 	UPROPERTY(BlueprintReadWrite)

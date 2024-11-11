@@ -298,7 +298,7 @@ struct Z_Construct_UFunction_APawnBase_OnDie_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_APawnBase_OnDie_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APawnBase, nullptr, "OnDie", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_APawnBase_OnDie_Statics::Function_MetaDataParams), Z_Construct_UFunction_APawnBase_OnDie_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_APawnBase_OnDie_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APawnBase, nullptr, "OnDie", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_APawnBase_OnDie_Statics::Function_MetaDataParams), Z_Construct_UFunction_APawnBase_OnDie_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_APawnBase_OnDie()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -394,7 +394,7 @@ struct Z_Construct_UClass_APawnBase_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_APawnBase_OnDie, "OnDie" }, // 1268577970
+		{ &Z_Construct_UFunction_APawnBase_OnDie, "OnDie" }, // 2481055658
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -409,7 +409,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APawnBase_Stat
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APawnBase_Statics::NewProp_StatusComponent = { "StatusComponent", nullptr, (EPropertyFlags)0x01140000000a0009, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APawnBase, StatusComponent), Z_Construct_UClass_UStatusComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusComponent_MetaData), NewProp_StatusComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APawnBase_Statics::NewProp_HPWidgetComponent = { "HPWidgetComponent", nullptr, (EPropertyFlags)0x01140000000a0009, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APawnBase, HPWidgetComponent), Z_Construct_UClass_UWidgetComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HPWidgetComponent_MetaData), NewProp_HPWidgetComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APawnBase_Statics::NewProp_PatrolPathRef = { "PatrolPathRef", nullptr, (EPropertyFlags)0x0114000000000001, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APawnBase, PatrolPathRef), Z_Construct_UClass_APatrolPath_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PatrolPathRef_MetaData), NewProp_PatrolPathRef_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_APawnBase_Statics::NewProp_DataTableRowHandle = { "DataTableRowHandle", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APawnBase, DataTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DataTableRowHandle_MetaData), NewProp_DataTableRowHandle_MetaData) }; // 1360917958
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_APawnBase_Statics::NewProp_DataTableRowHandle = { "DataTableRowHandle", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APawnBase, DataTableRowHandle), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DataTableRowHandle_MetaData), NewProp_DataTableRowHandle_MetaData) }; // 1360917958
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APawnBase_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APawnBase_Statics::NewProp_DefaultSceneRoot,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APawnBase_Statics::NewProp_SkeletalMeshComponent,
@@ -464,10 +464,10 @@ struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IW
 		{ FPawnBaseTableRow::StaticStruct, Z_Construct_UScriptStruct_FPawnBaseTableRow_Statics::NewStructOps, TEXT("PawnBaseTableRow"), &Z_Registration_Info_UScriptStruct_PawnBaseTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPawnBaseTableRow), 3027991392U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_APawnBase, APawnBase::StaticClass, TEXT("APawnBase"), &Z_Registration_Info_UClass_APawnBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APawnBase), 4152778179U) },
+		{ Z_Construct_UClass_APawnBase, APawnBase::StaticClass, TEXT("APawnBase"), &Z_Registration_Info_UClass_APawnBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APawnBase), 351748973U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBase_h_3577947942(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBase_h_3958552264(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBase_h_Statics::ScriptStructInfo),
 	nullptr, 0);

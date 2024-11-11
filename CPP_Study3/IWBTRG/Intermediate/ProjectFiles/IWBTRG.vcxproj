@@ -347,6 +347,10 @@
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultGame.ini"/>
     <None Include="..\..\Config\DefaultInput.ini"/>
+    <ClCompile Include="..\..\Source\IWBTRG\BTComposite_Random.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\BTComposite_Random.h"/>
     <None Include="..\..\Source\IWBTRG\IWBTRG.Build.cs"/>
     <ClCompile Include="..\..\Source\IWBTRG\IWBTRG.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -396,6 +400,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Actors\AI\AIControllerPathTracing.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\AI\AIControllerSans.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\AI\AIControllerSans.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Actors\AI\PatrolPath.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -420,6 +428,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Actors\Pawn\PawnBase.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Actors\Pawn\PawnBossSans.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Actors\Pawn\PawnBossSans.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Actors\Pawn\Character\CharacterBase.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -473,6 +485,10 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_PathTrace.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone1.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone1.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Subsystem\ActorPoolSubsystem.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

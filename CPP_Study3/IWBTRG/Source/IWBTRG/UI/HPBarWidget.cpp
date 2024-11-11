@@ -21,7 +21,10 @@ void UHPBarWidget::NativeConstruct()
 	Super::NativeConstruct();
 
 	APawn* Pawn = GetOwningPawn();
-	UStatusComponent* StatusComponent = Pawn->GetComponentByClass<UStatusComponent>();
+	AActor* OwningActor = Cast<AActor>(Pawn);
+	UStatusComponent* StatusComponent = OwningActor->GetComponentByClass<UStatusComponent>();
+
+	//UStatusComponent* StatusComponent = Pawn->GetComponentByClass<UStatusComponent>();
 	check(StatusComponent);
 
 	StatusComponent->OnHPChanged.AddDynamic(this, &ThisClass::OnHPChanged);

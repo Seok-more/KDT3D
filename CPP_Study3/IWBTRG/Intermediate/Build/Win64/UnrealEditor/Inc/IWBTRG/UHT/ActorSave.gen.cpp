@@ -94,10 +94,10 @@ AActorSave::~AActorSave() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorSave_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AActorSave, AActorSave::StaticClass, TEXT("AActorSave"), &Z_Registration_Info_UClass_AActorSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorSave), 2841601840U) },
+		{ Z_Construct_UClass_AActorSave, AActorSave::StaticClass, TEXT("AActorSave"), &Z_Registration_Info_UClass_AActorSave, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorSave), 64028535U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorSave_h_3993549013(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorSave_h_2093034666(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorSave_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorSave_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

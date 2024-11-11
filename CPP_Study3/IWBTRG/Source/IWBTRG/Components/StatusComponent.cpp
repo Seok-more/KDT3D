@@ -138,4 +138,9 @@ void UStatusComponent::GotExhausted()
 	}
 }
 
+void UStatusComponent::GotPoisoned()
+{
+
+}
+
 

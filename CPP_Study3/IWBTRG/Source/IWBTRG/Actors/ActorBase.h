@@ -45,6 +45,9 @@ public: // Mesh
 	UPROPERTY(EditAnywhere, Category = "Mesh")
 	bool bMeshCollision = false;
 
+	UPROPERTY(EditAnywhere, Category = "Mesh")
+	bool bNoCollision = false;
+
 public: // Transform
 	UPROPERTY(EditAnywhere, Category = "Transform")
 	FVector Scale = FVector::OneVector;
@@ -156,7 +159,7 @@ protected:
 	ATriggerBoxBase* AddTriggerBox(ATriggerBoxBase* InTemplate = nullptr);
 
 	
-protected:	
+public:	
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* DefaultSceneRoot;
 

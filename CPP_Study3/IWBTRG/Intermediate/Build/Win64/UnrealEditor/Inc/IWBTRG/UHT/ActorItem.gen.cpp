@@ -223,10 +223,10 @@ struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IW
 		{ FActorItemTableRow::StaticStruct, Z_Construct_UScriptStruct_FActorItemTableRow_Statics::NewStructOps, TEXT("ActorItemTableRow"), &Z_Registration_Info_UScriptStruct_ActorItemTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FActorItemTableRow), 3040675897U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AActorItem, AActorItem::StaticClass, TEXT("AActorItem"), &Z_Registration_Info_UClass_AActorItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorItem), 1563451460U) },
+		{ Z_Construct_UClass_AActorItem, AActorItem::StaticClass, TEXT("AActorItem"), &Z_Registration_Info_UClass_AActorItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorItem), 2864500847U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_h_2248040238(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_h_3377181245(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_h_Statics::ScriptStructInfo),
 	nullptr, 0);

@@ -241,6 +241,10 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 		{ "Category", "StatusComponent" },
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bPoisoned_MetaData[] = {
+		{ "Category", "StatusComponent" },
+		{ "ModuleRelativePath", "Components/StatusComponent.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentProjectileNum_MetaData[] = {
 		{ "Category", "StatusComponent" },
 		{ "ModuleRelativePath", "Components/StatusComponent.h" },
@@ -261,6 +265,8 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDie;
 	static void NewProp_bExhausted_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bExhausted;
+	static void NewProp_bPoisoned_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bPoisoned;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentProjectileNum;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CurrentTransform;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -270,7 +276,7 @@ struct Z_Construct_UClass_UStatusComponent_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxHP = { "MaxHP", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, MaxHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHP_MetaData), NewProp_MaxHP_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxHP = { "MaxHP", nullptr, (EPropertyFlags)0x0020080000020005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, MaxHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHP_MetaData), NewProp_MaxHP_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentHP = { "CurrentHP", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentHP_MetaData), NewProp_CurrentHP_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_MaxStamina = { "MaxStamina", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, MaxStamina), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxStamina_MetaData), NewProp_MaxStamina_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentStamina = { "CurrentStamina", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentStamina), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentStamina_MetaData), NewProp_CurrentStamina_MetaData) };
@@ -294,6 +300,11 @@ void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted_SetBit(void
 	((UStatusComponent*)Obj)->bExhausted = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted = { "bExhausted", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatusComponent), &Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bExhausted_MetaData), NewProp_bExhausted_MetaData) };
+void Z_Construct_UClass_UStatusComponent_Statics::NewProp_bPoisoned_SetBit(void* Obj)
+{
+	((UStatusComponent*)Obj)->bPoisoned = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_bPoisoned = { "bPoisoned", nullptr, (EPropertyFlags)0x0020080000000004, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatusComponent), &Z_Construct_UClass_UStatusComponent_Statics::NewProp_bPoisoned_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bPoisoned_MetaData), NewProp_bPoisoned_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentProjectileNum = { "CurrentProjectileNum", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentProjectileNum), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentProjectileNum_MetaData), NewProp_CurrentProjectileNum_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentTransform = { "CurrentTransform", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusComponent, CurrentTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentTransform_MetaData), NewProp_CurrentTransform_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatusComponent_Statics::PropPointers[] = {
@@ -305,6 +316,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatusCo
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bCanMove,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bDie,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bExhausted,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_bPoisoned,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentProjectileNum,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusComponent_Statics::NewProp_CurrentTransform,
 };
@@ -349,10 +361,10 @@ UStatusComponent::~UStatusComponent() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatusComponent, UStatusComponent::StaticClass, TEXT("UStatusComponent"), &Z_Registration_Info_UClass_UStatusComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusComponent), 730978769U) },
+		{ Z_Construct_UClass_UStatusComponent, UStatusComponent::StaticClass, TEXT("UStatusComponent"), &Z_Registration_Info_UClass_UStatusComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusComponent), 3333396494U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_1216126802(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_2221923350(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Components_StatusComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

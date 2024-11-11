@@ -110,7 +110,11 @@ void ACharacterBase::BeginPlay()
 	}
 
 	{	// Projectle Data 저장
-		InitialProjectileData = Data->Projectile;
+		if (Data && !Data->Projectile.IsNull())
+		{
+			InitialProjectileData = Data->Projectile;
+		}
+		
 	}
 	
 }
@@ -201,7 +205,11 @@ void ACharacterBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 void ACharacterBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
-	Data->Projectile = InitialProjectileData;
+
+	if (Data && !Data->Projectile.IsNull())
+	{
+		Data->Projectile = InitialProjectileData;
+	}
 }
 
 // Called every frame
@@ -218,6 +226,8 @@ void ACharacterBase::Tick(float DeltaTime)
 		FHitResult OutHit;
 		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, 0.01f), GetActorRotation(), true, OutHit);
 		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, -0.01f), GetActorRotation(), true, OutHit);
+		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.1f, 0.f, 0.f), GetActorRotation(), true, OutHit);
+		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(-0.1f, 0.f, 0.f), GetActorRotation(), true, OutHit);
 	}
 
 	{	// 위아래 압사
@@ -366,6 +376,7 @@ void ACharacterBase::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPr
 	{
 		StatusComponent->OnDie.Broadcast();
 	}
+
 
 }
 

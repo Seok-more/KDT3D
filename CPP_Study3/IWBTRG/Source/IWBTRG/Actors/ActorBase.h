@@ -36,12 +36,6 @@ public: // Mesh
 	UPROPERTY(EditAnywhere, Category = "Mesh", meta = (EditCondition = "bStaticMesh"))
 	UStaticMesh* StaticMesh = nullptr;
 
-	UPROPERTY()
-	bool bSkeletalMesh = false;
-
-	UPROPERTY(EditAnywhere, Category = "Mesh", meta = (EditCondition = "bSkeletalMesh"))
-	USkeletalMesh* SkeletalMesh = nullptr;
-
 	UPROPERTY(EditAnywhere, Category = "Mesh")
 	bool bMeshCollision = false;
 
@@ -117,6 +111,8 @@ public:
 	virtual void Destroy();
 
 	virtual bool IsFriendly() { return bIsFriendly; }
+	virtual bool HasMID() { return bHasMID; }
+	virtual UMaterialInstanceDynamic* GetMID() { return MID; }
 
 protected:
 	UFUNCTION()
@@ -167,9 +163,6 @@ public:
 	UShapeComponent* Collider;
 
 	UPROPERTY(VisibleAnywhere)
-	USkeletalMeshComponent* SkeletalMeshComponent;
-
-	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* StaticMeshComponent;
 
 	UPROPERTY(VisibleAnywhere)
@@ -185,6 +178,8 @@ protected:
 	bool bIsProjectile = false;
 
 	bool bIsFriendly = false;
+
+	UMaterialInstanceDynamic* MID;
 
 protected:
 	UPROPERTY(EditAnywhere)

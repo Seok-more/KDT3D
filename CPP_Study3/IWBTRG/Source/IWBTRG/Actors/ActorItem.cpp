@@ -59,7 +59,6 @@ void AActorItem::UpdateData()
 
 	{
 		StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		SkeletalMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		Collider->SetCollisionProfileName(CollisionProfileName::PlayerTrigger);
 	}
 	

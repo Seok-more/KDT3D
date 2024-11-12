@@ -43,16 +43,22 @@ struct Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Actors/Pawn/PawnBossSans.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MainSprite_MetaData[] = {
-		{ "Category", "Sprite" },
-		{ "ModuleRelativePath", "Actors/Pawn/PawnBossSans.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BlastSprite_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Sprites_MetaData[] = {
 		{ "Category", "Sprite" },
 		{ "ModuleRelativePath", "Actors/Pawn/PawnBossSans.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Bone_MetaData[] = {
-		{ "Category", "Bone" },
+		{ "Category", "Pattern" },
+		{ "ModuleRelativePath", "Actors/Pawn/PawnBossSans.h" },
+		{ "RowType", "/Script/IWBTRG.ActorBaseTableRow" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Warning_MetaData[] = {
+		{ "Category", "Pattern" },
+		{ "ModuleRelativePath", "Actors/Pawn/PawnBossSans.h" },
+		{ "RowType", "/Script/IWBTRG.ActorBaseTableRow" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Floor_MetaData[] = {
+		{ "Category", "Pattern" },
 		{ "ModuleRelativePath", "Actors/Pawn/PawnBossSans.h" },
 		{ "RowType", "/Script/IWBTRG.ActorBaseTableRow" },
 	};
@@ -71,9 +77,11 @@ struct Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics
 		{ "ModuleRelativePath", "Actors/Pawn/PawnBossSans.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_MainSprite;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_BlastSprite;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Sprites_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_Sprites;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_Bone;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Warning;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Floor;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_BlastEffect;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_BoomEffect;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHP;
@@ -84,16 +92,20 @@ struct Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics
 	}
 	static const UECodeGen_Private::FStructParams StructParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_MainSprite = { "MainSprite", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, MainSprite), Z_Construct_UClass_UPaperSprite_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MainSprite_MetaData), NewProp_MainSprite_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_BlastSprite = { "BlastSprite", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, BlastSprite), Z_Construct_UClass_UPaperSprite_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BlastSprite_MetaData), NewProp_BlastSprite_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Sprites_Inner = { "Sprites", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UPaperSprite_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Sprites = { "Sprites", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, Sprites), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Sprites_MetaData), NewProp_Sprites_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Bone = { "Bone", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, Bone), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Bone_MetaData), NewProp_Bone_MetaData) }; // 1360917958
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Warning = { "Warning", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, Warning), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Warning_MetaData), NewProp_Warning_MetaData) }; // 1360917958
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Floor = { "Floor", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, Floor), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Floor_MetaData), NewProp_Floor_MetaData) }; // 1360917958
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_BlastEffect = { "BlastEffect", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, BlastEffect), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BlastEffect_MetaData), NewProp_BlastEffect_MetaData) }; // 1360917958
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_BoomEffect = { "BoomEffect", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, BoomEffect), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BoomEffect_MetaData), NewProp_BoomEffect_MetaData) }; // 1360917958
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_MaxHP = { "MaxHP", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FPawnBoss_SansTableRow, MaxHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHP_MetaData), NewProp_MaxHP_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_MainSprite,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_BlastSprite,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Sprites_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Sprites,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Bone,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Warning,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_Floor,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_BlastEffect,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_BoomEffect,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewProp_MaxHP,
@@ -199,13 +211,13 @@ APawnBossSans::~APawnBossSans() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBossSans_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FPawnBoss_SansTableRow::StaticStruct, Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewStructOps, TEXT("PawnBoss_SansTableRow"), &Z_Registration_Info_UScriptStruct_PawnBoss_SansTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPawnBoss_SansTableRow), 3330118326U) },
+		{ FPawnBoss_SansTableRow::StaticStruct, Z_Construct_UScriptStruct_FPawnBoss_SansTableRow_Statics::NewStructOps, TEXT("PawnBoss_SansTableRow"), &Z_Registration_Info_UScriptStruct_PawnBoss_SansTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPawnBoss_SansTableRow), 1100914308U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_APawnBossSans, APawnBossSans::StaticClass, TEXT("APawnBossSans"), &Z_Registration_Info_UClass_APawnBossSans, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APawnBossSans), 1861930018U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBossSans_h_334506390(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBossSans_h_2127859529(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBossSans_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBossSans_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBossSans_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Pawn_PawnBossSans_h_Statics::ScriptStructInfo),
 	nullptr, 0);

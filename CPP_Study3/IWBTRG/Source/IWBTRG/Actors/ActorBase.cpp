@@ -44,20 +44,13 @@ AActorBase::AActorBase(const FObjectInitializer& ObjectInitializer)
 	{	
 		StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 		StaticMeshComponent->SetupAttachment(RootComponent);
-	
-		SkeletalMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
-		SkeletalMeshComponent->SetupAttachment(RootComponent);
 	}
 
 	{
 		StaticMeshComponent->OnComponentHit.AddDynamic(this, &ThisClass::OnMeshHit);
-		SkeletalMeshComponent->OnComponentHit.AddDynamic(this, &ThisClass::OnMeshHit);
-
 		StaticMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnMeshBeginOverlap);
-		SkeletalMeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnMeshBeginOverlap);
-
 		StaticMeshComponent->OnComponentEndOverlap.AddDynamic(this, &ThisClass::OnMeshEndOverlap);
-		SkeletalMeshComponent->OnComponentEndOverlap.AddDynamic(this, &ThisClass::OnMeshEndOverlap);
+
 	}
 
 	{
@@ -97,7 +90,6 @@ void AActorBase::BeginPlay()
 void AActorBase::OnConstruction(const FTransform& Transform)
 {
 	Super::OnConstruction(Transform);
-
 	UpdateData();
 
 	// Data->OnActorBaseTableRowChanged.Remove(ActorBaseTableRowChangedHandle);
@@ -108,7 +100,7 @@ void AActorBase::OnConstruction(const FTransform& Transform)
 		// Does it need release function?
 		ActorBaseTableRowChangedHandle = Data->OnActorBaseTableRowChanged.AddUObject(this, &ThisClass::UpdateData);
 #endif
-		UpdateData();
+		//UpdateData();
 	}
 
 
@@ -152,57 +144,36 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		if (Data->bStaticMesh)
 		{
 			StaticMeshComponent->SetStaticMesh(Data->StaticMesh);
-			SkeletalMeshComponent->SetSkeletalMesh(nullptr);
 		}
 		else
 		{
 			StaticMeshComponent->SetStaticMesh(nullptr);
 		}
-
-
-		if (Data->bSkeletalMesh)
-		{
-			SkeletalMeshComponent->SetSkeletalMesh(Data->SkeletalMesh);
-			StaticMeshComponent->SetStaticMesh(nullptr);
-		}
-		else
-		{
-			SkeletalMeshComponent->SetSkeletalMesh(nullptr);
-		}
-
+	
 		{
 			StaticMeshComponent->SetRelativeScale3D(Data->Scale);
 			StaticMeshComponent->SetRelativeRotation(Data->Rotation);
 			
-
-			SkeletalMeshComponent->SetRelativeScale3D(Data->Scale);
-			SkeletalMeshComponent->SetRelativeRotation(Data->Rotation);
 			
 			// Collision
 			if (Data->bMeshCollision)
 			{
 				//StaticMeshComponent->SetCollisionProfileName(CollisionProfileName::PawnBlock);
-				//SkeletalMeshComponent->SetCollisionProfileName(CollisionProfileName::PawnBlock);
-
 				StaticMeshComponent->SetCollisionProfileName(TEXT("BlockAll"));
-				SkeletalMeshComponent->SetCollisionProfileName(TEXT("BlockAll"));
 			}
 			else
 			{
 				StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-				SkeletalMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			}
 
 			// WorldLocation
 			if (Data->bWorldLocation)
 			{
 				StaticMeshComponent->SetWorldLocation(Data->Location);
-				SkeletalMeshComponent->SetWorldLocation(Data->Location);
 			}
 			else
 			{
 				StaticMeshComponent->SetRelativeLocation(Data->Location);
-				SkeletalMeshComponent->SetRelativeLocation(Data->Location);
 			}
 		}
 
@@ -227,17 +198,6 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 				Collider->SetRelativeLocation(NewLocation);
 			}
 
-			else if (Data->bSkeletalMesh)
-			{
-				FBoxSphereBounds BoxSphereBounds = Data->SkeletalMesh->GetBounds();
-				const FVector Scale3D = SkeletalMeshComponent->GetRelativeScale3D();
-				const FVector NewBoxExtent = BoxSphereBounds.BoxExtent * Scale3D;
-				BoxComponent->InitBoxExtent(NewBoxExtent);
-
-				const FVector NewLocation = BoxSphereBounds.Origin;
-				Collider->SetRelativeLocation(NewLocation);
-			}
-
 			//BoxComponent->SetCollisionProfileName(CollisionProfileName::PawnTrigger);
 			BoxComponent->SetCollisionProfileName(TEXT("BlockAll"));
 		}
@@ -254,7 +214,6 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		if (Data->bNoCollision)
 		{
 			StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-			SkeletalMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			Collider->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		}
 	}
@@ -264,7 +223,7 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 	{	// MID
 		if (Data && Data->bMID)
 		{
-			if (!Data->bSkeletalMesh && !Data->bStaticMesh)
+			if (!Data->bStaticMesh)
 			{
 				Data->bMID = false;
 			}
@@ -273,20 +232,8 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 			{
 				for (int32 i = 0; i < StaticMeshComponent->GetNumMaterials(); ++i)
 				{
-					UMaterialInstanceDynamic* MID = StaticMeshComponent->CreateDynamicMaterialInstance(i);
+					MID = StaticMeshComponent->CreateDynamicMaterialInstance(i);
 					StaticMeshComponent->SetMaterial(i, MID);
-					bHasMID = true;
-
-					MID->SetVectorParameterValue(TEXT("BaseColor"), Data->MIDColor_temp); // temp
-				}
-			}
-			
-			else if (Data->bSkeletalMesh)
-			{
-				for (int32 i = 0; i < SkeletalMeshComponent->GetNumMaterials(); ++i)
-				{
-					UMaterialInstanceDynamic* MID = SkeletalMeshComponent->CreateDynamicMaterialInstance(i);
-					SkeletalMeshComponent->SetMaterial(i, MID);
 					bHasMID = true;
 
 					MID->SetVectorParameterValue(TEXT("BaseColor"), Data->MIDColor_temp); // temp
@@ -301,20 +248,6 @@ void AActorBase::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 				{				
 					StaticMeshComponent->SetMaterial(i, Data->StaticMesh->GetMaterial(i));
 					bHasMID = false;
-				}
-			}
-
-			else if (Data->bSkeletalMesh && Data->SkeletalMesh)
-			{
-				
-				TArray<FSkeletalMaterial> Materials = Data->SkeletalMesh->GetMaterials();
-
-				for (int32 i = 0; i < Materials.Num(); ++i)
-				{
-					UMaterialInterface* Material = Materials[i].MaterialInterface;
-					SkeletalMeshComponent->SetMaterial(i, Material);
-					bHasMID = false;
-
 				}
 			}
 		}
@@ -527,7 +460,6 @@ AEffectBase_UnPooled* AActorBase::AddEffect(AEffectBase_UnPooled* InTemplate)
 
 	if (!InTemplate)
 	{
-		//EffectBase->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 		EffectBase->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform);
 	}
 
@@ -550,7 +482,6 @@ ATriggerBoxBase* AActorBase::AddTriggerBox(ATriggerBoxBase* InTemplate)
 
 	if (!InTemplate)
 	{
-		//TriggerBoxBase->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 		TriggerBoxBase->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform);
 	}
 

@@ -21,8 +21,6 @@ ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UShapeComponent_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_USkeletalMesh_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMesh_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FDataTableRowHandle();
@@ -81,14 +79,6 @@ struct Z_Construct_UScriptStruct_FActorBaseTableRow_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StaticMesh_MetaData[] = {
 		{ "Category", "Mesh" },
 		{ "EditCondition", "bStaticMesh" },
-		{ "ModuleRelativePath", "Actors/ActorBase.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bSkeletalMesh_MetaData[] = {
-		{ "ModuleRelativePath", "Actors/ActorBase.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SkeletalMesh_MetaData[] = {
-		{ "Category", "Mesh" },
-		{ "EditCondition", "bSkeletalMesh" },
 		{ "ModuleRelativePath", "Actors/ActorBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bMeshCollision_MetaData[] = {
@@ -161,9 +151,6 @@ struct Z_Construct_UScriptStruct_FActorBaseTableRow_Statics
 	static void NewProp_bStaticMesh_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bStaticMesh;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StaticMesh;
-	static void NewProp_bSkeletalMesh_SetBit(void* Obj);
-	static const UECodeGen_Private::FBoolPropertyParams NewProp_bSkeletalMesh;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_SkeletalMesh;
 	static void NewProp_bMeshCollision_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bMeshCollision;
 	static void NewProp_bNoCollision_SetBit(void* Obj);
@@ -193,12 +180,6 @@ void Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bStaticMesh_S
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bStaticMesh = { "bStaticMesh", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FActorBaseTableRow), &Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bStaticMesh_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bStaticMesh_MetaData), NewProp_bStaticMesh_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_StaticMesh = { "StaticMesh", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FActorBaseTableRow, StaticMesh), Z_Construct_UClass_UStaticMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaticMesh_MetaData), NewProp_StaticMesh_MetaData) };
-void Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bSkeletalMesh_SetBit(void* Obj)
-{
-	((FActorBaseTableRow*)Obj)->bSkeletalMesh = 1;
-}
-const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bSkeletalMesh = { "bSkeletalMesh", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FActorBaseTableRow), &Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bSkeletalMesh_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bSkeletalMesh_MetaData), NewProp_bSkeletalMesh_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_SkeletalMesh = { "SkeletalMesh", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FActorBaseTableRow, SkeletalMesh), Z_Construct_UClass_USkeletalMesh_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SkeletalMesh_MetaData), NewProp_SkeletalMesh_MetaData) };
 void Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bMeshCollision_SetBit(void* Obj)
 {
 	((FActorBaseTableRow*)Obj)->bMeshCollision = 1;
@@ -233,8 +214,6 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FA
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_ActorClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bStaticMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_StaticMesh,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bSkeletalMesh,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_SkeletalMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bMeshCollision,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_bNoCollision,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewProp_Scale,
@@ -737,11 +716,6 @@ struct Z_Construct_UClass_AActorBase_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Actors/ActorBase.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SkeletalMeshComponent_MetaData[] = {
-		{ "Category", "ActorBase" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Actors/ActorBase.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StaticMeshComponent_MetaData[] = {
 		{ "Category", "ActorBase" },
 		{ "EditInline", "true" },
@@ -768,7 +742,6 @@ struct Z_Construct_UClass_AActorBase_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultSceneRoot;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Collider;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_SkeletalMeshComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StaticMeshComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StatusComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Effects_Inner;
@@ -795,7 +768,6 @@ struct Z_Construct_UClass_AActorBase_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorBase_Statics::NewProp_DefaultSceneRoot = { "DefaultSceneRoot", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorBase, DefaultSceneRoot), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DefaultSceneRoot_MetaData), NewProp_DefaultSceneRoot_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorBase_Statics::NewProp_Collider = { "Collider", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorBase, Collider), Z_Construct_UClass_UShapeComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Collider_MetaData), NewProp_Collider_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorBase_Statics::NewProp_SkeletalMeshComponent = { "SkeletalMeshComponent", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorBase, SkeletalMeshComponent), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SkeletalMeshComponent_MetaData), NewProp_SkeletalMeshComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorBase_Statics::NewProp_StaticMeshComponent = { "StaticMeshComponent", nullptr, (EPropertyFlags)0x00100000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorBase, StaticMeshComponent), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaticMeshComponent_MetaData), NewProp_StaticMeshComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorBase_Statics::NewProp_StatusComponent = { "StatusComponent", nullptr, (EPropertyFlags)0x01140000000a0009, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AActorBase, StatusComponent), Z_Construct_UClass_UStatusComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusComponent_MetaData), NewProp_StatusComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AActorBase_Statics::NewProp_Effects_Inner = { "Effects", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_AEffectBase_UnPooled_NoRegister, METADATA_PARAMS(0, nullptr) };
@@ -806,7 +778,6 @@ const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AActorBase_Sta
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AActorBase_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorBase_Statics::NewProp_DefaultSceneRoot,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorBase_Statics::NewProp_Collider,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorBase_Statics::NewProp_SkeletalMeshComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorBase_Statics::NewProp_StaticMeshComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorBase_Statics::NewProp_StatusComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AActorBase_Statics::NewProp_Effects_Inner,
@@ -858,13 +829,13 @@ DEFINE_VTABLE_PTR_HELPER_CTOR(AActorBase);
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FActorBaseTableRow::StaticStruct, Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewStructOps, TEXT("ActorBaseTableRow"), &Z_Registration_Info_UScriptStruct_ActorBaseTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FActorBaseTableRow), 3375601794U) },
+		{ FActorBaseTableRow::StaticStruct, Z_Construct_UScriptStruct_FActorBaseTableRow_Statics::NewStructOps, TEXT("ActorBaseTableRow"), &Z_Registration_Info_UScriptStruct_ActorBaseTableRow, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FActorBaseTableRow), 1032059799U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AActorBase, AActorBase::StaticClass, TEXT("AActorBase"), &Z_Registration_Info_UClass_AActorBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorBase), 4210872669U) },
+		{ Z_Construct_UClass_AActorBase, AActorBase::StaticClass, TEXT("AActorBase"), &Z_Registration_Info_UClass_AActorBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorBase), 3174788409U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_3198011329(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_2317770846(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_Statics::ScriptStructInfo),
 	nullptr, 0);

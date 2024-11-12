@@ -83,10 +83,10 @@ AActorItem_Projectile::~AActorItem_Projectile() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_Projectile_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AActorItem_Projectile, AActorItem_Projectile::StaticClass, TEXT("AActorItem_Projectile"), &Z_Registration_Info_UClass_AActorItem_Projectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorItem_Projectile), 2279457449U) },
+		{ Z_Construct_UClass_AActorItem_Projectile, AActorItem_Projectile::StaticClass, TEXT("AActorItem_Projectile"), &Z_Registration_Info_UClass_AActorItem_Projectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AActorItem_Projectile), 3460549050U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_Projectile_h_3864082019(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_Projectile_h_1359970227(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_Projectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorItem_Projectile_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

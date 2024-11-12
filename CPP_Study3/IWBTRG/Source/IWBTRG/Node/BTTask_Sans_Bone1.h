@@ -23,6 +23,9 @@ public:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 	
+protected:
+
+
 public:
 	UFUNCTION()
 	void OnResult(EPathFollowingResult::Type MovementResult);
@@ -34,10 +37,13 @@ protected:
 	void BoneMove();
 
 protected:
-	float MoveSpeed = 10.f;
+	float MoveSpeed = 0.8f;
+
+	FVector OriginLocation;
 
 public:
 	TArray<AActorEnemy*> BoneArray;
+	TArray<AActorBase*> WarningArray;
 
 protected:
 	FTimerHandle MoveTimerHandle;

@@ -224,10 +224,8 @@ void ACharacterBase::Tick(float DeltaTime)
 	{	// Collision doesn't work when character stops bug -> fix_temp
 		// 언리얼 캡슐 콜리젼은 가만히 있을때는 바운더리가 아닌, 중심에서만 콜리젼 체크를 한다는데 뭔
 		FHitResult OutHit;
-		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, 0.01f), GetActorRotation(), true, OutHit);
-		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, -0.01f), GetActorRotation(), true, OutHit);
-		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.1f, 0.f, 0.f), GetActorRotation(), true, OutHit);
-		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(-0.1f, 0.f, 0.f), GetActorRotation(), true, OutHit);
+		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(5.f, -5.f, 5.f), GetActorRotation(), true, OutHit);
+		GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(-5.f, 5.f, -5.f), GetActorRotation(), true, OutHit);
 	}
 
 	{	// 위아래 압사
@@ -384,10 +382,14 @@ void ACharacterBase::OnDie()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Die"));
 
-	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
-	SkeletalMeshComponent->SetVisibility(false);
+	//Destroy();
 
-	Destroy();
+	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	SkeletalMeshComponent->SetVisibility(false);
+	SpringArm->Deactivate();
+
+	
 }
 
 

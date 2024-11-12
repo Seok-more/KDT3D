@@ -347,10 +347,6 @@
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultGame.ini"/>
     <None Include="..\..\Config\DefaultInput.ini"/>
-    <ClCompile Include="..\..\Source\IWBTRG\BTComposite_Random.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\IWBTRG\BTComposite_Random.h"/>
     <None Include="..\..\Source\IWBTRG\IWBTRG.Build.cs"/>
     <ClCompile Include="..\..\Source\IWBTRG\IWBTRG.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -477,6 +473,10 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Misc\ActorPool.h"/>
     <ClInclude Include="..\..\Source\IWBTRG\Misc\Utils.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTComposite_Random.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTComposite_Random.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Base.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -489,6 +489,30 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone1.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone2.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone2.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone3.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone3.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity1.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity1.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity2.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity2.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity3.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity3.h"/>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Moving1.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Moving1.h"/>
     <ClCompile Include="..\..\Source\IWBTRG\Subsystem\ActorPoolSubsystem.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

@@ -17,14 +17,17 @@ struct IWBTRG_API FPawnBoss_SansTableRow : public FPawnBaseTableRow
 
 public:
 	UPROPERTY(EditAnywhere, Category = "Sprite")
-	UPaperSprite* MainSprite;
-
-	UPROPERTY(EditAnywhere, Category = "Sprite")
-	UPaperSprite* BlastSprite;
+	TArray<UPaperSprite*> Sprites;
 
 public:
-	UPROPERTY(EditAnywhere, Category = "Bone", meta = (RowType = "/Script/IWBTRG.ActorBaseTableRow"))
+	UPROPERTY(EditAnywhere, Category = "Pattern", meta = (RowType = "/Script/IWBTRG.ActorBaseTableRow"))
 	FDataTableRowHandle Bone;
+
+	UPROPERTY(EditAnywhere, Category = "Pattern", meta = (RowType = "/Script/IWBTRG.ActorBaseTableRow"))
+	FDataTableRowHandle Warning;
+
+	UPROPERTY(EditAnywhere, Category = "Pattern", meta = (RowType = "/Script/IWBTRG.ActorBaseTableRow"))
+	FDataTableRowHandle Floor;
 
 public:
 
@@ -54,6 +57,9 @@ public:
 	virtual void BeginPlay() override;
 	virtual void SetData(const FDataTableRowHandle& InDataTableRowHandle);
 
+public:
+	UPaperSprite* GetSpritesFromName(TArray<UPaperSprite*> Sprites, const FName& InName);
+
 
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
@@ -66,6 +72,7 @@ public:
 
 public:
 	FActorBaseTableRow* BoneData = nullptr;
+	FActorBaseTableRow* WarningData = nullptr;
 
 
 public:

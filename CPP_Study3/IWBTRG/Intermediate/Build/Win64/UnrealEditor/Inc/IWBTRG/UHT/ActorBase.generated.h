@@ -25,7 +25,7 @@ struct FHitResult;
 
 template<> IWBTRG_API UScriptStruct* StaticStruct<struct FActorBaseTableRow>();
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_96_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_90_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnColliderHit); \
 	DECLARE_FUNCTION(execOnColliderEndOverlap); \
 	DECLARE_FUNCTION(execOnColliderBeginOverlap); \
@@ -34,7 +34,7 @@ template<> IWBTRG_API UScriptStruct* StaticStruct<struct FActorBaseTableRow>();
 	DECLARE_FUNCTION(execOnMeshHit);
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_96_INCLASS_NO_PURE_DECLS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_90_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAActorBase(); \
 	friend struct Z_Construct_UClass_AActorBase_Statics; \
@@ -44,7 +44,7 @@ public: \
 	virtual UObject* _getUObject() const override { return const_cast<AActorBase*>(this); }
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_96_ENHANCED_CONSTRUCTORS \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_90_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AActorBase(AActorBase&&); \
@@ -55,13 +55,13 @@ public: \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AActorBase)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_93_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_96_GENERATED_BODY \
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_87_PROLOG
+#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_90_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_96_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_96_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_96_ENHANCED_CONSTRUCTORS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_90_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_90_INCLASS_NO_PURE_DECLS \
+	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_ActorBase_h_90_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

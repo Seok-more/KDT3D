@@ -17,7 +17,6 @@ void AActorPortal::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 
 	{
 		StaticMeshComponent->SetCollisionProfileName(TEXT("PlayerTrigger"));
-		SkeletalMeshComponent->SetCollisionProfileName(TEXT("PlayerTrigger"));
 		Collider->SetCollisionProfileName(TEXT("PlayerTrigger"));
 	}
 

@@ -72,6 +72,10 @@ public: // TempSave
 	UPROPERTY()
 	int32 PlayerProjectileNumToTempSave;
 
+public: // GameMode
+	UPROPERTY()
+	bool Noob = true;
+
 
 public:
 	bool bJustPortal = false;

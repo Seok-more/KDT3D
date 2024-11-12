@@ -30,12 +30,6 @@
     <Filter Include="Source\IWBTRG">
       <UniqueIdentifier>{E6E8D5BB-E654-3C6D-888A-20CD3FE3B60F}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\IWBTRG\BTComposite_Random.cpp">
-      <Filter>Source\IWBTRG</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\IWBTRG\BTComposite_Random.h">
-      <Filter>Source\IWBTRG</Filter>
-    </ClInclude>
     <None Include="..\..\Source\IWBTRG\IWBTRG.Build.cs">
       <Filter>Source\IWBTRG</Filter>
     </None>
@@ -258,6 +252,12 @@
     <Filter Include="Source\IWBTRG\Node">
       <UniqueIdentifier>{03A7D983-2D89-3E38-8B19-600AB7293289}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTComposite_Random.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTComposite_Random.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Base.cpp">
       <Filter>Source\IWBTRG\Node</Filter>
     </ClCompile>
@@ -274,6 +274,42 @@
       <Filter>Source\IWBTRG\Node</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone1.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone2.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone2.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone3.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Bone3.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity1.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity1.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity2.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity2.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity3.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Gravity3.h">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Moving1.cpp">
+      <Filter>Source\IWBTRG\Node</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\IWBTRG\Node\BTTask_Sans_Moving1.h">
       <Filter>Source\IWBTRG\Node</Filter>
     </ClInclude>
     <Filter Include="Source\IWBTRG\Subsystem">

@@ -118,6 +118,15 @@ struct Z_Construct_UClass_UGameInstanceBase_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerProjectileNumToTempSave_MetaData[] = {
 		{ "ModuleRelativePath", "System/GameInstanceBase.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Noob_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// GameMode\n" },
+#endif
+		{ "ModuleRelativePath", "System/GameInstanceBase.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "GameMode" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FStrPropertyParams NewProp_LevelName;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_PlayerRotatorToLevel;
@@ -130,6 +139,8 @@ struct Z_Construct_UClass_UGameInstanceBase_Statics
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ControllerRotatorToTempSave;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_PlayerProjectileDataToTempSave;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_PlayerProjectileNumToTempSave;
+	static void NewProp_Noob_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_Noob;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -148,6 +159,11 @@ const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UGameInstanceBase
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_ControllerRotatorToTempSave = { "ControllerRotatorToTempSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, ControllerRotatorToTempSave), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ControllerRotatorToTempSave_MetaData), NewProp_ControllerRotatorToTempSave_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerProjectileDataToTempSave = { "PlayerProjectileDataToTempSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, PlayerProjectileDataToTempSave), Z_Construct_UScriptStruct_FDataTableRowHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerProjectileDataToTempSave_MetaData), NewProp_PlayerProjectileDataToTempSave_MetaData) }; // 1360917958
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerProjectileNumToTempSave = { "PlayerProjectileNumToTempSave", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGameInstanceBase, PlayerProjectileNumToTempSave), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerProjectileNumToTempSave_MetaData), NewProp_PlayerProjectileNumToTempSave_MetaData) };
+void Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_Noob_SetBit(void* Obj)
+{
+	((UGameInstanceBase*)Obj)->Noob = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_Noob = { "Noob", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UGameInstanceBase), &Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_Noob_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Noob_MetaData), NewProp_Noob_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UGameInstanceBase_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_LevelName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerRotatorToLevel,
@@ -160,6 +176,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UGameInst
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_ControllerRotatorToTempSave,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerProjectileDataToTempSave,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_PlayerProjectileNumToTempSave,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameInstanceBase_Statics::NewProp_Noob,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UGameInstanceBase_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UGameInstanceBase_Statics::DependentSingletons[])() = {
@@ -203,10 +220,10 @@ UGameInstanceBase::~UGameInstanceBase() {}
 struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UGameInstanceBase, UGameInstanceBase::StaticClass, TEXT("UGameInstanceBase"), &Z_Registration_Info_UClass_UGameInstanceBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameInstanceBase), 2271115381U) },
+		{ Z_Construct_UClass_UGameInstanceBase, UGameInstanceBase::StaticClass, TEXT("UGameInstanceBase"), &Z_Registration_Info_UClass_UGameInstanceBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameInstanceBase), 3310175761U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_3582495785(TEXT("/Script/IWBTRG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_2319979716(TEXT("/Script/IWBTRG"),
 	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_System_GameInstanceBase_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

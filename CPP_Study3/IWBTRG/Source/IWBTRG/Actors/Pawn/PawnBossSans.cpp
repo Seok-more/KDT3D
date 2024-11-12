@@ -34,15 +34,35 @@ void APawnBossSans::SetData(const FDataTableRowHandle& InDataTableRowHandle)
 		}
 
 		{	// Sprite
-			MainSpriteComponent->SetSprite(SansData->MainSprite);
+			UPaperSprite* MainSprite = GetSpritesFromName(SansData->Sprites, TEXT("SP_Sans_MainSprite"));
+			MainSpriteComponent->SetSprite(MainSprite);
 		}
 
-		{	// Bone
+		{	// StuffData
 			BoneData = SansData->Bone.GetRow<FActorBaseTableRow>(TEXT("Bone"));
+			WarningData = SansData->Warning.GetRow<FActorBaseTableRow>(TEXT("Warning"));
 		}
 
 
 	}
+}
+
+UPaperSprite* APawnBossSans::GetSpritesFromName(TArray<UPaperSprite*> Sprites, const FName& InName)
+{
+	for (UPaperSprite* Sprite : Sprites)
+	{
+		if (Sprite == nullptr)
+		{
+			continue;
+		}
+
+		if (Sprite->GetFName() == InName)
+		{
+			return Sprite;
+		}
+		
+	}
+	return nullptr;
 }
 
 float APawnBossSans::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)

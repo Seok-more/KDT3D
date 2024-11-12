@@ -14,13 +14,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define IWBTRG_StaminaBarWidget_generated_h
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnHiddenUI); \
 	DECLARE_FUNCTION(execOnDie); \
 	DECLARE_FUNCTION(execOnStaminaChanged);
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUStaminaBarWidget(); \
 	friend struct Z_Construct_UClass_UStaminaBarWidget_Statics; \
@@ -29,7 +29,7 @@ public: \
 	DECLARE_SERIALIZER(UStaminaBarWidget)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UStaminaBarWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -43,13 +43,13 @@ public: \
 	NO_API virtual ~UStaminaBarWidget();
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_14_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_GENERATED_BODY \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_14_PROLOG
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_ENHANCED_CONSTRUCTORS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_INCLASS_NO_PURE_DECLS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -57,7 +57,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> IWBTRG_API UClass* StaticClass<class UStaminaBarWidget>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h
+#define CURRENT_FILE_ID FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_UI_StaminaBarWidget_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

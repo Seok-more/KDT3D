@@ -1,0 +1,4 @@
+2024/11/12-23:23:30.802 8408 Creating DB D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Saved/webcache_4430\Local Storage\leveldb since it was missing.
+2024/11/12-23:23:30.808 8408 Reusing MANIFEST D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2024/11/12-23:23:30.815 8408 Recovering log #3
+2024/11/12-23:23:30.815 8408 Reusing old log D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Saved/webcache_4430\Local Storage\leveldb/000003.log 

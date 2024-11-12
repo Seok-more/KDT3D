@@ -14,11 +14,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define IWBTRG_BTTask_PathTrace_generated_h
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnResult);
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUBTTask_PathTrace(); \
 	friend struct Z_Construct_UClass_UBTTask_PathTrace_Statics; \
@@ -27,7 +27,7 @@ public: \
 	DECLARE_SERIALIZER(UBTTask_PathTrace)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UBTTask_PathTrace(UBTTask_PathTrace&&); \
@@ -39,13 +39,13 @@ public: \
 	NO_API virtual ~UBTTask_PathTrace();
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_12_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_GENERATED_BODY \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_12_PROLOG
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_ENHANCED_CONSTRUCTORS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_INCLASS_NO_PURE_DECLS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -53,7 +53,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> IWBTRG_API UClass* StaticClass<class UBTTask_PathTrace>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h
+#define CURRENT_FILE_ID FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

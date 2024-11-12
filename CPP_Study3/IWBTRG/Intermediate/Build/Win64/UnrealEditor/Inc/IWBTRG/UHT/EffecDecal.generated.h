@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define IWBTRG_EffecDecal_generated_h
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_13_GENERATED_BODY \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_13_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FEffectDecalTableRow_Statics; \
 	static class UScriptStruct* StaticStruct(); \
 	typedef FEffectBaseTableRow Super;
@@ -22,7 +22,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> IWBTRG_API UScriptStruct* StaticStruct<struct FEffectDecalTableRow>();
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_INCLASS_NO_PURE_DECLS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAEffecDecal(); \
 	friend struct Z_Construct_UClass_AEffecDecal_Statics; \
@@ -31,7 +31,7 @@ public: \
 	DECLARE_SERIALIZER(AEffecDecal)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_ENHANCED_CONSTRUCTORS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AEffecDecal(AEffecDecal&&); \
@@ -43,12 +43,12 @@ public: \
 	NO_API virtual ~AEffecDecal();
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_22_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_GENERATED_BODY \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_22_PROLOG
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_ENHANCED_CONSTRUCTORS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_INCLASS_NO_PURE_DECLS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -56,7 +56,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> IWBTRG_API UClass* StaticClass<class AEffecDecal>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h
+#define CURRENT_FILE_ID FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Actors_Effect_EffecDecal_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

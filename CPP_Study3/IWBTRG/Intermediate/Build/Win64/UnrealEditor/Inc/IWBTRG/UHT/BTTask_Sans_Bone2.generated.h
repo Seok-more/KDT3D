@@ -14,11 +14,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define IWBTRG_BTTask_Sans_Bone2_generated_h
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execFininsh);
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUBTTask_Sans_Bone2(); \
 	friend struct Z_Construct_UClass_UBTTask_Sans_Bone2_Statics; \
@@ -27,7 +27,7 @@ public: \
 	DECLARE_SERIALIZER(UBTTask_Sans_Bone2)
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UBTTask_Sans_Bone2(UBTTask_Sans_Bone2&&); \
@@ -39,13 +39,13 @@ public: \
 	NO_API virtual ~UBTTask_Sans_Bone2();
 
 
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_14_PROLOG
-#define FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_GENERATED_BODY \
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_14_PROLOG
+#define FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_INCLASS_NO_PURE_DECLS \
-	FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_ENHANCED_CONSTRUCTORS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_INCLASS_NO_PURE_DECLS \
+	FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -53,7 +53,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> IWBTRG_API UClass* StaticClass<class UBTTask_Sans_Bone2>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h
+#define CURRENT_FILE_ID FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_Sans_Bone2_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

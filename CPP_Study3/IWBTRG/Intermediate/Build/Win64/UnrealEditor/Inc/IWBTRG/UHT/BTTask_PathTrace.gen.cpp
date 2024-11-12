@@ -142,14 +142,14 @@ UBTTask_PathTrace::~UBTTask_PathTrace() {}
 // End Class UBTTask_PathTrace
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_Statics
+struct Z_CompiledInDeferFile_FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_UBTTask_PathTrace, UBTTask_PathTrace::StaticClass, TEXT("UBTTask_PathTrace"), &Z_Registration_Info_UClass_UBTTask_PathTrace, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTTask_PathTrace), 1394730215U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_1040522420(TEXT("/Script/IWBTRG"),
-	Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_KDT3D_JSM_Cpp_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_1040522420(TEXT("/Script/IWBTRG"),
+	Z_CompiledInDeferFile_FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Github_KDT3D_CPP_Study_CPP_Study3_IWBTRG_Source_IWBTRG_Node_BTTask_PathTrace_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

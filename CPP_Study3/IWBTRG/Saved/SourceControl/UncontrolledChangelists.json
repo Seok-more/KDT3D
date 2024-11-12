@@ -5,6 +5,12 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Content/Boss/Sans/Bone.uasset",
+				"D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Content/Levels/LV_StageB1.umap",
+				"D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Content/Boss/Sans/M_Bone.uasset",
+				"D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Content/Data/Sans/DT_Sans_Actor.uasset",
+				"D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Content/Levels/LV_Stage1.umap",
+				"D:/Github_KDT3D/CPP_Study/CPP_Study3/IWBTRG/Content/Boss/Sans/sansprops.uasset",
 				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Levels/LV_Stage0.umap",
 				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/UI/UI_Misc.uasset",
 				"D:/KDT3D_JSM/Cpp_Study/CPP_Study3/IWBTRG/Content/Data/DT_Projectile.uasset",

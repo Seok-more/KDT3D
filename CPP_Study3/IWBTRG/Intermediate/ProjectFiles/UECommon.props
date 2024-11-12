@@ -15,15 +15,15 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <PropertyGroup>
-    <BuildBatchScript>D:\AssortRock\ue5.4.3\Engine\Build\BatchFiles\Build.bat</BuildBatchScript>
-    <RebuildBatchScript>D:\AssortRock\ue5.4.3\Engine\Build\BatchFiles\Rebuild.bat</RebuildBatchScript>
-    <CleanBatchScript>D:\AssortRock\ue5.4.3\Engine\Build\BatchFiles\Clean.bat</CleanBatchScript>
+    <BuildBatchScript>D:\UnrealEngine-release2\Engine\Build\BatchFiles\Build.bat</BuildBatchScript>
+    <RebuildBatchScript>D:\UnrealEngine-release2\Engine\Build\BatchFiles\Rebuild.bat</RebuildBatchScript>
+    <CleanBatchScript>D:\UnrealEngine-release2\Engine\Build\BatchFiles\Clean.bat</CleanBatchScript>
     <NMakeBuildCommandLine>echo The selected platform/configuration is not valid for this target.</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>echo The selected platform/configuration is not valid for this target.</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>echo The selected platform/configuration is not valid for this target.</NMakeCleanCommandLine>
     <NMakeOutput>Invalid Output</NMakeOutput>
-    <OutDir>D:\AssortRock\ue5.4.3\Engine\Intermediate\Build\Unused\</OutDir>
-    <IntDir>D:\AssortRock\ue5.4.3\Engine\Intermediate\Build\Unused\</IntDir>
+    <OutDir>D:\UnrealEngine-release2\Engine\Intermediate\Build\Unused\</OutDir>
+    <IntDir>D:\UnrealEngine-release2\Engine\Intermediate\Build\Unused\</IntDir>
     <IncludePath />
     <ReferencePath />
     <LibraryPath />

@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"D:\\KDT3D_JSM\\Cpp_Study\\CPP_Study3\\IWBTRG\\Source\\IWBTRG\\IWBTRG.Build.cs",
-		"D:\\KDT3D_JSM\\Cpp_Study\\CPP_Study3\\IWBTRG\\Source\\IWBTRG.Target.cs",
-		"D:\\KDT3D_JSM\\Cpp_Study\\CPP_Study3\\IWBTRG\\Source\\IWBTRGEditor.Target.cs"
+		"D:\\Github_KDT3D\\CPP_Study\\CPP_Study3\\IWBTRG\\Source\\IWBTRG\\IWBTRG.Build.cs",
+		"D:\\Github_KDT3D\\CPP_Study\\CPP_Study3\\IWBTRG\\Source\\IWBTRG.Target.cs",
+		"D:\\Github_KDT3D\\CPP_Study\\CPP_Study3\\IWBTRG\\Source\\IWBTRGEditor.Target.cs"
 	],
-	"EngineVersion": "5.4.3"
+	"EngineVersion": "5.4.4"
 }

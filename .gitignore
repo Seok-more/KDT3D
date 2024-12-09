@@ -364,8 +364,8 @@ FodyWeavers.xsd
 
 vcpkg_installed/
 
-KDT3D/Intermediate/
-KDT3D/Saved/
-KDT3D/Binaries/
-KDT3D/Build/
-KDT3D/KDT3D.sln
+CPP_Study3/IWBTRG/Intermediate/
+CPP_Study3/IWBTRG/Saved/
+CPP_Study3/IWBTRG/Binaries/
+CPP_Study3/IWBTRG/Build/
+CPP_Study3/IWBTRG/IWBTRG.sln
